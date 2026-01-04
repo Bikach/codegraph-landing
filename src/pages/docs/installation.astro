@@ -3,6 +3,26 @@ import DocsLayout from '../../layouts/Docs.astro';
 import CodeBlock from '../../components/docs/CodeBlock.astro';
 import Callout from '../../components/docs/Callout.astro';
 import PrevNext from '../../components/docs/PrevNext.astro';
+
+const jsonConfig = `{
+  "plugins": [
+    "@anthropic/codegraph-plugin"
+  ]
+}`;
+
+const dockerCode = `# Check Docker status
+docker info
+
+# On macOS, start Docker Desktop from Applications
+# On Linux, start the Docker service:
+sudo systemctl start docker`;
+
+const neo4jCode = `# Find and stop existing Neo4j containers
+docker ps | grep neo4j
+docker stop <container_id>
+
+# Or stop all Neo4j containers
+docker stop $(docker ps -q --filter ancestor=neo4j)`;
 ---
 
 <DocsLayout title="Installation">
@@ -87,11 +107,7 @@ import PrevNext from '../../components/docs/PrevNext.astro';
     </p>
 
     <CodeBlock
-      code={`{
-  "plugins": [
-    "@anthropic/codegraph-plugin"
-  ]
-}`}
+      code={jsonConfig}
       lang="json"
       title="~/.claude/settings.json"
     />
@@ -162,12 +178,7 @@ import PrevNext from '../../components/docs/PrevNext.astro';
             If you see "Cannot connect to Docker daemon", ensure Docker Desktop is running:
           </p>
           <CodeBlock
-            code="# Check Docker status
-docker info
-
-# On macOS, start Docker Desktop from Applications
-# On Linux, start the Docker service:
-sudo systemctl start docker"
+            code={dockerCode}
             lang="bash"
           />
         </div>
@@ -182,12 +193,7 @@ sudo systemctl start docker"
             If port 7687 is already in use, stop any existing Neo4j instances:
           </p>
           <CodeBlock
-            code="# Find and stop existing Neo4j containers
-docker ps | grep neo4j
-docker stop <container_id>
-
-# Or stop all Neo4j containers
-docker stop $(docker ps -q --filter ancestor=neo4j)"
+            code={neo4jCode}
             lang="bash"
           />
         </div>
