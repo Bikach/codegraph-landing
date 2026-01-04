@@ -1,150 +1,155 @@
 @import "tailwindcss";
 
 /* ========================================
-   CSS Variables - Brand Colors
+   Tailwind v4 Theme Configuration
    ======================================== */
-:root {
+@theme {
   --color-primary: #3B82F6;
   --color-secondary: #8B5CF6;
   --color-bg-dark: #0a0a0f;
   --color-surface: #111118;
   --color-border: #1e1e2e;
-
   --color-text-primary: #f8fafc;
   --color-text-secondary: #94a3b8;
   --color-text-muted: #64748b;
 }
 
 /* ========================================
-   Base Styles
+   Base Layer - Global Styles
    ======================================== */
-html {
-  scroll-behavior: smooth;
-}
+@layer base {
+  html {
+    @apply scroll-smooth overflow-x-hidden;
+  }
 
-body {
-  background-color: var(--color-bg-dark);
-  color: var(--color-text-primary);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  body {
+    @apply overflow-x-hidden antialiased;
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-primary);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  a {
+    @apply no-underline transition-colors duration-200;
+    color: var(--color-primary);
+  }
+
+  a:hover {
+    color: var(--color-secondary);
+  }
+
+  section {
+    @apply w-full max-w-full overflow-x-hidden;
+  }
+
+  pre, code {
+    font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
+  }
+
+  code {
+    @apply rounded text-sm;
+    background: var(--color-surface);
+    padding: 0.2em 0.4em;
+    color: var(--color-primary);
+  }
+
+  pre {
+    @apply rounded-lg p-4 overflow-x-auto;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  pre code {
+    @apply bg-transparent p-0;
+    color: var(--color-text-primary);
+  }
+
+  ::selection {
+    @apply text-[--color-text-primary];
+    background: rgba(59, 130, 246, 0.3);
+  }
 }
 
 /* ========================================
-   Typography
+   Components Layer - Reusable Components
    ======================================== */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
+@layer components {
+  /* Gradient text for colorful headings */
+  .gradient-text {
+    @apply bg-clip-text;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 
-a {
-  color: var(--color-primary);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
+  /* Glassmorphism card */
+  .glass-card {
+    @apply rounded-xl backdrop-blur-xl;
+    background: rgba(17, 17, 24, 0.8);
+    border: 1px solid var(--color-border);
+  }
 
-a:hover {
-  color: var(--color-secondary);
+  /* Primary button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-lg cursor-pointer border-none text-white transition-all duration-200;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  }
+
+  .btn-primary:hover {
+    @apply -translate-y-0.5 text-white;
+    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-lg cursor-pointer bg-transparent transition-all duration-200;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-border);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-primary);
+    background-color: rgba(59, 130, 246, 0.1);
+    color: var(--color-text-primary);
+  }
 }
 
 /* ========================================
-   Utility Classes
+   Utilities Layer - Custom Scrollbar
    ======================================== */
+@layer utilities {
+  /* Custom scrollbar */
+  .scrollbar-custom {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) var(--color-bg-dark);
+  }
 
-/* Gradient text for colorful headings */
-.gradient-text {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  .scrollbar-custom::-webkit-scrollbar {
+    @apply w-1.5 h-1.5;
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-track {
+    background: var(--color-bg-dark);
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb {
+    @apply rounded;
+    background: var(--color-border);
+  }
+
+  .scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-muted);
+  }
 }
 
-/* Glassmorphism card */
-.glass-card {
-  background: rgba(17, 17, 24, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--color-border);
-  border-radius: 12px;
-}
-
-/* Primary button */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  color: white;
-  font-weight: 500;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
-  color: white;
-}
-
-/* Secondary button */
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.75rem 1.5rem;
-  background: transparent;
-  color: var(--color-text-primary);
-  font-weight: 500;
-  border-radius: 8px;
-  border: 1px solid var(--color-border);
-  cursor: pointer;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
-}
-
-.btn-secondary:hover {
-  border-color: var(--color-primary);
-  background-color: rgba(59, 130, 246, 0.1);
-  color: var(--color-text-primary);
-}
-
-/* ========================================
-   Code Block Styling
-   ======================================== */
-pre, code {
-  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', Consolas, monospace;
-}
-
-code {
-  background: var(--color-surface);
-  padding: 0.2em 0.4em;
-  border-radius: 4px;
-  font-size: 0.9em;
-  color: var(--color-primary);
-}
-
-pre {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: 1rem;
-  overflow-x: auto;
-}
-
-pre code {
-  background: transparent;
-  padding: 0;
-  color: var(--color-text-primary);
-}
-
-/* ========================================
-   Custom Scrollbar
-   ======================================== */
+/* Global scrollbar (can't use @apply here) */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -163,16 +168,7 @@ pre code {
   background: var(--color-text-muted);
 }
 
-/* Firefox scrollbar */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--color-border) var(--color-bg-dark);
-}
-
-/* ========================================
-   Selection
-   ======================================== */
-::selection {
-  background: rgba(59, 130, 246, 0.3);
-  color: var(--color-text-primary);
 }
