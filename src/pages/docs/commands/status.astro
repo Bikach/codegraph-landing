@@ -1,0 +1,155 @@
+---
+import DocsLayout from '../../../layouts/Docs.astro';
+import CodeBlock from '../../../components/docs/CodeBlock.astro';
+import Callout from '../../../components/docs/Callout.astro';
+import PrevNext from '../../../components/docs/PrevNext.astro';
+---
+
+<DocsLayout title="/codegraph:status">
+  <h1 class="text-4xl font-bold text-white mb-4">/codegraph:status</h1>
+  <p class="text-xl text-gray-400 mb-8">
+    Shows Neo4j status and graph statistics.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Overview</h2>
+  <p class="text-gray-300 mb-4">
+    The <code class="bg-gray-800 px-2 py-1 rounded text-emerald-400">/codegraph:status</code> command provides a quick overview of your CodeGraph environment, including the Neo4j container status and statistics about your indexed code graph.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">What it shows</h2>
+  <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+    <li>Neo4j container running status</li>
+    <li>Database connection health</li>
+    <li>Total node counts by type (classes, interfaces, functions, properties)</li>
+    <li>Total relationship counts by type</li>
+    <li>Indexed project information</li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Usage</h2>
+  <p class="text-gray-300 mb-4">
+    Invoke the command in your Claude Code session:
+  </p>
+
+  <CodeBlock
+    code="/codegraph:status"
+    lang="bash"
+    title="Claude Code"
+  />
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Example Output</h2>
+  <CodeBlock
+    code={`CodeGraph Status
+================
+
+Neo4j Container: Running
+Container Name: codegraph-neo4j
+Bolt URL: bolt://localhost:7687
+Browser URL: http://localhost:7474
+
+Database Statistics
+-------------------
+
+Indexed Projects: 2
+  - /Users/dev/my-kotlin-app
+  - /Users/dev/shared-library
+
+Node Counts:
+  Classes:     124
+  Interfaces:   38
+  Functions:   567
+  Properties:  289
+  Objects:      15
+  ─────────────────
+  Total:     1,033
+
+Relationship Counts:
+  EXTENDS:      45
+  IMPLEMENTS:   52
+  CALLS:       892
+  USES:        634
+  CONTAINS:    623
+  ─────────────────
+  Total:     2,246
+
+Last indexed: 2 hours ago`}
+    lang="bash"
+    title="Output"
+  />
+
+  <Callout type="tip" title="Quick Health Check">
+    Run this command to quickly verify that Neo4j is running and your codebase is properly indexed before using query tools.
+  </Callout>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Status Indicators</h2>
+  <p class="text-gray-300 mb-4">
+    The status output includes different states for the Neo4j container:
+  </p>
+
+  <div class="space-y-4 mb-6">
+    <div class="flex items-center gap-3 bg-gray-800 rounded-lg p-4 border border-gray-700">
+      <div class="w-3 h-3 rounded-full bg-green-500"></div>
+      <div>
+        <span class="text-white font-semibold">Running</span>
+        <p class="text-gray-400 text-sm">Neo4j is active and ready to accept queries</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 bg-gray-800 rounded-lg p-4 border border-gray-700">
+      <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+      <div>
+        <span class="text-white font-semibold">Starting</span>
+        <p class="text-gray-400 text-sm">Neo4j container is initializing</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 bg-gray-800 rounded-lg p-4 border border-gray-700">
+      <div class="w-3 h-3 rounded-full bg-red-500"></div>
+      <div>
+        <span class="text-white font-semibold">Stopped</span>
+        <p class="text-gray-400 text-sm">Neo4j container is not running - run <code class="text-emerald-400">/codegraph:setup</code> to start</p>
+      </div>
+    </div>
+    <div class="flex items-center gap-3 bg-gray-800 rounded-lg p-4 border border-gray-700">
+      <div class="w-3 h-3 rounded-full bg-gray-500"></div>
+      <div>
+        <span class="text-white font-semibold">Not Found</span>
+        <p class="text-gray-400 text-sm">No CodeGraph container exists - run <code class="text-emerald-400">/codegraph:setup</code> to create one</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Empty Database</h2>
+  <p class="text-gray-300 mb-4">
+    If the database has no indexed data, the output will indicate this:
+  </p>
+
+  <CodeBlock
+    code={`CodeGraph Status
+================
+
+Neo4j Container: Running
+Container Name: codegraph-neo4j
+Bolt URL: bolt://localhost:7687
+Browser URL: http://localhost:7474
+
+Database Statistics
+-------------------
+
+No projects indexed yet.
+Run /codegraph:index to index your codebase.`}
+    lang="bash"
+    title="Output - Empty Database"
+  />
+
+  <Callout type="info" title="Troubleshooting">
+    If the container shows as "Stopped" or "Not Found", run <code>/codegraph:setup</code> to initialize the environment. If you see "Running" but no indexed data, use <code>/codegraph:index</code> to index your project.
+  </Callout>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Next Steps</h2>
+  <p class="text-gray-300 mb-4">
+    Once your graph is indexed and Neo4j is running, you can start querying your codebase using tools like <a href="/docs/tools/search-nodes" class="text-emerald-400 hover:text-emerald-300 underline">search_nodes</a>.
+  </p>
+
+  <PrevNext
+    prev={{ title: "/codegraph:index", href: "/docs/commands/index-cmd" }}
+    next={{ title: "search_nodes", href: "/docs/tools/search-nodes" }}
+  />
+</DocsLayout>

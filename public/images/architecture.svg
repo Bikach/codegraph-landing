@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" fill="none">
+  <defs>
+    <linearGradient id="archEmeraldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    <linearGradient id="archPurpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a855f7"/>
+      <stop offset="100%" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="archBlueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2563eb"/>
+    </linearGradient>
+    <linearGradient id="archAmberGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+    <filter id="archGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="archShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="300" fill="#111827"/>
+
+  <!-- Claude Code Box -->
+  <g filter="url(#archShadow)">
+    <rect x="40" y="100" width="160" height="100" rx="12" fill="#1f2937" stroke="url(#archAmberGradient)" stroke-width="2"/>
+    <!-- Anthropic logo simplified -->
+    <circle cx="120" cy="130" r="18" fill="url(#archAmberGradient)" opacity="0.2"/>
+    <text x="120" y="135" text-anchor="middle" fill="#f59e0b" font-family="system-ui, sans-serif" font-size="20" font-weight="bold">A</text>
+    <text x="120" y="165" text-anchor="middle" fill="#f3f4f6" font-family="system-ui, sans-serif" font-size="14" font-weight="600">Claude Code</text>
+    <text x="120" y="182" text-anchor="middle" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="10">AI Assistant</text>
+  </g>
+
+  <!-- Arrow 1: Claude to Plugin -->
+  <g filter="url(#archGlow)">
+    <path d="M 210 150 L 280 150" stroke="url(#archEmeraldGradient)" stroke-width="3" stroke-linecap="round"/>
+    <polygon points="290,150 275,143 275,157" fill="#10b981"/>
+    <text x="250" y="138" text-anchor="middle" fill="#6b7280" font-family="system-ui, sans-serif" font-size="10">MCP</text>
+  </g>
+
+  <!-- CodeGraph Plugin Box -->
+  <g filter="url(#archShadow)">
+    <rect x="300" y="80" width="200" height="140" rx="12" fill="#1f2937" stroke="url(#archEmeraldGradient)" stroke-width="2"/>
+    <!-- Graph icon -->
+    <g transform="translate(370, 100)">
+      <circle cx="0" cy="0" r="6" fill="#10b981"/>
+      <circle cx="20" cy="-15" r="4" fill="#a855f7"/>
+      <circle cx="20" cy="15" r="4" fill="#a855f7"/>
+      <circle cx="-20" cy="10" r="4" fill="#10b981"/>
+      <line x1="0" y1="0" x2="20" y2="-15" stroke="#10b981" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="20" y2="15" stroke="#a855f7" stroke-width="1.5"/>
+      <line x1="0" y1="0" x2="-20" y2="10" stroke="#10b981" stroke-width="1.5"/>
+    </g>
+    <text x="400" y="150" text-anchor="middle" fill="#f3f4f6" font-family="system-ui, sans-serif" font-size="14" font-weight="600">CodeGraph Plugin</text>
+    <text x="400" y="170" text-anchor="middle" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="10">Graph + LSP Engine</text>
+    <text x="400" y="200" text-anchor="middle" fill="#6b7280" font-family="system-ui, sans-serif" font-size="9">search_nodes | get_impact | ...</text>
+  </g>
+
+  <!-- Arrow 2: Plugin to Neo4j -->
+  <g filter="url(#archGlow)">
+    <path d="M 510 120 L 560 90" stroke="url(#archBlueGradient)" stroke-width="2" stroke-linecap="round"/>
+    <polygon points="570,85 553,85 558,97" fill="#3b82f6"/>
+  </g>
+
+  <!-- Arrow 3: Plugin to LSP -->
+  <g filter="url(#archGlow)">
+    <path d="M 510 180 L 560 210" stroke="url(#archPurpleGradient)" stroke-width="2" stroke-linecap="round"/>
+    <polygon points="570,215 553,215 558,203" fill="#a855f7"/>
+  </g>
+
+  <!-- Neo4j Box -->
+  <g filter="url(#archShadow)">
+    <rect x="580" y="40" width="160" height="80" rx="12" fill="#1f2937" stroke="url(#archBlueGradient)" stroke-width="2"/>
+    <!-- Database icon -->
+    <g transform="translate(660, 60)">
+      <ellipse cx="0" cy="0" rx="15" ry="6" fill="none" stroke="#3b82f6" stroke-width="2"/>
+      <path d="M -15 0 L -15 15 A 15 6 0 0 0 15 15 L 15 0" fill="none" stroke="#3b82f6" stroke-width="2"/>
+      <ellipse cx="0" cy="15" rx="15" ry="6" fill="none" stroke="#3b82f6" stroke-width="2"/>
+    </g>
+    <text x="660" y="95" text-anchor="middle" fill="#f3f4f6" font-family="system-ui, sans-serif" font-size="13" font-weight="600">Neo4j</text>
+    <text x="660" y="108" text-anchor="middle" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="9">Graph Database</text>
+  </g>
+
+  <!-- LSP Box -->
+  <g filter="url(#archShadow)">
+    <rect x="580" y="180" width="160" height="80" rx="12" fill="#1f2937" stroke="url(#archPurpleGradient)" stroke-width="2"/>
+    <!-- Code icon -->
+    <g transform="translate(660, 200)">
+      <text x="0" y="5" text-anchor="middle" fill="#a855f7" font-family="monospace" font-size="16" font-weight="bold">&lt;/&gt;</text>
+    </g>
+    <text x="660" y="235" text-anchor="middle" fill="#f3f4f6" font-family="system-ui, sans-serif" font-size="13" font-weight="600">LSP Server</text>
+    <text x="660" y="248" text-anchor="middle" fill="#9ca3af" font-family="system-ui, sans-serif" font-size="9">Language Intelligence</text>
+  </g>
+
+  <!-- Labels at bottom -->
+  <text x="400" y="280" text-anchor="middle" fill="#6b7280" font-family="system-ui, sans-serif" font-size="11">
+    CodeGraph Architecture: Claude Code communicates via MCP to leverage Graph and LSP engines
+  </text>
+</svg>

@@ -1,0 +1,182 @@
+---
+import DocsLayout from '../../../layouts/Docs.astro';
+import CodeBlock from '../../../components/docs/CodeBlock.astro';
+import Callout from '../../../components/docs/Callout.astro';
+import PrevNext from '../../../components/docs/PrevNext.astro';
+---
+
+<DocsLayout title="get_impact">
+  <h1 class="text-4xl font-bold text-white mb-4">get_impact</h1>
+  <p class="text-xl text-gray-400 mb-8">
+    Analyze the impact of modifying a node by showing all nodes that would be affected by changes.
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Description</h2>
+    <p class="text-gray-300 mb-4">
+      The <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">get_impact</code> tool performs comprehensive impact analysis on a code element. It traces all dependencies and relationships to identify every part of the codebase that could be affected if you modify the specified node. This is essential for safe refactoring and change management.
+    </p>
+    <p class="text-gray-300">
+      Results are returned in a compact format: <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">impact_type | depth | Type | Name | filePath:line</code>
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Parameters</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-gray-700">
+            <th class="py-3 px-4 text-gray-300 font-semibold">Parameter</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Type</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Required</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Description</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-400">
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">node_name</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-red-400">Yes</span></td>
+            <td class="py-3 px-4">Name of the node to analyze impact for</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">node_type</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Type of node for disambiguation: <code class="text-xs bg-gray-800 px-1 rounded">class</code>, <code class="text-xs bg-gray-800 px-1 rounded">interface</code>, <code class="text-xs bg-gray-800 px-1 rounded">function</code>, or <code class="text-xs bg-gray-800 px-1 rounded">property</code></td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">depth</code></td>
+            <td class="py-3 px-4">integer</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Analysis depth: 1-10 (default: 3)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">project_path</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Filter by project path. If not provided, searches all indexed projects</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Usage Examples</h2>
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3">Basic impact analysis</h3>
+    <p class="text-gray-400 mb-3">Analyze what would be affected by changing a class:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> What would be affected if I change UserRepository?
+
+Using get_impact with:
+  node_name: "UserRepository"`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Function-specific impact</h3>
+    <p class="text-gray-400 mb-3">Analyze the impact of changing a specific function:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> What breaks if I modify the calculateTotal function?
+
+Using get_impact with:
+  node_name: "calculateTotal"
+  node_type: "function"`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Deep analysis</h3>
+    <p class="text-gray-400 mb-3">Trace the full impact chain for critical changes:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> I'm planning to refactor the BaseEntity class. Show me the full impact.
+
+Using get_impact with:
+  node_name: "BaseEntity"
+  depth: 10`}
+    />
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Example Output</h2>
+    <CodeBlock
+      title="Output"
+      lang="text"
+      code={`direct | 1 | class | UserService | src/services/UserService.kt:12
+direct | 1 | class | AuthService | src/services/AuthService.kt:8
+direct | 1 | class | AdminService | src/services/AdminService.kt:15
+transitive | 2 | class | UserController | src/controllers/UserController.kt:23
+transitive | 2 | class | AuthController | src/controllers/AuthController.kt:19
+transitive | 2 | class | AdminController | src/controllers/AdminController.kt:11
+transitive | 3 | function | handleLogin | src/controllers/AuthController.kt:45
+transitive | 3 | function | getCurrentUser | src/controllers/UserController.kt:67`}
+    />
+    <p class="text-gray-400 mt-4">
+      The impact type shows whether the effect is <code class="text-emerald-400 bg-gray-800 px-1 rounded">direct</code> (immediately uses the node) or <code class="text-emerald-400 bg-gray-800 px-1 rounded">transitive</code> (affected through a chain of dependencies).
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Use Cases</h2>
+    <ul class="space-y-3 text-gray-300">
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Safe refactoring:</strong> Before making breaking changes, identify all the code that needs to be updated</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Risk assessment:</strong> Evaluate the scope of a proposed change to estimate effort and risk</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Test planning:</strong> Determine which tests need to be run or updated after a change</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Change review:</strong> During code review, verify that all impacted areas have been properly addressed</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>API versioning:</strong> Understand the blast radius of an API change to plan deprecation strategies</span>
+      </li>
+    </ul>
+  </section>
+
+  <Callout type="warning" title="Critical for Breaking Changes">
+    Always run impact analysis before making breaking changes to interfaces, base classes, or widely-used utilities. A high number of affected nodes indicates you may need to plan a gradual migration strategy.
+  </Callout>
+
+  <Callout type="tip" title="Pro Tip">
+    Use a lower depth (1-2) for quick assessments and a higher depth (5-10) when planning major refactoring. The number of impacted nodes at each depth level helps you understand the coupling in your codebase.
+  </Callout>
+
+  <PrevNext
+    prev={{ title: "get_neighbors", href: "/docs/tools/get-neighbors" }}
+    next={{ title: "find_path", href: "/docs/tools/find-path" }}
+  />
+</DocsLayout>

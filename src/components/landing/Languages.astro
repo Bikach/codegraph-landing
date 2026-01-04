@@ -1,0 +1,114 @@
+---
+// Languages section showcasing supported programming languages
+interface Language {
+  name: string;
+  status: 'available' | 'coming-soon';
+  statusLabel: string;
+}
+
+const languages: Language[] = [
+  {
+    name: "Kotlin",
+    status: "available",
+    statusLabel: "Available"
+  },
+  {
+    name: "Java",
+    status: "available",
+    statusLabel: "Available"
+  },
+  {
+    name: "TypeScript",
+    status: "coming-soon",
+    statusLabel: "Coming soon"
+  }
+];
+---
+
+<section class="py-20 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-5xl mx-auto">
+    <!-- Section Title -->
+    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-12">
+      <span class="gradient-text">Supported Languages</span>
+    </h2>
+
+    <!-- Languages Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      {languages.map((language) => (
+        <div class={`glass-card p-8 text-center transition-all duration-300 ${
+          language.status === 'coming-soon'
+            ? 'opacity-60'
+            : 'hover:translate-y-[-4px] hover:border-[var(--color-primary)]'
+        }`}>
+          <!-- Language Icon -->
+          <div class={`w-16 h-16 mx-auto mb-5 flex items-center justify-center rounded-xl ${
+            language.status === 'coming-soon'
+              ? 'bg-gray-700/30'
+              : 'bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-secondary)]/20'
+          }`}>
+            {language.name === "Kotlin" && (
+              <svg class="w-10 h-10 text-[var(--color-primary)]" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M1.3 24l11.3-11.5L24 24H1.3zM0 0h12L0 12.5V0zm13.4 0L0 14v10l12-12L24 0H13.4z"/>
+              </svg>
+            )}
+            {language.name === "Java" && (
+              <svg class={`w-10 h-10 ${language.status === 'coming-soon' ? 'text-gray-500' : 'text-[var(--color-primary)]'}`} viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8.851 18.56s-.917.534.653.714c1.902.218 2.874.187 4.969-.211 0 0 .552.346 1.321.646-4.699 2.013-10.633-.118-6.943-1.149M8.276 15.933s-1.028.761.542.924c2.032.209 3.636.227 6.413-.308 0 0 .384.389.987.602-5.679 1.661-12.007.13-7.942-1.218M13.116 11.475c1.158 1.333-.304 2.533-.304 2.533s2.939-1.518 1.589-3.418c-1.261-1.772-2.228-2.652 3.007-5.688 0-.001-8.216 2.051-4.292 6.573M19.33 20.504s.679.559-.747.991c-2.712.822-11.288 1.069-13.669.033-.856-.373.75-.89 1.254-.998.527-.114.828-.093.828-.093-.953-.671-6.156 1.317-2.643 1.887 9.58 1.553 17.462-.7 14.977-1.82M9.292 13.21s-4.362 1.036-1.544 1.412c1.189.159 3.561.123 5.77-.062 1.806-.152 3.618-.477 3.618-.477s-.637.272-1.098.587c-4.429 1.165-12.986.623-10.522-.568 2.082-1.006 3.776-.892 3.776-.892M17.116 17.584c4.503-2.34 2.421-4.589.968-4.285-.355.074-.515.138-.515.138s.132-.207.385-.297c2.875-1.011 5.086 2.981-.928 4.562 0-.001.07-.062.09-.118M14.401 0s2.494 2.494-2.365 6.33c-3.896 3.077-.888 4.832-.001 6.836-2.274-2.053-3.943-3.858-2.824-5.539 1.644-2.469 6.197-3.665 5.19-7.627M9.734 23.924c4.322.277 10.959-.153 11.116-2.198 0 0-.302.775-3.572 1.391-3.688.694-8.239.613-10.937.168 0-.001.553.457 3.393.639"/>
+              </svg>
+            )}
+            {language.name === "TypeScript" && (
+              <svg class={`w-10 h-10 ${language.status === 'coming-soon' ? 'text-gray-500' : 'text-[var(--color-primary)]'}`} viewBox="0 0 24 24" fill="currentColor">
+                <path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/>
+              </svg>
+            )}
+          </div>
+
+          <!-- Language Name -->
+          <h3 class={`text-xl font-semibold mb-3 ${
+            language.status === 'coming-soon'
+              ? 'text-gray-400'
+              : 'text-[var(--color-text-primary)]'
+          }`}>
+            {language.name}
+          </h3>
+
+          <!-- Status Badge -->
+          <div class={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium ${
+            language.status === 'available'
+              ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+              : 'bg-gray-500/20 text-gray-400 border border-gray-500/30'
+          }`}>
+            {language.status === 'available' ? (
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+              </svg>
+            ) : (
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            )}
+            <span>{language.statusLabel}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+      <p class="text-[var(--color-text-secondary)] mb-4">
+        More languages coming soon!
+      </p>
+      <a
+        href="https://www.linkedin.com/in/chakib-houd-io/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-secondary inline-flex items-center gap-2"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        <span>Follow for updates</span>
+      </a>
+    </div>
+  </div>
+</section>

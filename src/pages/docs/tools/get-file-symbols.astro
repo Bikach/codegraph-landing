@@ -1,0 +1,177 @@
+---
+import DocsLayout from '../../../layouts/Docs.astro';
+import CodeBlock from '../../../components/docs/CodeBlock.astro';
+import Callout from '../../../components/docs/Callout.astro';
+import PrevNext from '../../../components/docs/PrevNext.astro';
+---
+
+<DocsLayout title="get_file_symbols">
+  <h1 class="text-4xl font-bold text-white mb-4">get_file_symbols</h1>
+  <p class="text-xl text-gray-400 mb-8">
+    List all symbols (classes, interfaces, functions, properties) defined in a file.
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Description</h2>
+    <p class="text-gray-300 mb-4">
+      The <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">get_file_symbols</code> tool provides a quick overview of all code elements defined in a specific file. It acts like an enhanced table of contents, showing you the structure of a file without having to read through all the code.
+    </p>
+    <p class="text-gray-300">
+      Results are returned in a compact format: <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">type | Name | visibility | line</code>
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Parameters</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-gray-700">
+            <th class="py-3 px-4 text-gray-300 font-semibold">Parameter</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Type</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Required</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Description</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-400">
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">file_path</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-red-400">Yes</span></td>
+            <td class="py-3 px-4">Path to the file (absolute or relative to project root)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">include_private</code></td>
+            <td class="py-3 px-4">boolean</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Include private/internal symbols (default: true)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">project_path</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Filter by project path. If not provided, searches all indexed projects</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Usage Examples</h2>
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3">List all symbols in a file</h3>
+    <p class="text-gray-400 mb-3">Get a complete overview of a file's contents:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> What's defined in UserService.kt?
+
+Using get_file_symbols with:
+  file_path: "src/services/UserService.kt"`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Public API only</h3>
+    <p class="text-gray-400 mb-3">Show only public symbols to understand the file's public interface:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> What public methods does OrderController expose?
+
+Using get_file_symbols with:
+  file_path: "src/controllers/OrderController.kt"
+  include_private: false`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Absolute path</h3>
+    <p class="text-gray-400 mb-3">Use absolute paths for files outside the current project:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> Show me the symbols in this file
+
+Using get_file_symbols with:
+  file_path: "/home/user/projects/api/src/main/java/Auth.java"`}
+    />
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Example Output</h2>
+    <CodeBlock
+      title="Output"
+      lang="text"
+      code={`class | UserService | public | 15
+function | getUserById | public | 28
+function | createUser | public | 45
+function | updateUser | public | 67
+function | deleteUser | public | 89
+function | validateUserData | private | 105
+function | hashPassword | private | 120
+property | userRepository | private | 17
+property | passwordEncoder | private | 18
+property | emailService | private | 19`}
+    />
+    <p class="text-gray-400 mt-4">
+      Each line shows the symbol type, name, visibility modifier, and line number where it's defined.
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Use Cases</h2>
+    <ul class="space-y-3 text-gray-300">
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Quick file overview:</strong> Understand a file's structure before diving into the details</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>API documentation:</strong> Quickly identify the public interface of a class or module</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Code navigation:</strong> Find the line number of a specific function or class to jump directly to it</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Code review:</strong> Review the overall structure and organization of a file</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Refactoring assessment:</strong> See all symbols in a file to plan extraction or reorganization</span>
+      </li>
+    </ul>
+  </section>
+
+  <Callout type="tip" title="Combine with Other Tools">
+    Use <code class="text-green-300">get_file_symbols</code> to discover what's in a file, then use <code class="text-green-300">get_callees</code> or <code class="text-green-300">get_neighbors</code> to explore specific functions or classes you find.
+  </Callout>
+
+  <Callout type="info" title="File Path Tips">
+    You can use either relative paths (from the project root) or absolute paths. Relative paths are often more convenient when working within a single project.
+  </Callout>
+
+  <PrevNext
+    prev={{ title: "find_path", href: "/docs/tools/find-path" }}
+    next={{ title: "incomingCalls", href: "/docs/lsp/incoming-calls" }}
+  />
+</DocsLayout>

@@ -1,0 +1,224 @@
+---
+import DocsLayout from '../../../layouts/Docs.astro';
+import CodeBlock from '../../../components/docs/CodeBlock.astro';
+import Callout from '../../../components/docs/Callout.astro';
+import PrevNext from '../../../components/docs/PrevNext.astro';
+---
+
+<DocsLayout title="find_path">
+  <h1 class="text-4xl font-bold text-white mb-4">find_path</h1>
+  <p class="text-xl text-gray-400 mb-8">
+    Find the shortest path between two nodes in the code graph.
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Description</h2>
+    <p class="text-gray-300 mb-4">
+      The <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">find_path</code> tool discovers how two code elements are connected through the dependency graph. It finds the shortest chain of relationships between any two nodes, revealing hidden connections and helping you understand data and control flow through your application.
+    </p>
+    <p class="text-gray-300">
+      Results are returned in a compact format: <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">step | Type | Name | relationship | filePath:line</code>
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Parameters</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-gray-700">
+            <th class="py-3 px-4 text-gray-300 font-semibold">Parameter</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Type</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Required</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Description</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-400">
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">from_node</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-red-400">Yes</span></td>
+            <td class="py-3 px-4">Name of the starting node</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">to_node</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-red-400">Yes</span></td>
+            <td class="py-3 px-4">Name of the target node</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">max_depth</code></td>
+            <td class="py-3 px-4">integer</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Maximum path length to search: 1-10 (default: 5)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">relationship_types</code></td>
+            <td class="py-3 px-4">array</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Filter by relationship types (e.g., <code class="text-xs bg-gray-800 px-1 rounded">CALLS</code>, <code class="text-xs bg-gray-800 px-1 rounded">USES</code>, <code class="text-xs bg-gray-800 px-1 rounded">IMPLEMENTS</code>)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">project_path</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Filter by project path. If not provided, searches all indexed projects</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Usage Examples</h2>
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3">Find connection between two classes</h3>
+    <p class="text-gray-400 mb-3">Discover how two seemingly unrelated classes are connected:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> How is UserController connected to EmailService?
+
+Using find_path with:
+  from_node: "UserController"
+  to_node: "EmailService"`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Trace data flow</h3>
+    <p class="text-gray-400 mb-3">Understand how data flows from input to output:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> How does a request reach the database from the API endpoint?
+
+Using find_path with:
+  from_node: "ApiController"
+  to_node: "DatabaseConnection"`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Filter by relationship type</h3>
+    <p class="text-gray-400 mb-3">Only trace through specific relationship types:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> Show me only the call chain from OrderService to NotificationService
+
+Using find_path with:
+  from_node: "OrderService"
+  to_node: "NotificationService"
+  relationship_types: ["CALLS"]`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Extended search</h3>
+    <p class="text-gray-400 mb-3">Search for longer paths when direct connections do not exist:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> Find any connection between AuthModule and ReportGenerator
+
+Using find_path with:
+  from_node: "AuthModule"
+  to_node: "ReportGenerator"
+  max_depth: 10`}
+    />
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Example Output</h2>
+    <CodeBlock
+      title="Output"
+      lang="text"
+      code={`0 | class | UserController | -- | src/controllers/UserController.kt:10
+1 | class | UserService | USES | src/services/UserService.kt:15
+2 | class | NotificationService | USES | src/services/NotificationService.kt:8
+3 | class | EmailService | USES | src/services/EmailService.kt:12`}
+    />
+    <p class="text-gray-400 mt-4">
+      Each step shows the node type, name, the relationship type that connects it to the previous node, and its location. Step 0 is the starting node.
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Relationship Types</h2>
+    <p class="text-gray-400 mb-4">Common relationship types you can filter by:</p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-gray-700">
+            <th class="py-3 px-4 text-gray-300 font-semibold">Type</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Description</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-400">
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">CALLS</code></td>
+            <td class="py-3 px-4">Function/method invocation</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">USES</code></td>
+            <td class="py-3 px-4">Dependency injection or field reference</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">IMPLEMENTS</code></td>
+            <td class="py-3 px-4">Interface implementation</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">EXTENDS</code></td>
+            <td class="py-3 px-4">Class inheritance</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">CONTAINS</code></td>
+            <td class="py-3 px-4">Nested class or inner function</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Use Cases</h2>
+    <ul class="space-y-3 text-gray-300">
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Debugging:</strong> Trace how a bug in one component could affect a distant part of the application</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Architecture understanding:</strong> Visualize how different layers of your application connect</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Security analysis:</strong> Trace how sensitive data flows from entry points to storage or external services</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Coupling analysis:</strong> Identify unexpected connections that might indicate architectural issues</span>
+      </li>
+    </ul>
+  </section>
+
+  <Callout type="info" title="No Path Found?">
+    If no path is found, the nodes might be completely independent, or the path might be longer than the <code class="text-blue-300">max_depth</code>. Try increasing <code class="text-blue-300">max_depth</code> to 10 for a more thorough search.
+  </Callout>
+
+  <PrevNext
+    prev={{ title: "get_impact", href: "/docs/tools/get-impact" }}
+    next={{ title: "get_file_symbols", href: "/docs/tools/get-file-symbols" }}
+  />
+</DocsLayout>

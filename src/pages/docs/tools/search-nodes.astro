@@ -1,0 +1,170 @@
+---
+import DocsLayout from '../../../layouts/Docs.astro';
+import CodeBlock from '../../../components/docs/CodeBlock.astro';
+import Callout from '../../../components/docs/Callout.astro';
+import PrevNext from '../../../components/docs/PrevNext.astro';
+---
+
+<DocsLayout title="search_nodes">
+  <h1 class="text-4xl font-bold text-white mb-4">search_nodes</h1>
+  <p class="text-xl text-gray-400 mb-8">
+    Search for nodes (classes, interfaces, functions, properties) by name or pattern in the code graph.
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Description</h2>
+    <p class="text-gray-300 mb-4">
+      The <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">search_nodes</code> tool allows you to search through your indexed codebase for specific code elements. It supports partial matching by default, making it easy to find classes, functions, or interfaces even when you only remember part of the name.
+    </p>
+    <p class="text-gray-300">
+      Results are returned in a compact format: <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">type | Name | visibility | filePath:line</code>
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Parameters</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-gray-700">
+            <th class="py-3 px-4 text-gray-300 font-semibold">Parameter</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Type</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Required</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Description</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-400">
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">query</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-red-400">Yes</span></td>
+            <td class="py-3 px-4">Search query (name or pattern to match)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">node_types</code></td>
+            <td class="py-3 px-4">array</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Filter by node types: <code class="text-xs bg-gray-800 px-1 rounded">class</code>, <code class="text-xs bg-gray-800 px-1 rounded">interface</code>, <code class="text-xs bg-gray-800 px-1 rounded">function</code>, <code class="text-xs bg-gray-800 px-1 rounded">property</code>, <code class="text-xs bg-gray-800 px-1 rounded">object</code></td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">exact_match</code></td>
+            <td class="py-3 px-4">boolean</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">If true, exact match. If false (default), partial match using CONTAINS</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">limit</code></td>
+            <td class="py-3 px-4">integer</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Maximum number of results (1-100, default: 20)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">project_path</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Filter by project path. If not provided, searches all indexed projects</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Usage Examples</h2>
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3">Basic search</h3>
+    <p class="text-gray-400 mb-3">Search for all nodes containing "User" in their name:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> Find all classes and functions related to User
+
+Using search_nodes with query: "User"`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Filter by type</h3>
+    <p class="text-gray-400 mb-3">Search only for classes:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> Find all Service classes
+
+Using search_nodes with:
+  query: "Service"
+  node_types: ["class"]`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Exact match</h3>
+    <p class="text-gray-400 mb-3">Find an exact class name:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> Find the UserRepository class
+
+Using search_nodes with:
+  query: "UserRepository"
+  exact_match: true`}
+    />
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Example Output</h2>
+    <CodeBlock
+      title="Output"
+      lang="text"
+      code={`class | UserService | public | src/services/UserService.kt:15
+class | UserRepository | public | src/repositories/UserRepository.kt:8
+interface | UserMapper | public | src/mappers/UserMapper.kt:3
+function | getUserById | public | src/services/UserService.kt:24
+function | createUser | public | src/services/UserService.kt:45
+property | currentUser | private | src/auth/AuthContext.kt:12`}
+    />
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Use Cases</h2>
+    <ul class="space-y-3 text-gray-300">
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Code discovery:</strong> Find all classes, functions, or interfaces matching a pattern when exploring an unfamiliar codebase</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Refactoring preparation:</strong> Identify all nodes that might need to be updated before a large-scale refactoring</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Architecture analysis:</strong> Find all services, repositories, or controllers to understand the project structure</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Naming consistency:</strong> Check if similar concepts are named consistently across the codebase</span>
+      </li>
+    </ul>
+  </section>
+
+  <Callout type="tip" title="Pro Tip">
+    Start with a broad partial match search, then narrow down using <code class="text-green-300">node_types</code> or <code class="text-green-300">exact_match</code> to find exactly what you need.
+  </Callout>
+
+  <PrevNext
+    prev={{ title: "/codegraph:status", href: "/docs/commands/status" }}
+    next={{ title: "get_callees", href: "/docs/tools/get-callees" }}
+  />
+</DocsLayout>

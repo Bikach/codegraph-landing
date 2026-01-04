@@ -1,0 +1,129 @@
+---
+import DocsLayout from '../../../layouts/Docs.astro';
+import CodeBlock from '../../../components/docs/CodeBlock.astro';
+import Callout from '../../../components/docs/Callout.astro';
+import PrevNext from '../../../components/docs/PrevNext.astro';
+---
+
+<DocsLayout title="incomingCalls" description="Find all functions that call a specific function using LSP call hierarchy">
+  <h1 class="text-4xl font-bold text-white mb-4">incomingCalls</h1>
+  <p class="text-xl text-gray-400 mb-8">
+    Find all functions that call a specific function using LSP call hierarchy.
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Overview</h2>
+    <p class="text-gray-300 mb-4">
+      The <code class="px-2 py-1 bg-gray-800 rounded text-emerald-400">incomingCalls</code> tool identifies all
+      functions that call a specific function at a given location. This is essential for understanding code
+      dependencies and performing impact analysis before refactoring.
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">How It Works</h2>
+    <p class="text-gray-300 mb-4">
+      This tool leverages the Language Server Protocol (LSP) call hierarchy feature to traverse the codebase
+      and find all call sites:
+    </p>
+    <ol class="list-decimal list-inside text-gray-300 space-y-2 ml-4">
+      <li>Sends a <code class="px-2 py-1 bg-gray-800 rounded text-emerald-400">textDocument/prepareCallHierarchy</code> request to identify the symbol at the given position</li>
+      <li>Uses the prepared item to request <code class="px-2 py-1 bg-gray-800 rounded text-emerald-400">callHierarchy/incomingCalls</code></li>
+      <li>Returns a list of all functions that contain calls to the target function</li>
+    </ol>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Parameters</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-gray-700">
+            <th class="py-3 px-4 text-gray-300 font-semibold">Parameter</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Type</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Required</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Description</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-400">
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">file_path</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4">Yes</td>
+            <td class="py-3 px-4">Absolute path to the file containing the target function</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">line</code></td>
+            <td class="py-3 px-4">number</td>
+            <td class="py-3 px-4">Yes</td>
+            <td class="py-3 px-4">Line number of the function (0-indexed)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">character</code></td>
+            <td class="py-3 px-4">number</td>
+            <td class="py-3 px-4">Yes</td>
+            <td class="py-3 px-4">Character offset within the line (0-indexed)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Example Usage</h2>
+
+    <p class="text-gray-300 mb-4">Find all callers of a function:</p>
+
+    <CodeBlock
+      title="MCP Tool Call"
+      lang="json"
+      code={`{
+  "tool": "incomingCalls",
+  "arguments": {
+    "file_path": "/project/src/services/UserService.ts",
+    "line": 25,
+    "character": 10
+  }
+}`}
+    />
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-4">Example Output</h3>
+
+    <CodeBlock
+      title="Response"
+      lang="text"
+      code={`Found 3 incoming calls to 'getUserById':
+
+caller | Class.function() | filePath:line
+-------|------------------|---------------
+  1    | UserController.getUser() | /project/src/controllers/UserController.ts:42
+  2    | AuthService.validateToken() | /project/src/services/AuthService.ts:78
+  3    | ProfileHandler.loadProfile() | /project/src/handlers/ProfileHandler.ts:15`}
+    />
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Use Cases</h2>
+    <ul class="list-disc list-inside text-gray-300 space-y-2 ml-4">
+      <li><strong>Impact Analysis:</strong> Understand which parts of your codebase depend on a function before modifying it</li>
+      <li><strong>Refactoring:</strong> Identify all call sites that need to be updated when changing a function signature</li>
+      <li><strong>Code Review:</strong> Trace the usage of a function across the project</li>
+      <li><strong>Dead Code Detection:</strong> Find functions with no incoming calls</li>
+    </ul>
+  </section>
+
+  <Callout type="tip" title="Pro Tip">
+    Combine <code class="text-emerald-400">incomingCalls</code> with <code class="text-emerald-400">get_callees</code>
+    to build a complete call graph around a function, showing both what calls it and what it calls.
+  </Callout>
+
+  <Callout type="info" title="LSP Requirement">
+    This tool requires an active Language Server for the target file's language. Make sure the appropriate
+    language server is installed and configured for your project.
+  </Callout>
+
+  <PrevNext
+    prev={{ title: "get_file_symbols", href: "/docs/tools/get-file-symbols" }}
+    next={{ title: "goToImplementation", href: "/docs/lsp/go-to-implementation" }}
+  />
+</DocsLayout>

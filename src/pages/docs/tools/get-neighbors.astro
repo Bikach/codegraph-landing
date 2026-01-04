@@ -1,0 +1,191 @@
+---
+import DocsLayout from '../../../layouts/Docs.astro';
+import CodeBlock from '../../../components/docs/CodeBlock.astro';
+import Callout from '../../../components/docs/Callout.astro';
+import PrevNext from '../../../components/docs/PrevNext.astro';
+---
+
+<DocsLayout title="get_neighbors">
+  <h1 class="text-4xl font-bold text-white mb-4">get_neighbors</h1>
+  <p class="text-xl text-gray-400 mb-8">
+    Get all neighboring nodes (dependencies and dependents) of a class or interface.
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Description</h2>
+    <p class="text-gray-300 mb-4">
+      The <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">get_neighbors</code> tool reveals the relationships between classes and interfaces in your codebase. It can show both <em>outgoing</em> connections (what a class depends on) and <em>incoming</em> connections (what depends on a class), giving you a complete picture of a node's role in the architecture.
+    </p>
+    <p class="text-gray-300">
+      Results are returned in a compact format: <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">direction | depth | Type | Name | filePath</code>
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Parameters</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-gray-700">
+            <th class="py-3 px-4 text-gray-300 font-semibold">Parameter</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Type</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Required</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Description</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-400">
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">node_name</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-red-400">Yes</span></td>
+            <td class="py-3 px-4">Name of the class or interface to get neighbors for</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">direction</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">
+              <code class="text-xs bg-gray-800 px-1 rounded">outgoing</code> (dependencies),
+              <code class="text-xs bg-gray-800 px-1 rounded">incoming</code> (dependents), or
+              <code class="text-xs bg-gray-800 px-1 rounded">both</code> (default)
+            </td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">depth</code></td>
+            <td class="py-3 px-4">integer</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Search depth: 1 = direct only, up to 5 (default: 1)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">include_external</code></td>
+            <td class="py-3 px-4">boolean</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Include external dependencies like npm packages (default: false)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">project_path</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Filter by project path. If not provided, searches all indexed projects</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Usage Examples</h2>
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3">Find all relationships</h3>
+    <p class="text-gray-400 mb-3">Get both dependencies and dependents of a class:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> What classes are connected to UserService?
+
+Using get_neighbors with:
+  node_name: "UserService"`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Find dependencies only</h3>
+    <p class="text-gray-400 mb-3">See what a class depends on:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> What does OrderController depend on?
+
+Using get_neighbors with:
+  node_name: "OrderController"
+  direction: "outgoing"`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Find dependents only</h3>
+    <p class="text-gray-400 mb-3">See what depends on a class:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> What classes use UserRepository?
+
+Using get_neighbors with:
+  node_name: "UserRepository"
+  direction: "incoming"`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Include external dependencies</h3>
+    <p class="text-gray-400 mb-3">Show npm/maven packages used by a class:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> What external libraries does HttpClient use?
+
+Using get_neighbors with:
+  node_name: "HttpClient"
+  direction: "outgoing"
+  include_external: true`}
+    />
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Example Output</h2>
+    <CodeBlock
+      title="Output"
+      lang="text"
+      code={`outgoing | 1 | interface | UserRepository | src/repositories/UserRepository.kt
+outgoing | 1 | class | PasswordEncoder | src/security/PasswordEncoder.kt
+outgoing | 1 | class | EmailService | src/services/EmailService.kt
+incoming | 1 | class | UserController | src/controllers/UserController.kt
+incoming | 1 | class | AuthService | src/services/AuthService.kt
+incoming | 1 | class | AdminService | src/services/AdminService.kt`}
+    />
+    <p class="text-gray-400 mt-4">
+      The direction column indicates whether the relationship is <code class="text-emerald-400 bg-gray-800 px-1 rounded">outgoing</code> (the node uses this neighbor) or <code class="text-emerald-400 bg-gray-800 px-1 rounded">incoming</code> (this neighbor uses the node).
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Use Cases</h2>
+    <ul class="space-y-3 text-gray-300">
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Dependency analysis:</strong> Understand what a class needs to function and identify potential coupling issues</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Impact assessment:</strong> Before modifying a class, see all the classes that depend on it</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Architecture review:</strong> Verify that dependencies follow the expected direction (e.g., controllers depend on services, not vice versa)</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Refactoring planning:</strong> Identify all the places that need to be updated when extracting or moving a class</span>
+      </li>
+    </ul>
+  </section>
+
+  <Callout type="warning" title="Direction Matters">
+    Remember: <code class="text-yellow-300">outgoing</code> means "what does this class use?" while <code class="text-yellow-300">incoming</code> means "what uses this class?". Choosing the right direction helps you get relevant results faster.
+  </Callout>
+
+  <PrevNext
+    prev={{ title: "get_callees", href: "/docs/tools/get-callees" }}
+    next={{ title: "get_impact", href: "/docs/tools/get-impact" }}
+  />
+</DocsLayout>

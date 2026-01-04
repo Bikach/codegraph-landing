@@ -1,0 +1,28 @@
+---
+interface Props {
+  src?: string;
+  alt: string;
+  caption?: string;
+}
+
+const { src, alt, caption } = Astro.props;
+---
+
+<figure class="my-6">
+  {src ? (
+    <img
+      src={src}
+      alt={alt}
+      class="w-full rounded-lg border border-gray-700 shadow-lg transition-transform duration-200 hover:scale-[1.02]"
+    />
+  ) : (
+    <div class="flex h-64 w-full items-center justify-center rounded-lg border border-gray-700 bg-gray-800 shadow-lg transition-transform duration-200 hover:scale-[1.02]">
+      <span class="text-gray-400">Screenshot coming soon</span>
+    </div>
+  )}
+  {caption && (
+    <figcaption class="mt-2 text-center text-sm text-gray-400">
+      {caption}
+    </figcaption>
+  )}
+</figure>

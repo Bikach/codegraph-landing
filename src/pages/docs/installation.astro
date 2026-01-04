@@ -1,0 +1,248 @@
+---
+import DocsLayout from '../../layouts/Docs.astro';
+import CodeBlock from '../../components/docs/CodeBlock.astro';
+import Callout from '../../components/docs/Callout.astro';
+import PrevNext from '../../components/docs/PrevNext.astro';
+---
+
+<DocsLayout title="Installation">
+  <article class="prose prose-invert max-w-none">
+    <h1 class="text-4xl font-bold text-white mb-4">Installation</h1>
+
+    <p class="text-xl text-gray-300 mb-8">
+      This guide walks you through installing CodeGraph and its dependencies.
+    </p>
+
+    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Prerequisites</h2>
+
+    <p class="text-gray-300 mb-6">
+      Before installing CodeGraph, ensure you have the following:
+    </p>
+
+    <div class="space-y-4 mb-8">
+      <div class="flex items-start gap-4 bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold">Claude Code CLI</h3>
+          <p class="text-gray-400 text-sm mt-1">
+            The official Claude Code command-line interface.
+            <a href="https://claude.ai/code" class="text-emerald-400 hover:text-emerald-300">Install Claude Code</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold">Docker</h3>
+          <p class="text-gray-400 text-sm mt-1">
+            Required for running the Neo4j database.
+            <a href="https://docs.docker.com/get-docker/" class="text-emerald-400 hover:text-emerald-300">Install Docker</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold">Supported Languages</h3>
+          <p class="text-gray-400 text-sm mt-1">
+            CodeGraph currently supports <strong class="text-white">Kotlin</strong> and <strong class="text-white">Java</strong> projects.
+            More languages coming soon.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Installation Steps</h2>
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 1: Install the Plugin</h3>
+
+    <p class="text-gray-300 mb-4">
+      Install the CodeGraph plugin globally using npm:
+    </p>
+
+    <CodeBlock
+      code="npm install -g @anthropic/codegraph-plugin"
+      lang="bash"
+      title="Terminal"
+    />
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 2: Add to Claude Code</h3>
+
+    <p class="text-gray-300 mb-4">
+      Add CodeGraph to your Claude Code plugins configuration. Edit your <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">~/.claude/settings.json</code>:
+    </p>
+
+    <CodeBlock
+      code={`{
+  "plugins": [
+    "@anthropic/codegraph-plugin"
+  ]
+}`}
+      lang="json"
+      title="~/.claude/settings.json"
+    />
+
+    <p class="text-gray-300 mt-4 mb-4">
+      Alternatively, you can add the plugin directly from Claude Code:
+    </p>
+
+    <CodeBlock
+      code="/plugins add @anthropic/codegraph-plugin"
+      lang="bash"
+      title="Claude Code"
+    />
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 3: Initialize CodeGraph</h3>
+
+    <p class="text-gray-300 mb-4">
+      Run the setup command to start Neo4j and prepare the database:
+    </p>
+
+    <CodeBlock
+      code="/codegraph:setup"
+      lang="bash"
+      title="Claude Code"
+    />
+
+    <Callout type="info" title="First-time Setup">
+      The setup command will download the Neo4j Docker image on first run, which may take a few minutes
+      depending on your internet connection.
+    </Callout>
+
+    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Verify Installation</h2>
+
+    <p class="text-gray-300 mb-4">
+      After installation, verify that CodeGraph is working correctly:
+    </p>
+
+    <CodeBlock
+      code="/codegraph:status"
+      lang="bash"
+      title="Claude Code"
+    />
+
+    <p class="text-gray-300 mt-4 mb-4">
+      You should see output indicating:
+    </p>
+
+    <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+      <li>Neo4j connection status (connected)</li>
+      <li>Database statistics (nodes, relationships)</li>
+      <li>Plugin version information</li>
+    </ul>
+
+    <Callout type="tip" title="Quick Test">
+      Navigate to a Kotlin or Java project and run <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">/codegraph:index</code>
+      to index your first project. Then try asking Claude "What classes are in this project?"
+    </Callout>
+
+    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Troubleshooting</h2>
+
+    <div class="space-y-6 mb-8">
+      <div class="border border-gray-700 rounded-lg overflow-hidden">
+        <div class="bg-gray-800 px-4 py-3 border-b border-gray-700">
+          <h3 class="text-white font-semibold">Docker is not running</h3>
+        </div>
+        <div class="p-4">
+          <p class="text-gray-400 mb-3">
+            If you see "Cannot connect to Docker daemon", ensure Docker Desktop is running:
+          </p>
+          <CodeBlock
+            code="# Check Docker status
+docker info
+
+# On macOS, start Docker Desktop from Applications
+# On Linux, start the Docker service:
+sudo systemctl start docker"
+            lang="bash"
+          />
+        </div>
+      </div>
+
+      <div class="border border-gray-700 rounded-lg overflow-hidden">
+        <div class="bg-gray-800 px-4 py-3 border-b border-gray-700">
+          <h3 class="text-white font-semibold">Neo4j port conflict</h3>
+        </div>
+        <div class="p-4">
+          <p class="text-gray-400 mb-3">
+            If port 7687 is already in use, stop any existing Neo4j instances:
+          </p>
+          <CodeBlock
+            code="# Find and stop existing Neo4j containers
+docker ps | grep neo4j
+docker stop <container_id>
+
+# Or stop all Neo4j containers
+docker stop $(docker ps -q --filter ancestor=neo4j)"
+            lang="bash"
+          />
+        </div>
+      </div>
+
+      <div class="border border-gray-700 rounded-lg overflow-hidden">
+        <div class="bg-gray-800 px-4 py-3 border-b border-gray-700">
+          <h3 class="text-white font-semibold">Plugin not recognized</h3>
+        </div>
+        <div class="p-4">
+          <p class="text-gray-400 mb-3">
+            If Claude Code doesn't recognize CodeGraph commands, try restarting Claude Code
+            or verify the plugin is correctly listed:
+          </p>
+          <CodeBlock
+            code="/plugins list"
+            lang="bash"
+            title="Claude Code"
+          />
+          <p class="text-gray-400 mt-3">
+            You should see <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">@anthropic/codegraph-plugin</code> in the list.
+          </p>
+        </div>
+      </div>
+
+      <div class="border border-gray-700 rounded-lg overflow-hidden">
+        <div class="bg-gray-800 px-4 py-3 border-b border-gray-700">
+          <h3 class="text-white font-semibold">Indexing fails or times out</h3>
+        </div>
+        <div class="p-4">
+          <p class="text-gray-400 mb-3">
+            For large codebases, indexing may take longer. You can check the status:
+          </p>
+          <CodeBlock
+            code="/codegraph:status"
+            lang="bash"
+            title="Claude Code"
+          />
+          <p class="text-gray-400 mt-3">
+            If indexing consistently fails, ensure your project is a valid Kotlin or Java project
+            with a proper build configuration (Gradle or Maven).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <Callout type="warning" title="Need Help?">
+      If you're still experiencing issues, check the
+      <a href="https://github.com/anthropics/codegraph-plugin/issues" class="text-yellow-300 hover:text-yellow-200"> GitHub Issues</a>
+      or open a new issue with your error logs.
+    </Callout>
+  </article>
+
+  <PrevNext
+    prev={{ title: "Getting Started", href: "/docs/getting-started" }}
+    next={{ title: "/codegraph:setup", href: "/docs/commands/setup" }}
+  />
+</DocsLayout>

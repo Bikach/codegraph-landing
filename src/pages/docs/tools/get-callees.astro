@@ -1,0 +1,169 @@
+---
+import DocsLayout from '../../../layouts/Docs.astro';
+import CodeBlock from '../../../components/docs/CodeBlock.astro';
+import Callout from '../../../components/docs/Callout.astro';
+import PrevNext from '../../../components/docs/PrevNext.astro';
+---
+
+<DocsLayout title="get_callees">
+  <h1 class="text-4xl font-bold text-white mb-4">get_callees</h1>
+  <p class="text-xl text-gray-400 mb-8">
+    Find all functions called by a specified function, with configurable trace depth.
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Description</h2>
+    <p class="text-gray-300 mb-4">
+      The <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">get_callees</code> tool traces the call graph starting from a specific function, showing all the functions it calls directly and transitively (up to the specified depth). This is invaluable for understanding function dependencies and the flow of execution through your code.
+    </p>
+    <p class="text-gray-300">
+      Results are returned in a compact format: <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">depth | Class.function() | filePath:line</code>
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Parameters</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-gray-700">
+            <th class="py-3 px-4 text-gray-300 font-semibold">Parameter</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Type</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Required</th>
+            <th class="py-3 px-4 text-gray-300 font-semibold">Description</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-400">
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">function_name</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-red-400">Yes</span></td>
+            <td class="py-3 px-4">Name of the function to find callees for</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">class_name</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Class containing the function (for disambiguation when multiple functions share the same name)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">depth</code></td>
+            <td class="py-3 px-4">integer</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Trace depth: 1 = direct callees only, up to 5 (default: 2)</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="text-emerald-400">project_path</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4">Filter by project path. If not provided, searches all indexed projects</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Usage Examples</h2>
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3">Basic usage</h3>
+    <p class="text-gray-400 mb-3">Find what functions are called by <code class="text-emerald-400 bg-gray-800 px-1 rounded">processOrder</code>:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> What functions does processOrder call?
+
+Using get_callees with:
+  function_name: "processOrder"`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">With class disambiguation</h3>
+    <p class="text-gray-400 mb-3">When multiple classes have the same function name:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> What does OrderService.processOrder call?
+
+Using get_callees with:
+  function_name: "processOrder"
+  class_name: "OrderService"`}
+    />
+
+    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Deep trace</h3>
+    <p class="text-gray-400 mb-3">Trace the full call chain up to 5 levels deep:</p>
+    <CodeBlock
+      title="Claude Code"
+      lang="text"
+      code={`> Show me the complete call tree from handleRequest
+
+Using get_callees with:
+  function_name: "handleRequest"
+  depth: 5`}
+    />
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Example Output</h2>
+    <CodeBlock
+      title="Output"
+      lang="text"
+      code={`1 | OrderService.validateOrder() | src/services/OrderService.kt:45
+1 | OrderService.calculateTotal() | src/services/OrderService.kt:78
+1 | PaymentService.processPayment() | src/services/PaymentService.kt:23
+2 | ValidationRules.checkInventory() | src/validation/ValidationRules.kt:34
+2 | PricingEngine.applyDiscounts() | src/pricing/PricingEngine.kt:56
+2 | PaymentGateway.charge() | src/gateways/PaymentGateway.kt:12
+2 | NotificationService.sendReceipt() | src/services/NotificationService.kt:89`}
+    />
+    <p class="text-gray-400 mt-4">
+      The depth column shows how many levels deep each call is from the original function. Depth 1 means direct calls, depth 2 means calls made by depth-1 functions, and so on.
+    </p>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-white mb-4">Use Cases</h2>
+    <ul class="space-y-3 text-gray-300">
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Understanding execution flow:</strong> Trace how a request flows through your application from entry point to completion</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Debugging:</strong> Identify all the functions that could be involved when a bug occurs in a specific entry point</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Test coverage planning:</strong> Understand what code paths need to be tested when writing tests for a function</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-emerald-400 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong>Performance analysis:</strong> Find potential bottlenecks by seeing all the operations triggered by a function</span>
+      </li>
+    </ul>
+  </section>
+
+  <Callout type="info" title="Depth Recommendation">
+    Start with the default depth of 2 for most use cases. Increase to 3-5 only when you need to trace complex flows, as deeper traces can return large amounts of data.
+  </Callout>
+
+  <PrevNext
+    prev={{ title: "search_nodes", href: "/docs/tools/search-nodes" }}
+    next={{ title: "get_neighbors", href: "/docs/tools/get-neighbors" }}
+  />
+</DocsLayout>

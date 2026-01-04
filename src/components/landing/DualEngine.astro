@@ -1,0 +1,272 @@
+---
+// DualEngine.astro - Section explaining Graph (MCP) + LSP dual approach
+---
+
+<section id="dual-engine" class="py-24 px-6 relative overflow-hidden">
+  <!-- Background decorative elements -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="max-w-6xl mx-auto relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        Graph + LSP: <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Best of Both Worlds</span>
+      </h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+        Two complementary engines working together to give your LLM complete understanding of your codebase.
+      </p>
+    </div>
+
+    <!-- Visual Connection Diagram -->
+    <div class="flex justify-center mb-12">
+      <div class="flex items-center gap-4 px-6 py-3 rounded-full border border-gray-700 bg-gray-900/50 backdrop-blur">
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-blue-500"></div>
+          <span class="text-sm text-gray-300">Neo4j Graph</span>
+        </div>
+        <div class="flex gap-1">
+          <div class="w-2 h-0.5 bg-gray-600"></div>
+          <div class="w-2 h-0.5 bg-gray-500"></div>
+          <div class="w-2 h-0.5 bg-gray-400"></div>
+        </div>
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+          <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <div class="flex gap-1">
+          <div class="w-2 h-0.5 bg-gray-400"></div>
+          <div class="w-2 h-0.5 bg-gray-500"></div>
+          <div class="w-2 h-0.5 bg-gray-600"></div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-sm text-gray-300">Language Server</span>
+          <div class="w-3 h-3 rounded-full bg-purple-500"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Two Column Layout -->
+    <div class="grid md:grid-cols-2 gap-8 mb-16">
+
+      <!-- Left Card: Neo4j Graph (MCP Tools) -->
+      <div class="group relative">
+        <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-blue-600 rounded-2xl opacity-20 group-hover:opacity-30 transition-opacity blur"></div>
+        <div class="relative bg-gray-900 border border-blue-500/30 rounded-2xl p-8 h-full">
+          <!-- Header -->
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-lg bg-blue-500/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-blue-400">Neo4j Graph</h3>
+            <span class="px-2 py-1 text-xs font-medium text-blue-300 bg-blue-500/10 rounded-full border border-blue-500/30">MCP Tools</span>
+          </div>
+
+          <!-- Subtitle -->
+          <p class="text-gray-400 mb-6 ml-13">Static Analysis - Fast Traversal</p>
+
+          <!-- Tools List -->
+          <div class="space-y-4">
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">get_callees</code>
+              <span class="text-gray-400 text-sm">"What does this function call?"</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">get_neighbors</code>
+              <span class="text-gray-400 text-sm">"Dependencies of this class"</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">get_impact</code>
+              <span class="text-gray-400 text-sm">"What breaks if I change this?"</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">find_path</code>
+              <span class="text-gray-400 text-sm">"Path between two nodes"</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">search_nodes</code>
+              <span class="text-gray-400 text-sm">"Find by name/pattern"</span>
+            </div>
+          </div>
+
+          <!-- Strengths -->
+          <div class="mt-6 pt-6 border-t border-gray-700">
+            <div class="flex items-center gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Pre-indexed for instant queries</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-gray-400 mt-2">
+              <svg class="w-4 h-4 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Graph traversal for complex relationships</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Card: Language Server (LSP) -->
+      <div class="group relative">
+        <div class="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-purple-600 rounded-2xl opacity-20 group-hover:opacity-30 transition-opacity blur"></div>
+        <div class="relative bg-gray-900 border border-purple-500/30 rounded-2xl p-8 h-full">
+          <!-- Header -->
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-lg bg-purple-500/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+              </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-purple-400">Language Server</h3>
+            <span class="px-2 py-1 text-xs font-medium text-purple-300 bg-purple-500/10 rounded-full border border-purple-500/30">LSP</span>
+          </div>
+
+          <!-- Subtitle -->
+          <p class="text-gray-400 mb-6 ml-13">Semantic Analysis - Compiler Accuracy</p>
+
+          <!-- Tools List -->
+          <div class="space-y-4">
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-purple-400 font-mono text-sm whitespace-nowrap">incomingCalls</code>
+              <span class="text-gray-400 text-sm">"Who calls this function?"</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-purple-400 font-mono text-sm whitespace-nowrap">goToImplementation</code>
+              <span class="text-gray-400 text-sm">"Find interface implementations"</span>
+            </div>
+          </div>
+
+          <!-- Why LSP Matters -->
+          <div class="mt-6 p-4 rounded-lg bg-purple-500/5 border border-purple-500/20">
+            <p class="text-sm text-gray-300">
+              <span class="text-purple-400 font-semibold">Why LSP?</span> The graph shows <em>outgoing</em> calls from static analysis.
+              LSP provides <em>incoming</em> calls with compiler-level precision - essential for understanding who depends on your code.
+            </p>
+          </div>
+
+          <!-- Strengths -->
+          <div class="mt-6 pt-6 border-t border-gray-700">
+            <div class="flex items-center gap-2 text-sm text-gray-400">
+              <svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Compiler-accurate type resolution</span>
+            </div>
+            <div class="flex items-center gap-2 text-sm text-gray-400 mt-2">
+              <svg class="w-4 h-4 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+              </svg>
+              <span>Real-time analysis of current code</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="border-b border-gray-700">
+            <th class="text-left py-4 px-6 text-gray-400 font-medium">Question</th>
+            <th class="text-center py-4 px-6">
+              <span class="inline-flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                <span class="text-blue-400 font-medium">Graph</span>
+              </span>
+            </th>
+            <th class="text-center py-4 px-6">
+              <span class="inline-flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-purple-500"></div>
+                <span class="text-purple-400 font-medium">LSP</span>
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-800">
+          <tr class="hover:bg-gray-900/50 transition-colors">
+            <td class="py-4 px-6 text-gray-300">"What does this function call?"</td>
+            <td class="py-4 px-6 text-center">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-500/20 text-blue-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            </td>
+            <td class="py-4 px-6 text-center text-gray-600">-</td>
+          </tr>
+          <tr class="hover:bg-gray-900/50 transition-colors">
+            <td class="py-4 px-6 text-gray-300">"Who calls this function?"</td>
+            <td class="py-4 px-6 text-center text-gray-600">-</td>
+            <td class="py-4 px-6 text-center">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-purple-500/20 text-purple-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-900/50 transition-colors">
+            <td class="py-4 px-6 text-gray-300">"What breaks if I change this?"</td>
+            <td class="py-4 px-6 text-center">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-500/20 text-blue-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            </td>
+            <td class="py-4 px-6 text-center text-gray-600">-</td>
+          </tr>
+          <tr class="hover:bg-gray-900/50 transition-colors">
+            <td class="py-4 px-6 text-gray-300">"Find interface implementations"</td>
+            <td class="py-4 px-6 text-center text-gray-600">-</td>
+            <td class="py-4 px-6 text-center">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-purple-500/20 text-purple-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            </td>
+          </tr>
+          <tr class="hover:bg-gray-900/50 transition-colors">
+            <td class="py-4 px-6 text-gray-300">"Find class dependencies"</td>
+            <td class="py-4 px-6 text-center">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-500/20 text-blue-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            </td>
+            <td class="py-4 px-6 text-center text-gray-600">-</td>
+          </tr>
+          <tr class="hover:bg-gray-900/50 transition-colors">
+            <td class="py-4 px-6 text-gray-300">"Path between two nodes"</td>
+            <td class="py-4 px-6 text-center">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-500/20 text-blue-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            </td>
+            <td class="py-4 px-6 text-center text-gray-600">-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Bottom Summary -->
+    <div class="mt-12 text-center">
+      <p class="text-gray-400 max-w-2xl mx-auto">
+        Together, these two engines give Claude a complete picture:
+        <span class="text-blue-400">fast graph traversal</span> for exploring outward dependencies and
+        <span class="text-purple-400">semantic precision</span> for tracing inward call hierarchies.
+      </p>
+    </div>
+  </div>
+</section>

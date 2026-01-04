@@ -1,0 +1,210 @@
+---
+import DocsLayout from '../../../layouts/Docs.astro';
+import CodeBlock from '../../../components/docs/CodeBlock.astro';
+import Callout from '../../../components/docs/Callout.astro';
+import PrevNext from '../../../components/docs/PrevNext.astro';
+---
+
+<DocsLayout title="/codegraph:index">
+  <h1 class="text-4xl font-bold text-white mb-4">/codegraph:index</h1>
+  <p class="text-xl text-gray-400 mb-8">
+    Indexes your codebase into the Neo4j graph database.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Overview</h2>
+  <p class="text-gray-300 mb-4">
+    The <code class="bg-gray-800 px-2 py-1 rounded text-emerald-400">/codegraph:index</code> command scans your source files and builds a comprehensive graph representation of your codebase in Neo4j. This enables powerful code analysis, navigation, and impact analysis features.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">What it does</h2>
+  <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+    <li>Scans source files in your project directory</li>
+    <li>Extracts classes, interfaces, functions, and properties</li>
+    <li>Identifies relationships: inheritance, implementation, calls, uses</li>
+    <li>Stores all nodes and relationships in the Neo4j graph database</li>
+    <li>Creates indexes for fast querying</li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Usage</h2>
+  <p class="text-gray-300 mb-4">
+    Invoke the command in your Claude Code session:
+  </p>
+
+  <CodeBlock
+    code="/codegraph:index"
+    lang="bash"
+    title="Claude Code"
+  />
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Example Output</h2>
+  <CodeBlock
+    code={`Indexing project: /path/to/your/project
+Scanning source files...
+Found 156 source files
+
+Parsing files...
+[========================================] 100%
+
+Extracting nodes:
+  - Classes: 45
+  - Interfaces: 12
+  - Functions: 234
+  - Properties: 89
+
+Building relationships:
+  - EXTENDS: 23
+  - IMPLEMENTS: 18
+  - CALLS: 456
+  - USES: 312
+
+Indexing complete!
+Total nodes: 380
+Total relationships: 809
+Time elapsed: 4.2s`}
+    lang="bash"
+    title="Output"
+  />
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Supported Languages</h2>
+  <p class="text-gray-300 mb-4">
+    CodeGraph currently supports indexing for the following languages:
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+    <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="w-10 h-10 bg-gradient-to-br from-purple-500 to-blue-600 rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-sm">Kt</span>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold">Kotlin</h3>
+          <p class="text-gray-400 text-sm">Full support</p>
+        </div>
+      </div>
+      <p class="text-gray-300 text-sm">Classes, objects, interfaces, functions, properties, extensions</p>
+    </div>
+    <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-600 rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-sm">Jv</span>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold">Java</h3>
+          <p class="text-gray-400 text-sm">Full support</p>
+        </div>
+      </div>
+      <p class="text-gray-300 text-sm">Classes, interfaces, methods, fields, annotations</p>
+    </div>
+  </div>
+
+  <Callout type="info" title="More Languages Coming">
+    Support for TypeScript, Python, and Go is planned for future releases.
+  </Callout>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Re-indexing Behavior</h2>
+  <p class="text-gray-300 mb-4">
+    When you run <code class="bg-gray-800 px-2 py-1 rounded text-emerald-400">/codegraph:index</code> on a project that has already been indexed:
+  </p>
+
+  <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+    <li>The existing graph data for that project is cleared</li>
+    <li>A fresh index is built from the current state of the codebase</li>
+    <li>This ensures the graph accurately reflects your latest code changes</li>
+  </ul>
+
+  <Callout type="tip" title="When to Re-index">
+    Re-index your project after significant code changes such as adding new modules, refactoring class hierarchies, or after pulling updates from your team.
+  </Callout>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Indexed Elements</h2>
+  <p class="text-gray-300 mb-4">
+    The indexer extracts the following node types:
+  </p>
+
+  <div class="overflow-x-auto mb-6">
+    <table class="w-full text-sm text-left text-gray-300">
+      <thead class="text-xs uppercase bg-gray-800 text-gray-400">
+        <tr>
+          <th class="px-4 py-3 rounded-tl-lg">Node Type</th>
+          <th class="px-4 py-3">Description</th>
+          <th class="px-4 py-3 rounded-tr-lg">Properties</th>
+        </tr>
+      </thead>
+      <tbody class="bg-gray-900">
+        <tr class="border-b border-gray-800">
+          <td class="px-4 py-3 font-medium text-white">Class</td>
+          <td class="px-4 py-3">Classes and data classes</td>
+          <td class="px-4 py-3"><code class="text-emerald-400 text-xs">name, visibility, file, line</code></td>
+        </tr>
+        <tr class="border-b border-gray-800">
+          <td class="px-4 py-3 font-medium text-white">Interface</td>
+          <td class="px-4 py-3">Interfaces and protocols</td>
+          <td class="px-4 py-3"><code class="text-emerald-400 text-xs">name, visibility, file, line</code></td>
+        </tr>
+        <tr class="border-b border-gray-800">
+          <td class="px-4 py-3 font-medium text-white">Function</td>
+          <td class="px-4 py-3">Methods and standalone functions</td>
+          <td class="px-4 py-3"><code class="text-emerald-400 text-xs">name, visibility, file, line, params</code></td>
+        </tr>
+        <tr class="border-b border-gray-800">
+          <td class="px-4 py-3 font-medium text-white">Property</td>
+          <td class="px-4 py-3">Fields and properties</td>
+          <td class="px-4 py-3"><code class="text-emerald-400 text-xs">name, visibility, file, line, type</code></td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3 font-medium text-white">Object</td>
+          <td class="px-4 py-3">Singleton objects (Kotlin)</td>
+          <td class="px-4 py-3"><code class="text-emerald-400 text-xs">name, visibility, file, line</code></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Relationship Types</h2>
+  <p class="text-gray-300 mb-4">
+    The indexer identifies and stores these relationships:
+  </p>
+
+  <div class="overflow-x-auto mb-6">
+    <table class="w-full text-sm text-left text-gray-300">
+      <thead class="text-xs uppercase bg-gray-800 text-gray-400">
+        <tr>
+          <th class="px-4 py-3 rounded-tl-lg">Relationship</th>
+          <th class="px-4 py-3 rounded-tr-lg">Description</th>
+        </tr>
+      </thead>
+      <tbody class="bg-gray-900">
+        <tr class="border-b border-gray-800">
+          <td class="px-4 py-3 font-medium text-emerald-400">EXTENDS</td>
+          <td class="px-4 py-3">Class inheritance</td>
+        </tr>
+        <tr class="border-b border-gray-800">
+          <td class="px-4 py-3 font-medium text-emerald-400">IMPLEMENTS</td>
+          <td class="px-4 py-3">Interface implementation</td>
+        </tr>
+        <tr class="border-b border-gray-800">
+          <td class="px-4 py-3 font-medium text-emerald-400">CALLS</td>
+          <td class="px-4 py-3">Function/method invocations</td>
+        </tr>
+        <tr class="border-b border-gray-800">
+          <td class="px-4 py-3 font-medium text-emerald-400">USES</td>
+          <td class="px-4 py-3">Type dependencies and references</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3 font-medium text-emerald-400">CONTAINS</td>
+          <td class="px-4 py-3">Parent-child containment (class contains methods)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Next Steps</h2>
+  <p class="text-gray-300 mb-4">
+    After indexing, verify the graph status with <a href="/docs/commands/status" class="text-emerald-400 hover:text-emerald-300 underline">/codegraph:status</a> and start exploring your code using the <a href="/docs/tools/search-nodes" class="text-emerald-400 hover:text-emerald-300 underline">query tools</a>.
+  </p>
+
+  <PrevNext
+    prev={{ title: "/codegraph:setup", href: "/docs/commands/setup" }}
+    next={{ title: "/codegraph:status", href: "/docs/commands/status" }}
+  />
+</DocsLayout>
