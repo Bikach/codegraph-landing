@@ -63,7 +63,12 @@ const navigation: NavSection[] = [
           { label: "Java", href: "/docs/languages/java" },
         ],
       },
-      { label: "Benchmark", href: "/docs/benchmark", special: "green" },
+      {
+        label: "Benchmark",
+        children: [
+          { label: "Results", href: "/docs/benchmark" },
+        ],
+      },
     ],
   },
 ];
@@ -127,9 +132,13 @@ function isChildActive(item: NavItem): boolean {
                           href={child.href}
                           class:list={[
                             "block px-3 py-1.5 rounded-md text-sm transition-colors duration-150",
-                            child.href && isActive(child.href)
-                              ? "bg-primary/10 text-primary border-l-2 border-primary -ml-px"
-                              : "text-text-muted hover:text-text-secondary hover:bg-surface-hover",
+                            child.special === "green"
+                              ? child.href && isActive(child.href)
+                                ? "bg-secondary/10 text-secondary border-l-2 border-secondary -ml-px"
+                                : "text-secondary hover:text-secondary hover:bg-secondary/5"
+                              : child.href && isActive(child.href)
+                                ? "bg-primary/10 text-primary border-l-2 border-primary -ml-px"
+                                : "text-text-muted hover:text-text-secondary hover:bg-surface-hover",
                           ]}
                         >
                           {child.label}
