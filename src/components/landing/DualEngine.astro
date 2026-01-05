@@ -17,7 +17,7 @@
 
     <!-- Visual Connection Diagram -->
     <div class="flex justify-center mb-12">
-      <div class="flex items-center gap-4 px-6 py-3 rounded-md border border-[var(--color-border)] bg-[var(--color-surface)]">
+      <div class="flex items-center gap-4 px-6 py-3 rounded-md border border-[var(--color-border)] bg-[var(--color-bg)]">
         <div class="flex items-center gap-2">
           <div class="w-3 h-3 rounded-full bg-[var(--color-primary)]"></div>
           <span class="text-sm text-[var(--color-text-secondary)]">Neo4j Graph</span>
@@ -48,7 +48,7 @@
     <div class="grid md:grid-cols-2 gap-6 mb-16">
 
       <!-- Left Card: Neo4j Graph (MCP Tools) -->
-      <div class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6 h-full">
+      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-6 h-full shadow-sm">
         <!-- Header -->
         <div class="flex items-center gap-3 mb-2">
           <div class="w-10 h-10 rounded-md bg-[var(--color-primary)]/10 flex items-center justify-center">
@@ -65,38 +65,38 @@
 
         <!-- Tools List -->
         <div class="space-y-2">
-          <div class="p-3 rounded-md bg-[var(--color-bg-dark)] hover:bg-[var(--color-surface-hover)] transition-colors">
+          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
             <code class="text-[var(--color-primary)] font-mono text-sm">get_callees</code>
             <p class="text-[var(--color-text-secondary)] text-sm mt-1">"What does this function call?"</p>
           </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-dark)] hover:bg-[var(--color-surface-hover)] transition-colors">
+          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
             <code class="text-[var(--color-primary)] font-mono text-sm">get_neighbors</code>
             <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Dependencies of this class"</p>
           </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-dark)] hover:bg-[var(--color-surface-hover)] transition-colors">
+          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
             <code class="text-[var(--color-primary)] font-mono text-sm">get_impact</code>
             <p class="text-[var(--color-text-secondary)] text-sm mt-1">"What breaks if I change this?"</p>
           </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-dark)] hover:bg-[var(--color-surface-hover)] transition-colors">
+          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
             <code class="text-[var(--color-primary)] font-mono text-sm">find_path</code>
             <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Path between two nodes"</p>
           </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-dark)] hover:bg-[var(--color-surface-hover)] transition-colors">
+          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
             <code class="text-[var(--color-primary)] font-mono text-sm">search_nodes</code>
             <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Find by name/pattern"</p>
           </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-dark)] hover:bg-[var(--color-surface-hover)] transition-colors">
+          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
             <code class="text-[var(--color-primary)] font-mono text-sm">get_file_symbols</code>
             <p class="text-[var(--color-text-secondary)] text-sm mt-1">"List symbols in a file"</p>
           </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-dark)] hover:bg-[var(--color-surface-hover)] transition-colors border border-[var(--color-primary)]/20">
+          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors border border-[var(--color-primary)]/20">
             <div class="flex items-center justify-between flex-wrap gap-2">
               <code class="text-[var(--color-primary)] font-mono text-sm">get_callers</code>
               <span class="px-2 py-0.5 text-xs text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded border border-[var(--color-primary)]/20">Standalone</span>
             </div>
             <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Who calls this function?"</p>
           </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-dark)] hover:bg-[var(--color-surface-hover)] transition-colors border border-[var(--color-primary)]/20">
+          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors border border-[var(--color-primary)]/20">
             <div class="flex items-center justify-between flex-wrap gap-2">
               <code class="text-[var(--color-primary)] font-mono text-sm">get_implementations</code>
               <span class="px-2 py-0.5 text-xs text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded border border-[var(--color-primary)]/20">Standalone</span>
@@ -123,7 +123,7 @@
       </div>
 
       <!-- Right Card: Language Server (LSP) -->
-      <div class="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6 h-full">
+      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-6 h-full shadow-sm">
         <!-- Header -->
         <div class="flex items-center gap-3 mb-2">
           <div class="w-10 h-10 rounded-md bg-[var(--color-secondary)]/10 flex items-center justify-center">
@@ -140,11 +140,11 @@
 
         <!-- Tools List -->
         <div class="space-y-2">
-          <div class="p-3 rounded-md bg-[var(--color-bg-dark)] hover:bg-[var(--color-surface-hover)] transition-colors">
+          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
             <code class="text-[var(--color-secondary)] font-mono text-sm">incomingCalls</code>
             <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Who calls this function?"</p>
           </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-dark)] hover:bg-[var(--color-surface-hover)] transition-colors">
+          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
             <code class="text-[var(--color-secondary)] font-mono text-sm">goToImplementation</code>
             <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Find interface implementations"</p>
           </div>
@@ -196,8 +196,8 @@
             </th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-[var(--color-border-muted)]">
-          <tr class="hover:bg-[var(--color-surface)] transition-colors">
+        <tbody class="divide-y divide-[var(--color-border)]">
+          <tr class="hover:bg-[var(--color-bg-subtle)] transition-colors">
             <td class="py-4 px-6 text-[var(--color-text-secondary)]">"What does this function call?"</td>
             <td class="py-4 px-6 text-center">
               <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -208,7 +208,7 @@
             </td>
             <td class="py-4 px-6 text-center text-[var(--color-text-muted)]">-</td>
           </tr>
-          <tr class="hover:bg-[var(--color-surface)] transition-colors">
+          <tr class="hover:bg-[var(--color-bg-subtle)] transition-colors">
             <td class="py-4 px-6 text-[var(--color-text-secondary)]">
               "Who calls this function?"
               <span class="ml-2 px-2 py-0.5 text-xs text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded border border-[var(--color-primary)]/20">MCP Standalone</span>
@@ -228,7 +228,7 @@
               </span>
             </td>
           </tr>
-          <tr class="hover:bg-[var(--color-surface)] transition-colors">
+          <tr class="hover:bg-[var(--color-bg-subtle)] transition-colors">
             <td class="py-4 px-6 text-[var(--color-text-secondary)]">"What breaks if I change this?"</td>
             <td class="py-4 px-6 text-center">
               <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -239,7 +239,7 @@
             </td>
             <td class="py-4 px-6 text-center text-[var(--color-text-muted)]">-</td>
           </tr>
-          <tr class="hover:bg-[var(--color-surface)] transition-colors">
+          <tr class="hover:bg-[var(--color-bg-subtle)] transition-colors">
             <td class="py-4 px-6 text-[var(--color-text-secondary)]">
               "Find interface implementations"
               <span class="ml-2 px-2 py-0.5 text-xs text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded border border-[var(--color-primary)]/20">MCP Standalone</span>
@@ -259,7 +259,7 @@
               </span>
             </td>
           </tr>
-          <tr class="hover:bg-[var(--color-surface)] transition-colors">
+          <tr class="hover:bg-[var(--color-bg-subtle)] transition-colors">
             <td class="py-4 px-6 text-[var(--color-text-secondary)]">"Find class dependencies"</td>
             <td class="py-4 px-6 text-center">
               <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -270,7 +270,7 @@
             </td>
             <td class="py-4 px-6 text-center text-[var(--color-text-muted)]">-</td>
           </tr>
-          <tr class="hover:bg-[var(--color-surface)] transition-colors">
+          <tr class="hover:bg-[var(--color-bg-subtle)] transition-colors">
             <td class="py-4 px-6 text-[var(--color-text-secondary)]">"Path between two nodes"</td>
             <td class="py-4 px-6 text-center">
               <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -303,7 +303,7 @@
       </div>
 
       <!-- Row 1 -->
-      <div class="flex items-center justify-between p-4 rounded-md bg-[var(--color-surface)]">
+      <div class="flex items-center justify-between p-4 rounded-md bg-[var(--color-bg)]">
         <p class="text-[var(--color-text-secondary)] text-sm flex-1 pr-4">"What does this function call?"</p>
         <div class="flex gap-4 flex-shrink-0">
           <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -316,7 +316,7 @@
       </div>
 
       <!-- Row 2 -->
-      <div class="p-4 rounded-md bg-[var(--color-surface)]">
+      <div class="p-4 rounded-md bg-[var(--color-bg)]">
         <div class="flex items-center justify-between">
           <p class="text-[var(--color-text-secondary)] text-sm flex-1 pr-4">"Who calls this function?"</p>
           <div class="flex gap-4 flex-shrink-0">
@@ -336,7 +336,7 @@
       </div>
 
       <!-- Row 3 -->
-      <div class="flex items-center justify-between p-4 rounded-md bg-[var(--color-surface)]">
+      <div class="flex items-center justify-between p-4 rounded-md bg-[var(--color-bg)]">
         <p class="text-[var(--color-text-secondary)] text-sm flex-1 pr-4">"What breaks if I change this?"</p>
         <div class="flex gap-4 flex-shrink-0">
           <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -349,7 +349,7 @@
       </div>
 
       <!-- Row 4 -->
-      <div class="p-4 rounded-md bg-[var(--color-surface)]">
+      <div class="p-4 rounded-md bg-[var(--color-bg)]">
         <div class="flex items-center justify-between">
           <p class="text-[var(--color-text-secondary)] text-sm flex-1 pr-4">"Find interface implementations"</p>
           <div class="flex gap-4 flex-shrink-0">
@@ -369,7 +369,7 @@
       </div>
 
       <!-- Row 5 -->
-      <div class="flex items-center justify-between p-4 rounded-md bg-[var(--color-surface)]">
+      <div class="flex items-center justify-between p-4 rounded-md bg-[var(--color-bg)]">
         <p class="text-[var(--color-text-secondary)] text-sm flex-1 pr-4">"Find class dependencies"</p>
         <div class="flex gap-4 flex-shrink-0">
           <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
@@ -382,7 +382,7 @@
       </div>
 
       <!-- Row 6 -->
-      <div class="flex items-center justify-between p-4 rounded-md bg-[var(--color-surface)]">
+      <div class="flex items-center justify-between p-4 rounded-md bg-[var(--color-bg)]">
         <p class="text-[var(--color-text-secondary)] text-sm flex-1 pr-4">"Path between two nodes"</p>
         <div class="flex gap-4 flex-shrink-0">
           <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">

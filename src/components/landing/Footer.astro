@@ -18,8 +18,8 @@
             <line x1="11" y1="20" x2="21" y2="20" stroke="url(#footer-gradient)" stroke-width="1.5" />
             <defs>
               <linearGradient id="footer-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" style="stop-color:#3B82F6" />
-                <stop offset="100%" style="stop-color:#8B5CF6" />
+                <stop offset="0%" style="stop-color:var(--color-primary)" />
+                <stop offset="100%" style="stop-color:var(--color-secondary)" />
               </linearGradient>
             </defs>
           </svg>
@@ -90,7 +90,7 @@
 
 <style>
   .footer {
-    background-color: #08080c;
+    background-color: var(--color-bg-subtle);
     border-top: 1px solid var(--color-border);
     padding: 4rem 1.5rem 2rem;
   }
@@ -211,7 +211,7 @@
   .social-link:hover {
     border-color: var(--color-primary);
     color: var(--color-primary);
-    background: rgba(59, 130, 246, 0.1);
+    background: rgba(9, 105, 218, 0.1);
   }
 
   .social-icon {

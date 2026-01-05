@@ -4,17 +4,20 @@
    Tailwind v4 Theme Configuration
    ======================================== */
 @theme {
-  /* GitHub-inspired color palette */
-  --color-primary: #58a6ff;
-  --color-secondary: #3fb950;
-  --color-bg-dark: #0d1117;
-  --color-surface: #161b22;
-  --color-surface-hover: #1c2128;
-  --color-border: #30363d;
-  --color-border-muted: #21262d;
-  --color-text-primary: #e6edf3;
-  --color-text-secondary: #8b949e;
-  --color-text-muted: #6e7681;
+  /* GitHub Light theme - clean and professional */
+  --color-primary: #0969da;
+  --color-secondary: #1f883d;
+  --color-danger: #cf222e;
+  --color-attention: #9a6700;
+  --color-bg: #ffffff;
+  --color-bg-subtle: #f6f8fa;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f6f8fa;
+  --color-border: #d0d7de;
+  --color-border-muted: #d8dee4;
+  --color-text-primary: #1f2328;
+  --color-text-secondary: #656d76;
+  --color-text-muted: #8c959f;
 }
 
 /* ========================================
@@ -27,7 +30,7 @@
 
   body {
     @apply overflow-x-hidden antialiased;
-    background-color: var(--color-bg-dark);
+    background-color: var(--color-bg);
     color: var(--color-text-primary);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.6;
@@ -58,14 +61,14 @@
 
   code {
     @apply rounded text-sm;
-    background: var(--color-surface);
+    background: var(--color-bg-subtle);
     padding: 0.2em 0.4em;
     color: var(--color-primary);
   }
 
   pre {
     @apply rounded-lg p-4 overflow-x-auto;
-    background: var(--color-surface);
+    background: var(--color-bg-subtle);
     border: 1px solid var(--color-border);
   }
 
@@ -75,8 +78,8 @@
   }
 
   ::selection {
-    @apply text-[--color-text-primary];
-    background: rgba(88, 166, 255, 0.3);
+    @apply text-white;
+    background: var(--color-primary);
   }
 }
 
@@ -84,12 +87,12 @@
    Components Layer - Reusable Components
    ======================================== */
 @layer components {
-  /* Accent text - solid color, no gradient */
+  /* Accent text - solid color */
   .gradient-text {
     color: var(--color-primary);
   }
 
-  /* Clean card - solid background, subtle border */
+  /* Clean card - white background, subtle border */
   .glass-card {
     @apply rounded-lg;
     background: var(--color-surface);
@@ -97,11 +100,11 @@
   }
 
   .glass-card:hover {
-    border-color: var(--color-border);
+    border-color: var(--color-border-muted);
     background: var(--color-surface-hover);
   }
 
-  /* Primary button - GitHub style */
+  /* Primary button - GitHub green style */
   .btn-primary {
     @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-md cursor-pointer border-none transition-all duration-150;
     background: var(--color-secondary);
@@ -110,20 +113,20 @@
 
   .btn-primary:hover {
     @apply text-white;
-    background: #2ea043;
+    background: #1a7f37;
   }
 
   /* Secondary button - GitHub outline style */
   .btn-secondary {
     @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-md cursor-pointer transition-all duration-150;
     color: var(--color-text-primary);
-    background: var(--color-surface);
+    background: var(--color-bg-subtle);
     border: 1px solid var(--color-border);
   }
 
   .btn-secondary:hover {
     border-color: var(--color-text-muted);
-    background: var(--color-surface-hover);
+    background: var(--color-border-muted);
     color: var(--color-text-primary);
   }
 }
@@ -135,7 +138,7 @@
   /* Custom scrollbar */
   .scrollbar-custom {
     scrollbar-width: thin;
-    scrollbar-color: var(--color-border) var(--color-bg-dark);
+    scrollbar-color: var(--color-border) var(--color-bg);
   }
 
   .scrollbar-custom::-webkit-scrollbar {
@@ -143,7 +146,7 @@
   }
 
   .scrollbar-custom::-webkit-scrollbar-track {
-    background: var(--color-bg-dark);
+    background: var(--color-bg);
   }
 
   .scrollbar-custom::-webkit-scrollbar-thumb {
@@ -163,7 +166,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-bg-dark);
+  background: var(--color-bg-subtle);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -177,5 +180,5 @@
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-border) var(--color-bg-dark);
+  scrollbar-color: var(--color-border) var(--color-bg);
 }
