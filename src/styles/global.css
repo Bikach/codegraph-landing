@@ -4,14 +4,17 @@
    Tailwind v4 Theme Configuration
    ======================================== */
 @theme {
-  --color-primary: #3B82F6;
-  --color-secondary: #8B5CF6;
-  --color-bg-dark: #0a0a0f;
-  --color-surface: #111118;
-  --color-border: #1e1e2e;
-  --color-text-primary: #f8fafc;
-  --color-text-secondary: #94a3b8;
-  --color-text-muted: #64748b;
+  /* GitHub-inspired color palette */
+  --color-primary: #58a6ff;
+  --color-secondary: #3fb950;
+  --color-bg-dark: #0d1117;
+  --color-surface: #161b22;
+  --color-surface-hover: #1c2128;
+  --color-border: #30363d;
+  --color-border-muted: #21262d;
+  --color-text-primary: #e6edf3;
+  --color-text-secondary: #8b949e;
+  --color-text-muted: #6e7681;
 }
 
 /* ========================================
@@ -73,7 +76,7 @@
 
   ::selection {
     @apply text-[--color-text-primary];
-    background: rgba(59, 130, 246, 0.3);
+    background: rgba(88, 166, 255, 0.3);
   }
 }
 
@@ -81,42 +84,46 @@
    Components Layer - Reusable Components
    ======================================== */
 @layer components {
-  /* Gradient text for colorful headings */
+  /* Accent text - solid color, no gradient */
   .gradient-text {
-    @apply bg-clip-text;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--color-primary);
   }
 
-  /* Glassmorphism card */
+  /* Clean card - solid background, subtle border */
   .glass-card {
-    @apply rounded-xl backdrop-blur-xl;
-    background: rgba(17, 17, 24, 0.8);
+    @apply rounded-lg;
+    background: var(--color-surface);
     border: 1px solid var(--color-border);
   }
 
-  /* Primary button */
+  .glass-card:hover {
+    border-color: var(--color-border);
+    background: var(--color-surface-hover);
+  }
+
+  /* Primary button - GitHub style */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-lg cursor-pointer border-none text-white transition-all duration-200;
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-md cursor-pointer border-none transition-all duration-150;
+    background: var(--color-secondary);
+    color: #ffffff;
   }
 
   .btn-primary:hover {
-    @apply -translate-y-0.5 text-white;
-    box-shadow: 0 8px 24px rgba(59, 130, 246, 0.3);
+    @apply text-white;
+    background: #2ea043;
   }
 
-  /* Secondary button */
+  /* Secondary button - GitHub outline style */
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-lg cursor-pointer bg-transparent transition-all duration-200;
+    @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-md cursor-pointer transition-all duration-150;
     color: var(--color-text-primary);
+    background: var(--color-surface);
     border: 1px solid var(--color-border);
   }
 
   .btn-secondary:hover {
-    border-color: var(--color-primary);
-    background-color: rgba(59, 130, 246, 0.1);
+    border-color: var(--color-text-muted);
+    background: var(--color-surface-hover);
     color: var(--color-text-primary);
   }
 }

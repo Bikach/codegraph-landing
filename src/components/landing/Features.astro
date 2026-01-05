@@ -58,11 +58,11 @@ const features: Feature[] = [
     </h2>
 
     <!-- Features Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {features.map((feature) => (
-        <div class="glass-card p-6 transition-all duration-300 hover:translate-y-[-4px] hover:border-[var(--color-primary)] group">
+        <div class="glass-card p-5 transition-colors duration-200 group">
           <!-- Icon -->
-          <div class="w-12 h-12 mb-4 flex items-center justify-center rounded-lg bg-gradient-to-br from-[var(--color-primary)]/20 to-[var(--color-secondary)]/20 group-hover:from-[var(--color-primary)]/30 group-hover:to-[var(--color-secondary)]/30 transition-all duration-300">
+          <div class="w-10 h-10 mb-4 flex items-center justify-center rounded-md bg-[var(--color-primary)]/10 group-hover:bg-[var(--color-primary)]/15 transition-colors duration-200">
             {feature.icon === "magnifying-glass" && (
               <svg class="w-6 h-6 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
