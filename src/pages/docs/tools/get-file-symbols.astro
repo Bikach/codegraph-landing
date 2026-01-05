@@ -3,6 +3,7 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
+import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="get_file_symbols">
@@ -58,62 +59,15 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Usage Examples</h2>
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3">List all symbols in a file</h3>
-    <p class="text-gray-400 mb-3">Get a complete overview of a file's contents:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> What's defined in UserService.kt?
-
-Using get_file_symbols with:
-  file_path: "src/services/UserService.kt"`}
-    />
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Public API only</h3>
-    <p class="text-gray-400 mb-3">Show only public symbols to understand the file's public interface:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> What public methods does OrderController expose?
-
-Using get_file_symbols with:
-  file_path: "src/controllers/OrderController.kt"
-  include_private: false`}
-    />
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Absolute path</h3>
-    <p class="text-gray-400 mb-3">Use absolute paths for files outside the current project:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> Show me the symbols in this file
-
-Using get_file_symbols with:
-  file_path: "/home/user/projects/api/src/main/java/Auth.java"`}
-    />
-  </section>
-
-  <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Example Output</h2>
-    <CodeBlock
-      title="Output"
-      lang="text"
-      code={`class | UserService | public | 15
-function | getUserById | public | 28
-function | createUser | public | 45
-function | updateUser | public | 67
-function | deleteUser | public | 89
-function | validateUserData | private | 105
-function | hashPassword | private | 120
-property | userRepository | private | 17
-property | passwordEncoder | private | 18
-property | emailService | private | 19`}
-    />
-    <p class="text-gray-400 mt-4">
-      Each line shows the symbol type, name, visibility modifier, and line number where it's defined.
+    <h2 class="text-2xl font-semibold text-white mb-4">Example</h2>
+    <p class="text-gray-400 mb-4">
+      Ask Claude to list all symbols in a file. Each line shows the symbol type, name, visibility modifier, and line number.
     </p>
+    <ScreenshotPlaceholder
+      path="tools/get-file-symbols-example.png"
+      alt="get_file_symbols tool invocation and output"
+      caption="Listing all symbols defined in a file"
+    />
   </section>
 
   <section class="mb-12">

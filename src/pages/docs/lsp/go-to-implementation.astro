@@ -3,6 +3,7 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
+import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="goToImplementation" description="Find implementations of interfaces or abstract methods using LSP">
@@ -69,34 +70,14 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Example Usage</h2>
-
-    <p class="text-gray-300 mb-4">Find implementations of an interface:</p>
-
-    <CodeBlock
-      title="MCP Tool Call"
-      lang="json"
-      code={`{
-  "tool": "goToImplementation",
-  "arguments": {
-    "file_path": "/project/src/domain/repositories/UserRepository.ts",
-    "line": 5,
-    "character": 18
-  }
-}`}
-    />
-
-    <h3 class="text-xl font-semibold text-white mt-8 mb-4">Example Output</h3>
-
-    <CodeBlock
-      title="Response"
-      lang="text"
-      code={`Found 2 implementations of 'UserRepository':
-
-# | Type  | Name                    | filePath:line
---|-------|-------------------------|------------------------------------------
-1 | class | PostgresUserRepository  | /project/src/infra/db/PostgresUserRepository.ts:12
-2 | class | InMemoryUserRepository  | /project/src/infra/memory/InMemoryUserRepository.ts:8`}
+    <h2 class="text-2xl font-semibold text-white mb-4">Example</h2>
+    <p class="text-gray-400 mb-4">
+      Ask Claude to find implementations of an interface. The output shows all concrete implementations with their types and locations.
+    </p>
+    <ScreenshotPlaceholder
+      path="lsp/go-to-implementation-example.png"
+      alt="goToImplementation LSP operation invocation and output"
+      caption="Finding implementations of an interface"
     />
   </section>
 

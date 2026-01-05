@@ -3,6 +3,7 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
+import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="get_impact">
@@ -64,61 +65,15 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Usage Examples</h2>
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3">Basic impact analysis</h3>
-    <p class="text-gray-400 mb-3">Analyze what would be affected by changing a class:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> What would be affected if I change UserRepository?
-
-Using get_impact with:
-  node_name: "UserRepository"`}
-    />
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Function-specific impact</h3>
-    <p class="text-gray-400 mb-3">Analyze the impact of changing a specific function:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> What breaks if I modify the calculateTotal function?
-
-Using get_impact with:
-  node_name: "calculateTotal"
-  node_type: "function"`}
-    />
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Deep analysis</h3>
-    <p class="text-gray-400 mb-3">Trace the full impact chain for critical changes:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> I'm planning to refactor the BaseEntity class. Show me the full impact.
-
-Using get_impact with:
-  node_name: "BaseEntity"
-  depth: 10`}
-    />
-  </section>
-
-  <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Example Output</h2>
-    <CodeBlock
-      title="Output"
-      lang="text"
-      code={`direct | 1 | class | UserService | src/services/UserService.kt:12
-direct | 1 | class | AuthService | src/services/AuthService.kt:8
-direct | 1 | class | AdminService | src/services/AdminService.kt:15
-transitive | 2 | class | UserController | src/controllers/UserController.kt:23
-transitive | 2 | class | AuthController | src/controllers/AuthController.kt:19
-transitive | 2 | class | AdminController | src/controllers/AdminController.kt:11
-transitive | 3 | function | handleLogin | src/controllers/AuthController.kt:45
-transitive | 3 | function | getCurrentUser | src/controllers/UserController.kt:67`}
-    />
-    <p class="text-gray-400 mt-4">
-      The impact type shows whether the effect is <code class="text-emerald-400 bg-gray-800 px-1 rounded">direct</code> (immediately uses the node) or <code class="text-emerald-400 bg-gray-800 px-1 rounded">transitive</code> (affected through a chain of dependencies).
+    <h2 class="text-2xl font-semibold text-white mb-4">Example</h2>
+    <p class="text-gray-400 mb-4">
+      Ask Claude to analyze the impact of modifying a node. The impact type shows whether the effect is direct (immediately uses the node) or transitive (affected through a chain of dependencies).
     </p>
+    <ScreenshotPlaceholder
+      path="tools/get-impact-example.png"
+      alt="get_impact tool invocation and output"
+      caption="Analyzing the impact of modifying a class"
+    />
   </section>
 
   <section class="mb-12">
@@ -176,7 +131,7 @@ transitive | 3 | function | getCurrentUser | src/controllers/UserController.kt:6
   </Callout>
 
   <PrevNext
-    prev={{ title: "get_neighbors", href: "/docs/tools/get-neighbors" }}
+    prev={{ title: "get_implementations", href: "/docs/tools/get-implementations" }}
     next={{ title: "find_path", href: "/docs/tools/find-path" }}
   />
 </DocsLayout>

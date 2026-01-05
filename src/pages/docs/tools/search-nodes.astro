@@ -3,6 +3,7 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
+import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="search_nodes">
@@ -70,54 +71,14 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Usage Examples</h2>
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3">Basic search</h3>
-    <p class="text-gray-400 mb-3">Search for all nodes containing "User" in their name:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> Find all classes and functions related to User
-
-Using search_nodes with query: "User"`}
-    />
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Filter by type</h3>
-    <p class="text-gray-400 mb-3">Search only for classes:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> Find all Service classes
-
-Using search_nodes with:
-  query: "Service"
-  node_types: ["class"]`}
-    />
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Exact match</h3>
-    <p class="text-gray-400 mb-3">Find an exact class name:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> Find the UserRepository class
-
-Using search_nodes with:
-  query: "UserRepository"
-  exact_match: true`}
-    />
-  </section>
-
-  <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Example Output</h2>
-    <CodeBlock
-      title="Output"
-      lang="text"
-      code={`class | UserService | public | src/services/UserService.kt:15
-class | UserRepository | public | src/repositories/UserRepository.kt:8
-interface | UserMapper | public | src/mappers/UserMapper.kt:3
-function | getUserById | public | src/services/UserService.kt:24
-function | createUser | public | src/services/UserService.kt:45
-property | currentUser | private | src/auth/AuthContext.kt:12`}
+    <h2 class="text-2xl font-semibold text-white mb-4">Example</h2>
+    <p class="text-gray-400 mb-4">
+      Ask Claude to search for nodes by name or pattern. Results show type, name, visibility, and location.
+    </p>
+    <ScreenshotPlaceholder
+      path="tools/search-nodes-example.png"
+      alt="search_nodes tool invocation and output"
+      caption="Searching for nodes in the codebase"
     />
   </section>
 
@@ -165,6 +126,6 @@ property | currentUser | private | src/auth/AuthContext.kt:12`}
 
   <PrevNext
     prev={{ title: "/codegraph:status", href: "/docs/commands/status" }}
-    next={{ title: "get_callees", href: "/docs/tools/get-callees" }}
+    next={{ title: "get_callers", href: "/docs/tools/get-callers" }}
   />
 </DocsLayout>

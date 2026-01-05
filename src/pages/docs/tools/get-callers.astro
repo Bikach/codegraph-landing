@@ -6,16 +6,23 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
 import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
-<DocsLayout title="get_callees">
-  <h1 class="text-4xl font-bold text-white mb-4">get_callees</h1>
+<DocsLayout title="get_callers">
+  <h1 class="text-4xl font-bold text-white mb-4">
+    get_callers
+    <span class="ml-3 text-sm font-normal bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full align-middle">MCP Standalone Only</span>
+  </h1>
   <p class="text-xl text-gray-400 mb-8">
-    Find all functions called by a specified function, with configurable trace depth.
+    Find all functions that call the specified function, with configurable trace depth.
   </p>
+
+  <Callout type="info" title="Plugin Mode Alternative">
+    In Claude Plugin mode, use the LSP tool <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">incomingCalls</code> instead for more accurate results based on semantic analysis.
+  </Callout>
 
   <section class="mb-12">
     <h2 class="text-2xl font-semibold text-white mb-4">Description</h2>
     <p class="text-gray-300 mb-4">
-      The <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">get_callees</code> tool traces the call graph starting from a specific function, showing all the functions it calls directly and transitively (up to the specified depth). This is invaluable for understanding function dependencies and the flow of execution through your code.
+      The <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">get_callers</code> tool traces the reverse call graph, showing all the functions that call a specific function directly and transitively (up to the specified depth). This is essential for understanding how a function is used throughout your codebase.
     </p>
     <p class="text-gray-300">
       Results are returned in a compact format: <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">depth | Class.function() | filePath:line</code>
@@ -39,7 +46,7 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
             <td class="py-3 px-4"><code class="text-emerald-400">function_name</code></td>
             <td class="py-3 px-4">string</td>
             <td class="py-3 px-4"><span class="text-red-400">Yes</span></td>
-            <td class="py-3 px-4">Name of the function to find callees for</td>
+            <td class="py-3 px-4">Name of the function to find callers for</td>
           </tr>
           <tr class="border-b border-gray-800">
             <td class="py-3 px-4"><code class="text-emerald-400">class_name</code></td>
@@ -51,7 +58,7 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
             <td class="py-3 px-4"><code class="text-emerald-400">depth</code></td>
             <td class="py-3 px-4">integer</td>
             <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
-            <td class="py-3 px-4">Trace depth: 1 = direct callees only, up to 5 (default: 2)</td>
+            <td class="py-3 px-4">Trace depth: 1 = direct callers only, up to 5 (default: 2)</td>
           </tr>
           <tr class="border-b border-gray-800">
             <td class="py-3 px-4"><code class="text-emerald-400">project_path</code></td>
@@ -67,12 +74,12 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
   <section class="mb-12">
     <h2 class="text-2xl font-semibold text-white mb-4">Example</h2>
     <p class="text-gray-400 mb-4">
-      Ask Claude to find all functions called by a specific function. The depth column shows how many levels deep each call is from the original function.
+      Ask Claude to find all callers of a function. The depth column shows how many levels up each caller is from the original function.
     </p>
     <ScreenshotPlaceholder
-      path="tools/get-callees-example.png"
-      alt="get_callees tool invocation and output"
-      caption="Finding all functions called by a function"
+      path="tools/get-callers-example.png"
+      alt="get_callers tool invocation and output"
+      caption="Finding all callers of a function"
     />
   </section>
 
@@ -85,7 +92,7 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Understanding execution flow:</strong> Trace how a request flows through your application from entry point to completion</span>
+        <span><strong>Impact analysis:</strong> Understand all the code that would be affected if you change a function's signature or behavior</span>
       </li>
       <li class="flex items-start gap-3">
         <span class="text-emerald-400 mt-1">
@@ -93,7 +100,7 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Debugging:</strong> Identify all the functions that could be involved when a bug occurs in a specific entry point</span>
+        <span><strong>Refactoring:</strong> Identify all call sites before renaming or modifying a function</span>
       </li>
       <li class="flex items-start gap-3">
         <span class="text-emerald-400 mt-1">
@@ -101,7 +108,7 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Test coverage planning:</strong> Understand what code paths need to be tested when writing tests for a function</span>
+        <span><strong>Code review:</strong> Understand the context and usage patterns of a function during review</span>
       </li>
       <li class="flex items-start gap-3">
         <span class="text-emerald-400 mt-1">
@@ -109,17 +116,17 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Performance analysis:</strong> Find potential bottlenecks by seeing all the operations triggered by a function</span>
+        <span><strong>Dead code detection:</strong> Find functions that have no callers and may be unused</span>
       </li>
     </ul>
   </section>
 
-  <Callout type="info" title="Depth Recommendation">
-    Start with the default depth of 2 for most use cases. Increase to 3-5 only when you need to trace complex flows, as deeper traces can return large amounts of data.
+  <Callout type="tip" title="Depth Recommendation">
+    Start with the default depth of 2 for most use cases. Increase to 3-5 only when you need to trace complex call chains, as deeper traces can return large amounts of data.
   </Callout>
 
   <PrevNext
-    prev={{ title: "get_callers", href: "/docs/tools/get-callers" }}
-    next={{ title: "get_neighbors", href: "/docs/tools/get-neighbors" }}
+    prev={{ title: "search_nodes", href: "/docs/tools/search-nodes" }}
+    next={{ title: "get_callees", href: "/docs/tools/get-callees" }}
   />
 </DocsLayout>

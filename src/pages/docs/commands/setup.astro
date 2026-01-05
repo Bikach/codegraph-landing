@@ -18,11 +18,12 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
 
   <h2 class="text-2xl font-semibold text-white mt-10 mb-4">What it does</h2>
   <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
-    <li>Pulls the official Neo4j Docker image if not already present</li>
-    <li>Starts a Neo4j container with the appropriate configuration</li>
-    <li>Configures the database with optimal settings for CodeGraph</li>
-    <li>Sets up authentication and network bindings</li>
-    <li>Verifies the database is ready to accept connections</li>
+    <li>Checks Docker is running</li>
+    <li>Starts the Neo4j container</li>
+    <li>Waits for Neo4j to be ready</li>
+    <li>Creates indexes and constraints</li>
+    <li>Installs tree-sitter native dependencies (required for parsing)</li>
+    <li>Installs Language Server if language specified (optional)</li>
   </ul>
 
   <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Usage</h2>
@@ -35,6 +36,46 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
     lang="bash"
     title="Claude Code"
   />
+
+  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Options</h2>
+  <p class="text-gray-300 mb-4">
+    You can optionally specify a language server to install:
+  </p>
+
+  <div class="overflow-x-auto mb-6">
+    <table class="w-full text-sm text-left text-gray-300">
+      <thead class="text-xs uppercase bg-gray-800 text-gray-400">
+        <tr>
+          <th class="px-4 py-3 rounded-tl-lg">Argument</th>
+          <th class="px-4 py-3 rounded-tr-lg">Description</th>
+        </tr>
+      </thead>
+      <tbody class="bg-gray-900">
+        <tr class="border-b border-gray-800">
+          <td class="px-4 py-3 font-medium text-white"><code class="text-emerald-400">kotlin</code></td>
+          <td class="px-4 py-3">Install Kotlin Language Server (<code class="text-emerald-400">kotlin-language-server</code>) for LSP features</td>
+        </tr>
+        <tr>
+          <td class="px-4 py-3 font-medium text-white"><code class="text-emerald-400">java</code></td>
+          <td class="px-4 py-3">Install Java Language Server (<code class="text-emerald-400">jdtls</code>) for LSP features</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="text-xl font-semibold text-white mt-8 mb-3">Examples</h3>
+
+  <CodeBlock
+    code={`/codegraph:setup              # Neo4j only
+/codegraph:setup kotlin       # Neo4j + Kotlin LSP
+/codegraph:setup java         # Neo4j + Java LSP`}
+    lang="bash"
+    title="Claude Code"
+  />
+
+  <Callout type="tip" title="LSP Integration">
+    Installing a language server enables more accurate code navigation features like <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">incomingCalls</code> and <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">goToImplementation</code>.
+  </Callout>
 
   <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Example Output</h2>
   <CodeBlock
@@ -99,7 +140,7 @@ Browser: http://localhost:7474`}
   </p>
 
   <PrevNext
-    prev={{ title: "Installation", href: "/docs/installation" }}
+    prev={{ title: "MCP Standalone", href: "/docs/installation/mcp-standalone" }}
     next={{ title: "/codegraph:index", href: "/docs/commands/index-cmd" }}
   />
 </DocsLayout>

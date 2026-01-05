@@ -3,6 +3,7 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
+import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="find_path">
@@ -70,72 +71,15 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Usage Examples</h2>
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3">Find connection between two classes</h3>
-    <p class="text-gray-400 mb-3">Discover how two seemingly unrelated classes are connected:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> How is UserController connected to EmailService?
-
-Using find_path with:
-  from_node: "UserController"
-  to_node: "EmailService"`}
-    />
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Trace data flow</h3>
-    <p class="text-gray-400 mb-3">Understand how data flows from input to output:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> How does a request reach the database from the API endpoint?
-
-Using find_path with:
-  from_node: "ApiController"
-  to_node: "DatabaseConnection"`}
-    />
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Filter by relationship type</h3>
-    <p class="text-gray-400 mb-3">Only trace through specific relationship types:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> Show me only the call chain from OrderService to NotificationService
-
-Using find_path with:
-  from_node: "OrderService"
-  to_node: "NotificationService"
-  relationship_types: ["CALLS"]`}
-    />
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Extended search</h3>
-    <p class="text-gray-400 mb-3">Search for longer paths when direct connections do not exist:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> Find any connection between AuthModule and ReportGenerator
-
-Using find_path with:
-  from_node: "AuthModule"
-  to_node: "ReportGenerator"
-  max_depth: 10`}
-    />
-  </section>
-
-  <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Example Output</h2>
-    <CodeBlock
-      title="Output"
-      lang="text"
-      code={`0 | class | UserController | -- | src/controllers/UserController.kt:10
-1 | class | UserService | USES | src/services/UserService.kt:15
-2 | class | NotificationService | USES | src/services/NotificationService.kt:8
-3 | class | EmailService | USES | src/services/EmailService.kt:12`}
-    />
-    <p class="text-gray-400 mt-4">
-      Each step shows the node type, name, the relationship type that connects it to the previous node, and its location. Step 0 is the starting node.
+    <h2 class="text-2xl font-semibold text-white mb-4">Example</h2>
+    <p class="text-gray-400 mb-4">
+      Ask Claude to find the path between two nodes. Each step shows the node type, name, relationship type, and location. Step 0 is the starting node.
     </p>
+    <ScreenshotPlaceholder
+      path="tools/find-path-example.png"
+      alt="find_path tool invocation and output"
+      caption="Finding the path between two classes"
+    />
   </section>
 
   <section class="mb-12">

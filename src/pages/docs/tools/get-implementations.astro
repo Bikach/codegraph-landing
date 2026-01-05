@@ -6,19 +6,26 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
 import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
-<DocsLayout title="get_callees">
-  <h1 class="text-4xl font-bold text-white mb-4">get_callees</h1>
+<DocsLayout title="get_implementations">
+  <h1 class="text-4xl font-bold text-white mb-4">
+    get_implementations
+    <span class="ml-3 text-sm font-normal bg-blue-600/20 text-blue-400 px-3 py-1 rounded-full align-middle">MCP Standalone Only</span>
+  </h1>
   <p class="text-xl text-gray-400 mb-8">
-    Find all functions called by a specified function, with configurable trace depth.
+    Find all classes that implement a given interface or extend an abstract class.
   </p>
+
+  <Callout type="info" title="Plugin Mode Alternative">
+    In Claude Plugin mode, use the LSP tool <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">goToImplementation</code> instead for more accurate results based on semantic analysis.
+  </Callout>
 
   <section class="mb-12">
     <h2 class="text-2xl font-semibold text-white mb-4">Description</h2>
     <p class="text-gray-300 mb-4">
-      The <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">get_callees</code> tool traces the call graph starting from a specific function, showing all the functions it calls directly and transitively (up to the specified depth). This is invaluable for understanding function dependencies and the flow of execution through your code.
+      The <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">get_implementations</code> tool finds all concrete implementations of an interface or abstract class. This is crucial for understanding polymorphism in your codebase and identifying all the places where an abstraction is realized.
     </p>
     <p class="text-gray-300">
-      Results are returned in a compact format: <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">depth | Class.function() | filePath:line</code>
+      Results are returned in a compact format: <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">direct/indirect | ClassName | filePath:line</code>
     </p>
   </section>
 
@@ -36,22 +43,16 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
         </thead>
         <tbody class="text-gray-400">
           <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">function_name</code></td>
+            <td class="py-3 px-4"><code class="text-emerald-400">interface_name</code></td>
             <td class="py-3 px-4">string</td>
             <td class="py-3 px-4"><span class="text-red-400">Yes</span></td>
-            <td class="py-3 px-4">Name of the function to find callees for</td>
+            <td class="py-3 px-4">Name of the interface or abstract class</td>
           </tr>
           <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">class_name</code></td>
-            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><code class="text-emerald-400">include_indirect</code></td>
+            <td class="py-3 px-4">boolean</td>
             <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
-            <td class="py-3 px-4">Class containing the function (for disambiguation when multiple functions share the same name)</td>
-          </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">depth</code></td>
-            <td class="py-3 px-4">integer</td>
-            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
-            <td class="py-3 px-4">Trace depth: 1 = direct callees only, up to 5 (default: 2)</td>
+            <td class="py-3 px-4">Include indirect implementations via inheritance chain (default: false)</td>
           </tr>
           <tr class="border-b border-gray-800">
             <td class="py-3 px-4"><code class="text-emerald-400">project_path</code></td>
@@ -67,12 +68,12 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
   <section class="mb-12">
     <h2 class="text-2xl font-semibold text-white mb-4">Example</h2>
     <p class="text-gray-400 mb-4">
-      Ask Claude to find all functions called by a specific function. The depth column shows how many levels deep each call is from the original function.
+      Ask Claude to find all implementations of an interface. The first column indicates whether the implementation is direct or indirect (via inheritance chain).
     </p>
     <ScreenshotPlaceholder
-      path="tools/get-callees-example.png"
-      alt="get_callees tool invocation and output"
-      caption="Finding all functions called by a function"
+      path="tools/get-implementations-example.png"
+      alt="get_implementations tool invocation and output"
+      caption="Finding all implementations of an interface"
     />
   </section>
 
@@ -85,7 +86,7 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Understanding execution flow:</strong> Trace how a request flows through your application from entry point to completion</span>
+        <span><strong>Architecture understanding:</strong> Discover all concrete implementations of your domain abstractions</span>
       </li>
       <li class="flex items-start gap-3">
         <span class="text-emerald-400 mt-1">
@@ -93,7 +94,7 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Debugging:</strong> Identify all the functions that could be involved when a bug occurs in a specific entry point</span>
+        <span><strong>Dependency injection:</strong> Find all classes that can be injected for a given interface</span>
       </li>
       <li class="flex items-start gap-3">
         <span class="text-emerald-400 mt-1">
@@ -101,7 +102,7 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Test coverage planning:</strong> Understand what code paths need to be tested when writing tests for a function</span>
+        <span><strong>Testing:</strong> Identify test doubles (mocks, stubs, fakes) implementing an interface</span>
       </li>
       <li class="flex items-start gap-3">
         <span class="text-emerald-400 mt-1">
@@ -109,17 +110,17 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Performance analysis:</strong> Find potential bottlenecks by seeing all the operations triggered by a function</span>
+        <span><strong>Polymorphism analysis:</strong> Understand the polymorphic behavior in strategy or factory patterns</span>
       </li>
     </ul>
   </section>
 
-  <Callout type="info" title="Depth Recommendation">
-    Start with the default depth of 2 for most use cases. Increase to 3-5 only when you need to trace complex flows, as deeper traces can return large amounts of data.
+  <Callout type="tip" title="Direct vs Indirect">
+    By default, only direct implementations are shown. Enable <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">include_indirect</code> when you want to see the complete inheritance hierarchy, including classes that implement through an abstract base class.
   </Callout>
 
   <PrevNext
-    prev={{ title: "get_callers", href: "/docs/tools/get-callers" }}
-    next={{ title: "get_neighbors", href: "/docs/tools/get-neighbors" }}
+    prev={{ title: "get_neighbors", href: "/docs/tools/get-neighbors" }}
+    next={{ title: "get_impact", href: "/docs/tools/get-impact" }}
   />
 </DocsLayout>

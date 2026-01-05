@@ -71,6 +71,15 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
   <section class="mb-12">
     <h2 class="text-2xl font-semibold text-white mb-4">Setup Requirements</h2>
 
+    <Callout type="tip" title="Automatic Installation with Claude Plugin">
+      When using CodeGraph as a Claude Plugin, the Kotlin Language Server is installed automatically. Simply run:
+      <CodeBlock
+        lang="bash"
+        code={`/codegraph:setup kotlin`}
+      />
+      This command downloads and configures kotlin-language-server automatically. Skip the manual installation steps below if using the plugin.
+    </Callout>
+
     <h3 class="text-xl font-semibold text-white mt-6 mb-4">1. Install Kotlin Language Server</h3>
 
     <CodeBlock

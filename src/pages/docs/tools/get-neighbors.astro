@@ -3,6 +3,7 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
+import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="get_neighbors">
@@ -74,72 +75,15 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Usage Examples</h2>
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3">Find all relationships</h3>
-    <p class="text-gray-400 mb-3">Get both dependencies and dependents of a class:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> What classes are connected to UserService?
-
-Using get_neighbors with:
-  node_name: "UserService"`}
-    />
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Find dependencies only</h3>
-    <p class="text-gray-400 mb-3">See what a class depends on:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> What does OrderController depend on?
-
-Using get_neighbors with:
-  node_name: "OrderController"
-  direction: "outgoing"`}
-    />
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Find dependents only</h3>
-    <p class="text-gray-400 mb-3">See what depends on a class:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> What classes use UserRepository?
-
-Using get_neighbors with:
-  node_name: "UserRepository"
-  direction: "incoming"`}
-    />
-
-    <h3 class="text-lg font-medium text-gray-200 mb-3 mt-6">Include external dependencies</h3>
-    <p class="text-gray-400 mb-3">Show npm/maven packages used by a class:</p>
-    <CodeBlock
-      title="Claude Code"
-      lang="text"
-      code={`> What external libraries does HttpClient use?
-
-Using get_neighbors with:
-  node_name: "HttpClient"
-  direction: "outgoing"
-  include_external: true`}
-    />
-  </section>
-
-  <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Example Output</h2>
-    <CodeBlock
-      title="Output"
-      lang="text"
-      code={`outgoing | 1 | interface | UserRepository | src/repositories/UserRepository.kt
-outgoing | 1 | class | PasswordEncoder | src/security/PasswordEncoder.kt
-outgoing | 1 | class | EmailService | src/services/EmailService.kt
-incoming | 1 | class | UserController | src/controllers/UserController.kt
-incoming | 1 | class | AuthService | src/services/AuthService.kt
-incoming | 1 | class | AdminService | src/services/AdminService.kt`}
-    />
-    <p class="text-gray-400 mt-4">
-      The direction column indicates whether the relationship is <code class="text-emerald-400 bg-gray-800 px-1 rounded">outgoing</code> (the node uses this neighbor) or <code class="text-emerald-400 bg-gray-800 px-1 rounded">incoming</code> (this neighbor uses the node).
+    <h2 class="text-2xl font-semibold text-white mb-4">Example</h2>
+    <p class="text-gray-400 mb-4">
+      Ask Claude to find all neighbors of a class. The direction column indicates whether the relationship is outgoing (dependencies) or incoming (dependents).
     </p>
+    <ScreenshotPlaceholder
+      path="tools/get-neighbors-example.png"
+      alt="get_neighbors tool invocation and output"
+      caption="Finding all neighbors of a class"
+    />
   </section>
 
   <section class="mb-12">
@@ -186,6 +130,6 @@ incoming | 1 | class | AdminService | src/services/AdminService.kt`}
 
   <PrevNext
     prev={{ title: "get_callees", href: "/docs/tools/get-callees" }}
-    next={{ title: "get_impact", href: "/docs/tools/get-impact" }}
+    next={{ title: "get_implementations", href: "/docs/tools/get-implementations" }}
   />
 </DocsLayout>

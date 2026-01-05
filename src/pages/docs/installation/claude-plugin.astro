@@ -1,0 +1,335 @@
+---
+import DocsLayout from '../../../layouts/Docs.astro';
+import CodeBlock from '../../../components/docs/CodeBlock.astro';
+import Callout from '../../../components/docs/Callout.astro';
+import PrevNext from '../../../components/docs/PrevNext.astro';
+---
+
+<DocsLayout title="Installation - Claude Plugin">
+  <article class="prose prose-invert max-w-none">
+    <h1 class="text-4xl font-bold text-white mb-4">Claude Code Plugin Installation</h1>
+
+    <p class="text-xl text-gray-300 mb-8">
+      The easiest way to use CodeGraph with Claude Code CLI.
+    </p>
+
+    <Callout type="tip" title="Recommended for Claude Code users">
+      This installation method provides:
+      <ul class="mt-2 space-y-1">
+        <li>Automatic Neo4j management</li>
+        <li>Simple slash commands (<code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">/codegraph:setup</code>, <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">/codegraph:index</code>)</li>
+        <li>LSP integration for accurate code navigation</li>
+      </ul>
+    </Callout>
+
+    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Prerequisites</h2>
+
+    <div class="space-y-4 mb-8">
+      <div class="flex items-start gap-4 bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold">Claude Code CLI</h3>
+          <p class="text-gray-400 text-sm mt-1">
+            The official Claude Code command-line interface.
+            <a href="https://claude.ai/code" class="text-emerald-400 hover:text-emerald-300">Install Claude Code</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-white font-semibold">Docker</h3>
+          <p class="text-gray-400 text-sm mt-1">
+            Required for running the Neo4j database. Ensure Docker is installed and running.
+            <a href="https://docs.docker.com/get-docker/" class="text-emerald-400 hover:text-emerald-300">Install Docker</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <Callout type="warning" title="Docker Required">
+      Before proceeding, verify Docker is running:
+      <div class="mt-2">
+        <code class="bg-gray-800 px-2 py-1 rounded text-emerald-400 text-sm">docker info</code>
+      </div>
+      <p class="mt-2">If you see an error, start Docker Desktop first.</p>
+    </Callout>
+
+    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Installation</h2>
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 1: Add the Plugin Marketplace</h3>
+
+    <p class="text-gray-300 mb-4">
+      Add the Bikach plugin marketplace to Claude Code (only needed once):
+    </p>
+
+    <CodeBlock
+      code="/plugin marketplace add Bikach/claude-plugins"
+      lang="bash"
+      title="Claude Code"
+    />
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 2: Install the Plugin</h3>
+
+    <p class="text-gray-300 mb-4">
+      Install the CodeGraph plugin:
+    </p>
+
+    <CodeBlock
+      code="/plugin install codegraph@Bikach"
+      lang="bash"
+      title="Claude Code"
+    />
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Installation Scopes</h3>
+
+    <p class="text-gray-300 mb-4">
+      You can specify where the plugin is installed:
+    </p>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-gray-700">
+            <th class="py-3 px-4 text-white font-semibold">Scope</th>
+            <th class="py-3 px-4 text-white font-semibold">Command</th>
+            <th class="py-3 px-4 text-white font-semibold">Description</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-300">
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><strong class="text-white">User</strong> (default)</td>
+            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400 text-xs">/plugin install codegraph@Bikach</code></td>
+            <td class="py-3 px-4">Available in all your projects</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><strong class="text-white">Project</strong></td>
+            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400 text-xs">/plugin install codegraph@Bikach --scope project</code></td>
+            <td class="py-3 px-4">Shared with collaborators</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><strong class="text-white">Local</strong></td>
+            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400 text-xs">/plugin install codegraph@Bikach --scope local</code></td>
+            <td class="py-3 px-4">Only for you in this repo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Initialize CodeGraph</h2>
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 3: Run Setup</h3>
+
+    <p class="text-gray-300 mb-4">
+      Start Neo4j and prepare the database:
+    </p>
+
+    <CodeBlock
+      code="/codegraph:setup"
+      lang="bash"
+      title="Claude Code"
+    />
+
+    <p class="text-gray-300 mt-4 mb-4">
+      <strong class="text-white">Optional:</strong> Add a language server for accurate code navigation:
+    </p>
+
+    <CodeBlock
+      code={`/codegraph:setup kotlin       # Neo4j + Kotlin LSP
+/codegraph:setup java         # Neo4j + Java LSP`}
+      lang="bash"
+      title="Claude Code"
+    />
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 4: Index Your Project</h3>
+
+    <p class="text-gray-300 mb-4">
+      Navigate to your Kotlin or Java project and run:
+    </p>
+
+    <CodeBlock
+      code="/codegraph:index"
+      lang="bash"
+      title="Claude Code"
+    />
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 5: Verify Installation</h3>
+
+    <p class="text-gray-300 mb-4">
+      Check that everything is working:
+    </p>
+
+    <CodeBlock
+      code="/codegraph:status"
+      lang="bash"
+      title="Claude Code"
+    />
+
+    <p class="text-gray-300 mt-4">
+      You should see Neo4j connection status and graph statistics.
+    </p>
+
+    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Available Features</h2>
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Commands</h3>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-gray-700">
+            <th class="py-3 px-4 text-white font-semibold">Command</th>
+            <th class="py-3 px-4 text-white font-semibold">Description</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-300">
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">/codegraph:setup</code></td>
+            <td class="py-3 px-4">Start Neo4j and prepare the database</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">/codegraph:index</code></td>
+            <td class="py-3 px-4">Index your project into the graph</td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">/codegraph:status</code></td>
+            <td class="py-3 px-4">Check Neo4j connection and graph stats</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">MCP Tools (6)</h3>
+
+    <p class="text-gray-300 mb-4">
+      Graph-based code analysis:
+    </p>
+
+    <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+      <li><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">search_nodes</code> - Search by name or pattern</li>
+      <li><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">get_callees</code> - What functions are called?</li>
+      <li><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">get_neighbors</code> - Get dependencies and dependents</li>
+      <li><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">get_impact</code> - Analyze modification impact</li>
+      <li><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">find_path</code> - Find shortest path between nodes</li>
+      <li><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">get_file_symbols</code> - List all symbols in a file</li>
+    </ul>
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">LSP Tools (2)</h3>
+
+    <p class="text-gray-300 mb-4">
+      Semantic analysis via language servers (more accurate):
+    </p>
+
+    <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+      <li><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">LSP incomingCalls</code> - Who calls this function?</li>
+      <li><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">LSP goToImplementation</code> - Find interface implementations</li>
+    </ul>
+
+    <Callout type="info" title="LSP vs MCP Tools">
+      The LSP tools replace <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">get_callers</code> and <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">get_implementations</code> from MCP Standalone mode.
+      LSP tools provide more accurate results by using the language server's semantic understanding.
+    </Callout>
+
+    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Supported Languages</h2>
+
+    <div class="overflow-x-auto mb-6">
+      <table class="w-full text-left border-collapse">
+        <thead>
+          <tr class="border-b border-gray-700">
+            <th class="py-3 px-4 text-white font-semibold">Language</th>
+            <th class="py-3 px-4 text-white font-semibold">Status</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-300">
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4">Kotlin</td>
+            <td class="py-3 px-4"><span class="text-green-400">Available</span></td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4">Java</td>
+            <td class="py-3 px-4"><span class="text-green-400">Available</span></td>
+          </tr>
+          <tr class="border-b border-gray-800">
+            <td class="py-3 px-4">TypeScript</td>
+            <td class="py-3 px-4"><span class="text-yellow-400">Coming soon</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Troubleshooting</h2>
+
+    <div class="space-y-6 mb-8">
+      <div class="border border-gray-700 rounded-lg overflow-hidden">
+        <div class="bg-gray-800 px-4 py-3 border-b border-gray-700">
+          <h3 class="text-white font-semibold">Plugin not recognized</h3>
+        </div>
+        <div class="p-4">
+          <p class="text-gray-400 mb-3">
+            If Claude Code doesn't recognize CodeGraph commands, verify the plugin is installed:
+          </p>
+          <CodeBlock
+            code="/plugin list"
+            lang="bash"
+            title="Claude Code"
+          />
+          <p class="text-gray-400 mt-3">
+            You should see <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">codegraph@Bikach-claude-plugins</code> in the list.
+          </p>
+        </div>
+      </div>
+
+      <div class="border border-gray-700 rounded-lg overflow-hidden">
+        <div class="bg-gray-800 px-4 py-3 border-b border-gray-700">
+          <h3 class="text-white font-semibold">Docker is not running</h3>
+        </div>
+        <div class="p-4">
+          <p class="text-gray-400 mb-3">
+            If you see "Cannot connect to Docker daemon", ensure Docker Desktop is running:
+          </p>
+          <CodeBlock
+            code="docker info"
+            lang="bash"
+            title="Terminal"
+          />
+        </div>
+      </div>
+
+      <div class="border border-gray-700 rounded-lg overflow-hidden">
+        <div class="bg-gray-800 px-4 py-3 border-b border-gray-700">
+          <h3 class="text-white font-semibold">Neo4j port conflict</h3>
+        </div>
+        <div class="p-4">
+          <p class="text-gray-400 mb-3">
+            If port 7687 is already in use, stop existing Neo4j instances:
+          </p>
+          <CodeBlock
+            code={`docker ps | grep neo4j
+docker stop <container_id>`}
+            lang="bash"
+            title="Terminal"
+          />
+        </div>
+      </div>
+    </div>
+
+    <Callout type="warning" title="Need Help?">
+      If you're still experiencing issues, check the
+      <a href="https://github.com/Bikach/claude-plugins/issues" class="text-yellow-300 hover:text-yellow-200"> GitHub Issues</a>
+      or open a new issue with your error logs.
+    </Callout>
+  </article>
+
+  <PrevNext
+    prev={{ title: "Getting Started", href: "/docs/getting-started" }}
+    next={{ title: "MCP Standalone", href: "/docs/installation/mcp-standalone" }}
+  />
+</DocsLayout>
