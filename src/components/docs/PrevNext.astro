@@ -1,4 +1,6 @@
 ---
+import { url } from '../../utils/paths';
+
 interface NavLink {
   title: string;
   href: string;
@@ -15,7 +17,7 @@ const { prev, next } = Astro.props;
 <nav class="mt-12 flex items-center justify-between border-t border-border pt-6">
   {prev ? (
     <a
-      href={prev.href}
+      href={url(prev.href)}
       class="group flex items-center gap-2 rounded-lg px-4 py-2 text-text-secondary transition-colors hover:bg-surface-hover hover:text-text-primary"
     >
       <svg
@@ -39,7 +41,7 @@ const { prev, next } = Astro.props;
 
   {next ? (
     <a
-      href={next.href}
+      href={url(next.href)}
       class="group flex items-center gap-2 rounded-lg px-4 py-2 text-right text-text-secondary transition-colors hover:bg-surface-hover hover:text-text-primary"
     >
       <span>

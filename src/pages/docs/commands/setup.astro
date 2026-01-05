@@ -3,6 +3,7 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
+import { url } from '../../../utils/paths';
 ---
 
 <DocsLayout title="/codegraph:setup">
@@ -136,7 +137,7 @@ Browser: http://localhost:7474`}
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Next Steps</h2>
   <p class="text-text-secondary mb-4">
-    After setting up Neo4j, you can index your codebase using the <a href="/docs/commands/index-cmd" class="text-primary hover:text-secondary underline">/codegraph:index</a> command.
+    After setting up Neo4j, you can index your codebase using the <a href={url('/docs/commands/index-cmd')} class="text-primary hover:text-secondary underline">/codegraph:index</a> command.
   </p>
 
   <PrevNext

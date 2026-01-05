@@ -1,4 +1,6 @@
 ---
+import { url } from '../../utils/paths';
+
 interface Props {
   currentPath: string;
 }
@@ -99,7 +101,7 @@ function isChildActive(item: NavItem): boolean {
             <li>
               {item.href ? (
                 <a
-                  href={item.href}
+                  href={url(item.href)}
                   class:list={[
                     "block px-3 py-2 rounded-md text-sm transition-colors duration-150",
                     item.special === "green"
@@ -129,7 +131,7 @@ function isChildActive(item: NavItem): boolean {
                     {item.children.map((child) => (
                       <li>
                         <a
-                          href={child.href}
+                          href={child.href ? url(child.href) : '#'}
                           class:list={[
                             "block px-3 py-1.5 rounded-md text-sm transition-colors duration-150",
                             child.special === "green"

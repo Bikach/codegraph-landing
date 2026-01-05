@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import Sidebar from '../components/docs/Sidebar.astro';
+import { url } from '../utils/paths';
 
 interface Props {
   title: string;
@@ -37,7 +38,7 @@ const { title, description } = Astro.props;
             </svg>
           </button>
           <!-- Logo -->
-          <a href="/" class="flex items-center gap-2 text-text-primary hover:text-primary transition-colors">
+          <a href={url('/')} class="flex items-center gap-2 text-text-primary hover:text-primary transition-colors">
             <svg class="w-8 h-8 text-secondary" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>

@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://bikach.github.io',
+  base: '/codegraph-landing',
   vite: {
     plugins: [tailwindcss()],
     build: {

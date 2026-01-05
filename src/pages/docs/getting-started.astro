@@ -3,6 +3,7 @@ import DocsLayout from '../../layouts/Docs.astro';
 import CodeBlock from '../../components/docs/CodeBlock.astro';
 import Callout from '../../components/docs/Callout.astro';
 import PrevNext from '../../components/docs/PrevNext.astro';
+import { url } from '../../utils/paths';
 ---
 
 <DocsLayout title="Getting Started with CodeGraph">
@@ -192,17 +193,17 @@ import PrevNext from '../../components/docs/PrevNext.astro';
     </p>
 
     <div class="grid md:grid-cols-3 gap-4 mb-8">
-      <a href="/docs/installation/claude-plugin" class="block glass-card p-4 hover:border-secondary transition-all group">
+      <a href={url('/docs/installation/claude-plugin')} class="block glass-card p-4 hover:border-secondary transition-all group">
         <h3 class="text-text-primary font-semibold mb-2 group-hover:text-secondary transition-colors">Installation</h3>
         <p class="text-text-secondary text-sm">Detailed installation guide with prerequisites and troubleshooting.</p>
       </a>
 
-      <a href="/docs/commands/setup" class="block glass-card p-4 hover:border-secondary transition-all group">
+      <a href={url('/docs/commands/setup')} class="block glass-card p-4 hover:border-secondary transition-all group">
         <h3 class="text-text-primary font-semibold mb-2 group-hover:text-secondary transition-colors">Commands</h3>
         <p class="text-text-secondary text-sm">Learn about setup, index, and status commands.</p>
       </a>
 
-      <a href="/docs/tools/search-nodes" class="block glass-card p-4 hover:border-secondary transition-all group">
+      <a href={url('/docs/tools/search-nodes')} class="block glass-card p-4 hover:border-secondary transition-all group">
         <h3 class="text-text-primary font-semibold mb-2 group-hover:text-secondary transition-colors">Tools</h3>
         <p class="text-text-secondary text-sm">Explore the analysis tools available to your AI assistant.</p>
       </a>

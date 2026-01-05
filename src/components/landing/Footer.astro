@@ -1,5 +1,6 @@
 ---
 // Footer for CodeGraph landing page
+import { url } from '../../utils/paths';
 ---
 
 <footer class="footer">
@@ -8,7 +9,7 @@
     <div class="footer-content">
       <!-- Logo/Brand -->
       <div class="footer-brand">
-        <a href="/" class="footer-logo">
+        <a href={url('/')} class="footer-logo">
           <svg class="logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="16" cy="8" r="3" fill="url(#footer-gradient)" />
             <circle cx="8" cy="20" r="3" fill="url(#footer-gradient)" />
@@ -34,7 +35,7 @@
           <h4 class="links-title">Resources</h4>
           <ul class="links-list">
             <li>
-              <a href="/docs/getting-started" class="footer-link">Documentation</a>
+              <a href={url('/docs/getting-started')} class="footer-link">Documentation</a>
             </li>
             <li>
               <a href="https://github.com/Bikach/codeGraph" target="_blank" rel="noopener noreferrer" class="footer-link">

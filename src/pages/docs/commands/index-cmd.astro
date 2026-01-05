@@ -3,6 +3,7 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
+import { url } from '../../../utils/paths';
 ---
 
 <DocsLayout title="/codegraph:index">
@@ -241,7 +242,7 @@ Time elapsed: 4.2s`}
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Next Steps</h2>
   <p class="text-text-secondary mb-4">
-    After indexing, verify the graph status with <a href="/docs/commands/status" class="text-primary hover:text-secondary underline">/codegraph:status</a> and start exploring your code using the <a href="/docs/tools/search-nodes" class="text-primary hover:text-secondary underline">query tools</a>.
+    After indexing, verify the graph status with <a href={url('/docs/commands/status')} class="text-primary hover:text-secondary underline">/codegraph:status</a> and start exploring your code using the <a href={url('/docs/tools/search-nodes')} class="text-primary hover:text-secondary underline">query tools</a>.
   </p>
 
   <PrevNext
