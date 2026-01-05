@@ -71,40 +71,44 @@
           <p class="text-gray-400 mb-6 ml-13">Static Analysis - Fast Traversal</p>
 
           <!-- Tools List -->
-          <div class="space-y-4">
-            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
-              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">get_callees</code>
-              <span class="text-gray-400 text-sm">"What does this function call?"</span>
+          <div class="space-y-3">
+            <div class="p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-blue-400 font-mono text-sm">get_callees</code>
+              <p class="text-gray-400 text-sm mt-1">"What does this function call?"</p>
             </div>
-            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
-              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">get_neighbors</code>
-              <span class="text-gray-400 text-sm">"Dependencies of this class"</span>
+            <div class="p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-blue-400 font-mono text-sm">get_neighbors</code>
+              <p class="text-gray-400 text-sm mt-1">"Dependencies of this class"</p>
             </div>
-            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
-              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">get_impact</code>
-              <span class="text-gray-400 text-sm">"What breaks if I change this?"</span>
+            <div class="p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-blue-400 font-mono text-sm">get_impact</code>
+              <p class="text-gray-400 text-sm mt-1">"What breaks if I change this?"</p>
             </div>
-            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
-              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">find_path</code>
-              <span class="text-gray-400 text-sm">"Path between two nodes"</span>
+            <div class="p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-blue-400 font-mono text-sm">find_path</code>
+              <p class="text-gray-400 text-sm mt-1">"Path between two nodes"</p>
             </div>
-            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
-              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">search_nodes</code>
-              <span class="text-gray-400 text-sm">"Find by name/pattern"</span>
+            <div class="p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-blue-400 font-mono text-sm">search_nodes</code>
+              <p class="text-gray-400 text-sm mt-1">"Find by name/pattern"</p>
             </div>
-            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
-              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">get_file_symbols</code>
-              <span class="text-gray-400 text-sm">"List symbols in a file"</span>
+            <div class="p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-blue-400 font-mono text-sm">get_file_symbols</code>
+              <p class="text-gray-400 text-sm mt-1">"List symbols in a file"</p>
             </div>
-            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors border border-blue-500/20">
-              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">get_callers</code>
-              <span class="text-gray-400 text-sm">"Who calls this function?"</span>
-              <span class="ml-auto px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">Standalone</span>
+            <div class="p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors border border-blue-500/20">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <code class="text-blue-400 font-mono text-sm">get_callers</code>
+                <span class="px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">Standalone</span>
+              </div>
+              <p class="text-gray-400 text-sm mt-1">"Who calls this function?"</p>
             </div>
-            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors border border-blue-500/20">
-              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">get_implementations</code>
-              <span class="text-gray-400 text-sm">"Find implementations"</span>
-              <span class="ml-auto px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">Standalone</span>
+            <div class="p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors border border-blue-500/20">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <code class="text-blue-400 font-mono text-sm">get_implementations</code>
+                <span class="px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">Standalone</span>
+              </div>
+              <p class="text-gray-400 text-sm mt-1">"Find implementations"</p>
             </div>
           </div>
 
@@ -145,14 +149,14 @@
           <p class="text-gray-400 mb-6 ml-13">Semantic Analysis - Compiler Accuracy</p>
 
           <!-- Tools List -->
-          <div class="space-y-4">
-            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
-              <code class="text-purple-400 font-mono text-sm whitespace-nowrap">incomingCalls</code>
-              <span class="text-gray-400 text-sm">"Who calls this function?"</span>
+          <div class="space-y-3">
+            <div class="p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-purple-400 font-mono text-sm">incomingCalls</code>
+              <p class="text-gray-400 text-sm mt-1">"Who calls this function?"</p>
             </div>
-            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
-              <code class="text-purple-400 font-mono text-sm whitespace-nowrap">goToImplementation</code>
-              <span class="text-gray-400 text-sm">"Find interface implementations"</span>
+            <div class="p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-purple-400 font-mono text-sm">goToImplementation</code>
+              <p class="text-gray-400 text-sm mt-1">"Find interface implementations"</p>
             </div>
           </div>
 
@@ -183,9 +187,9 @@
       </div>
     </div>
 
-    <!-- Comparison Table -->
-    <div class="overflow-x-auto max-w-full">
-      <table class="w-full border-collapse min-w-0">
+    <!-- Comparison Table - Desktop -->
+    <div class="hidden md:block">
+      <table class="w-full border-collapse">
         <thead>
           <tr class="border-b border-gray-700">
             <th class="text-left py-4 px-6 text-gray-400 font-medium">Question</th>
@@ -290,16 +294,126 @@
           </tr>
         </tbody>
       </table>
+    </div>
 
-      <!-- Note about MCP Standalone -->
-      <div class="mt-4 p-4 rounded-lg bg-blue-500/5 border border-blue-500/20">
-        <p class="text-sm text-gray-300">
+    <!-- Comparison Cards - Mobile -->
+    <div class="md:hidden space-y-3">
+      <!-- Header row with Graph/LSP labels -->
+      <div class="flex items-center justify-between px-4 pb-2 border-b border-gray-700">
+        <span class="text-gray-400 font-medium text-sm">Question</span>
+        <div class="flex gap-4">
           <span class="inline-flex items-center gap-1.5">
-            <span class="px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">MCP Standalone</span>
+            <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+            <span class="text-blue-400 font-medium text-xs">Graph</span>
           </span>
-          <span class="ml-2">These Graph features (<code class="text-blue-400">get_callers</code>, <code class="text-blue-400">get_implementations</code>) are available when using the standalone MCP server. The Claude Code Plugin uses LSP for these queries instead.</span>
-        </p>
+          <span class="inline-flex items-center gap-1.5">
+            <div class="w-2 h-2 rounded-full bg-purple-500"></div>
+            <span class="text-purple-400 font-medium text-xs">LSP</span>
+          </span>
+        </div>
       </div>
+
+      <!-- Row 1 -->
+      <div class="flex items-center justify-between p-4 rounded-lg bg-gray-900/50">
+        <p class="text-gray-300 text-sm flex-1 pr-4">"What does this function call?"</p>
+        <div class="flex gap-4 flex-shrink-0">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-500/20 text-blue-400">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+          </span>
+          <span class="text-gray-600 w-7 text-center">-</span>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="p-4 rounded-lg bg-gray-900/50">
+        <div class="flex items-center justify-between">
+          <p class="text-gray-300 text-sm flex-1 pr-4">"Who calls this function?"</p>
+          <div class="flex gap-4 flex-shrink-0">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-500/20 text-blue-400">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+            </span>
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-purple-500/20 text-purple-400">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <span class="mt-2 inline-block px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">MCP Standalone</span>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="flex items-center justify-between p-4 rounded-lg bg-gray-900/50">
+        <p class="text-gray-300 text-sm flex-1 pr-4">"What breaks if I change this?"</p>
+        <div class="flex gap-4 flex-shrink-0">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-500/20 text-blue-400">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+          </span>
+          <span class="text-gray-600 w-7 text-center">-</span>
+        </div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="p-4 rounded-lg bg-gray-900/50">
+        <div class="flex items-center justify-between">
+          <p class="text-gray-300 text-sm flex-1 pr-4">"Find interface implementations"</p>
+          <div class="flex gap-4 flex-shrink-0">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-500/20 text-blue-400">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+            </span>
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-purple-500/20 text-purple-400">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+            </span>
+          </div>
+        </div>
+        <span class="mt-2 inline-block px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">MCP Standalone</span>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="flex items-center justify-between p-4 rounded-lg bg-gray-900/50">
+        <p class="text-gray-300 text-sm flex-1 pr-4">"Find class dependencies"</p>
+        <div class="flex gap-4 flex-shrink-0">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-500/20 text-blue-400">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+          </span>
+          <span class="text-gray-600 w-7 text-center">-</span>
+        </div>
+      </div>
+
+      <!-- Row 6 -->
+      <div class="flex items-center justify-between p-4 rounded-lg bg-gray-900/50">
+        <p class="text-gray-300 text-sm flex-1 pr-4">"Path between two nodes"</p>
+        <div class="flex gap-4 flex-shrink-0">
+          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-blue-500/20 text-blue-400">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+          </span>
+          <span class="text-gray-600 w-7 text-center">-</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Note about MCP Standalone -->
+    <div class="mt-4 p-4 rounded-lg bg-blue-500/5 border border-blue-500/20">
+      <p class="text-sm text-gray-300">
+        <span class="inline-flex items-center gap-1.5">
+          <span class="px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">MCP Standalone</span>
+        </span>
+        <span class="ml-2">These Graph features (<code class="text-blue-400">get_callers</code>, <code class="text-blue-400">get_implementations</code>) are available when using the standalone MCP server. The Claude Code Plugin uses LSP for these queries instead.</span>
+      </p>
     </div>
 
     <!-- Bottom Summary -->
