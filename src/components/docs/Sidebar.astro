@@ -9,6 +9,7 @@ interface NavItem {
   label: string;
   href?: string;
   children?: NavItem[];
+  special?: "green";
 }
 
 interface NavSection {
@@ -27,46 +28,42 @@ const navigation: NavSection[] = [
           { label: "MCP Standalone", href: "/docs/installation/mcp-standalone" },
         ],
       },
-    ],
-  },
-  {
-    title: "Commands (plugin)",
-    items: [
-      { label: "/codegraph:setup", href: "/docs/commands/setup" },
-      { label: "/codegraph:index", href: "/docs/commands/index-cmd" },
-      { label: "/codegraph:status", href: "/docs/commands/status" },
-    ],
-  },
-  {
-    title: "MCP Tools",
-    items: [
-      { label: "search_nodes", href: "/docs/tools/search-nodes" },
-      { label: "get_callers", href: "/docs/tools/get-callers" },
-      { label: "get_callees", href: "/docs/tools/get-callees" },
-      { label: "get_neighbors", href: "/docs/tools/get-neighbors" },
-      { label: "get_implementations", href: "/docs/tools/get-implementations" },
-      { label: "get_impact", href: "/docs/tools/get-impact" },
-      { label: "find_path", href: "/docs/tools/find-path" },
-      { label: "get_file_symbols", href: "/docs/tools/get-file-symbols" },
-    ],
-  },
-  {
-    title: "LSP Tools",
-    items: [
-      { label: "incomingCalls", href: "/docs/lsp/incoming-calls" },
-      { label: "goToImplementation", href: "/docs/lsp/go-to-implementation" },
-    ],
-  },
-  {
-    title: "Languages",
-    items: [
-      { label: "Kotlin", href: "/docs/languages/kotlin" },
-      { label: "Java", href: "/docs/languages/java" },
-    ],
-  },
-  {
-    items: [
-      { label: "Benchmark", href: "/docs/benchmark" },
+      {
+        label: "Commands (plugin)",
+        children: [
+          { label: "/codegraph:setup", href: "/docs/commands/setup" },
+          { label: "/codegraph:index", href: "/docs/commands/index-cmd" },
+          { label: "/codegraph:status", href: "/docs/commands/status" },
+        ],
+      },
+      {
+        label: "MCP Tools",
+        children: [
+          { label: "search_nodes", href: "/docs/tools/search-nodes" },
+          { label: "get_callers", href: "/docs/tools/get-callers" },
+          { label: "get_callees", href: "/docs/tools/get-callees" },
+          { label: "get_neighbors", href: "/docs/tools/get-neighbors" },
+          { label: "get_implementations", href: "/docs/tools/get-implementations" },
+          { label: "get_impact", href: "/docs/tools/get-impact" },
+          { label: "find_path", href: "/docs/tools/find-path" },
+          { label: "get_file_symbols", href: "/docs/tools/get-file-symbols" },
+        ],
+      },
+      {
+        label: "LSP Tools",
+        children: [
+          { label: "incomingCalls", href: "/docs/lsp/incoming-calls" },
+          { label: "goToImplementation", href: "/docs/lsp/go-to-implementation" },
+        ],
+      },
+      {
+        label: "Languages",
+        children: [
+          { label: "Kotlin", href: "/docs/languages/kotlin" },
+          { label: "Java", href: "/docs/languages/java" },
+        ],
+      },
+      { label: "Benchmark", href: "/docs/benchmark", special: "green" },
     ],
   },
 ];
@@ -88,7 +85,7 @@ function isChildActive(item: NavItem): boolean {
     {navigation.map((section) => (
       <div>
         {section.title && (
-          <h3 class="text-xs font-semibold uppercase tracking-wider text-text-muted mb-2 px-3">
+          <h3 class="text-[11px] font-bold uppercase tracking-widest text-text-muted mb-3 px-3 pt-2 border-t border-border">
             {section.title}
           </h3>
         )}
@@ -100,9 +97,13 @@ function isChildActive(item: NavItem): boolean {
                   href={item.href}
                   class:list={[
                     "block px-3 py-2 rounded-md text-sm transition-colors duration-150",
-                    isActive(item.href)
-                      ? "bg-primary/10 text-primary border-l-2 border-primary"
-                      : "text-text-secondary hover:text-text-primary hover:bg-surface-hover",
+                    item.special === "green"
+                      ? isActive(item.href)
+                        ? "bg-secondary/10 text-secondary border-l-2 border-secondary"
+                        : "text-secondary hover:text-secondary hover:bg-secondary/5"
+                      : isActive(item.href)
+                        ? "bg-primary/10 text-primary border-l-2 border-primary"
+                        : "text-text-secondary hover:text-text-primary hover:bg-surface-hover",
                   ]}
                 >
                   {item.label}
@@ -111,10 +112,10 @@ function isChildActive(item: NavItem): boolean {
                 <div>
                   <span
                     class:list={[
-                      "block px-3 py-2 text-sm",
+                      "block px-3 py-2 text-sm font-medium",
                       isChildActive(item)
                         ? "text-primary"
-                        : "text-text-secondary",
+                        : "text-text-primary",
                     ]}
                   >
                     {item.label}

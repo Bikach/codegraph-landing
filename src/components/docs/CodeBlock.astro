@@ -8,9 +8,9 @@ interface Props {
 const { code, lang = "bash", title } = Astro.props;
 ---
 
-<div class="code-block my-6 overflow-hidden rounded-lg border border-border bg-bg-subtle shadow-sm">
+<div class="code-block my-6 overflow-hidden rounded-lg shadow-sm">
   {title && (
-    <div class="flex items-center justify-between border-b border-border bg-surface-hover px-4 py-2">
+    <div class="flex items-center justify-between bg-surface-hover px-4 py-2 rounded-t-lg border border-border">
       <div class="flex items-center gap-2">
         <div class="flex gap-1.5">
           <span class="h-3 w-3 rounded-full bg-danger"></span>
@@ -64,7 +64,7 @@ const { code, lang = "bash", title } = Astro.props;
         Copy
       </button>
     )}
-    <pre class="overflow-x-auto p-4 bg-bg-subtle"><code class="font-mono text-sm text-text-primary" data-lang={lang}>{code}</code></pre>
+    <pre class="code-body overflow-x-auto p-4 bg-bg-subtle border-x border-b border-border"><code class="font-mono text-sm text-text-primary" data-lang={lang}>{code}</code></pre>
   </div>
 </div>
 
@@ -72,7 +72,11 @@ const { code, lang = "bash", title } = Astro.props;
   .code-block {
     position: relative;
   }
-  .code-block::before {
+  .code-body {
+    position: relative;
+    border-radius: 0 0 0.5rem 0.5rem;
+  }
+  .code-body::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -83,8 +87,9 @@ const { code, lang = "bash", title } = Astro.props;
     opacity: 0.3;
     pointer-events: none;
     z-index: 0;
+    border-radius: 0 0 0.5rem 0.5rem;
   }
-  .code-block > * {
+  .code-body > * {
     position: relative;
     z-index: 1;
   }
