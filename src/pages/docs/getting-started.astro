@@ -6,48 +6,48 @@ import PrevNext from '../../components/docs/PrevNext.astro';
 ---
 
 <DocsLayout title="Getting Started with CodeGraph">
-  <article class="prose prose-invert max-w-none">
-    <h1 class="text-4xl font-bold text-white mb-4">Getting Started with CodeGraph</h1>
+  <article class="prose max-w-none">
+    <h1 class="text-4xl font-bold text-text-primary mb-4">Getting Started with CodeGraph</h1>
 
-    <p class="text-xl text-gray-300 mb-8">
+    <p class="text-xl text-text-secondary mb-8">
       CodeGraph is an MCP server that gives your AI assistant deep understanding of your codebase
       through a Neo4j-powered code graph and LSP integration.
     </p>
 
-    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">What CodeGraph Does</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">What CodeGraph Does</h2>
 
-    <p class="text-gray-300 mb-6">
+    <p class="text-text-secondary mb-6">
       CodeGraph enhances MCP-compatible AI assistants with two powerful engines that work together to provide
       comprehensive code intelligence:
     </p>
 
     <div class="grid md:grid-cols-2 gap-6 mb-8">
-      <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6">
+      <div class="glass-card p-6">
         <div class="flex items-center gap-3 mb-3">
-          <div class="w-10 h-10 bg-emerald-500/20 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="w-10 h-10 bg-secondary/20 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold text-white">Graph Engine</h3>
+          <h3 class="text-lg font-semibold text-text-primary">Graph Engine</h3>
         </div>
-        <p class="text-gray-400 text-sm">
+        <p class="text-text-secondary text-sm">
           Powered by Neo4j, the Graph Engine analyzes your entire codebase structure.
           It maps classes, interfaces, functions, and their relationships to enable
           impact analysis, dependency tracking, and architectural queries.
         </p>
       </div>
 
-      <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6">
+      <div class="glass-card p-6">
         <div class="flex items-center gap-3 mb-3">
-          <div class="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
             </svg>
           </div>
-          <h3 class="text-lg font-semibold text-white">LSP Engine</h3>
+          <h3 class="text-lg font-semibold text-text-primary">LSP Engine</h3>
         </div>
-        <p class="text-gray-400 text-sm">
+        <p class="text-text-secondary text-sm">
           The LSP Engine provides real-time code intelligence through Language Server Protocol integration.
           Get precise definitions, references, hover information, and diagnostics
           directly within your AI sessions.
@@ -60,57 +60,57 @@ import PrevNext from '../../components/docs/PrevNext.astro';
       while the LSP Engine provides precise, real-time intelligence for specific code locations.
     </Callout>
 
-    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Prerequisites</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Prerequisites</h2>
 
-    <p class="text-gray-300 mb-6">
+    <p class="text-text-secondary mb-6">
       Before installing CodeGraph, ensure you have the following:
     </p>
 
     <div class="space-y-4 mb-8">
-      <div class="flex items-start gap-4 bg-gray-800/50 border border-gray-700 rounded-lg p-4">
-        <div class="flex-shrink-0 w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="flex items-start gap-4 glass-card p-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
           </svg>
         </div>
         <div>
-          <h3 class="text-white font-semibold">MCP-Compatible Client</h3>
-          <p class="text-gray-400 text-sm mt-1">
+          <h3 class="text-text-primary font-semibold">MCP-Compatible Client</h3>
+          <p class="text-text-secondary text-sm mt-1">
             CodeGraph works with any MCP (Model Context Protocol) compatible client:
           </p>
-          <ul class="text-gray-400 text-sm mt-2 space-y-1">
-            <li><a href="https://claude.ai/code" class="text-emerald-400 hover:text-emerald-300">Claude Code CLI</a> (recommended)</li>
+          <ul class="text-text-secondary text-sm mt-2 space-y-1">
+            <li><a href="https://claude.ai/code" class="text-primary hover:text-secondary">Claude Code CLI</a> (recommended)</li>
             <li>Claude Desktop</li>
             <li>Other MCP-compatible AI tools</li>
           </ul>
         </div>
       </div>
 
-      <div class="flex items-start gap-4 bg-gray-800/50 border border-gray-700 rounded-lg p-4">
-        <div class="flex-shrink-0 w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
-          <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="flex items-start gap-4 glass-card p-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
           </svg>
         </div>
         <div>
-          <h3 class="text-white font-semibold">Docker (Required)</h3>
-          <p class="text-gray-400 text-sm mt-1">
+          <h3 class="text-text-primary font-semibold">Docker (Required)</h3>
+          <p class="text-text-secondary text-sm mt-1">
             Docker is essential for running the Neo4j database. Ensure Docker is installed and running before proceeding.
-            <a href="https://docs.docker.com/get-docker/" class="text-emerald-400 hover:text-emerald-300 ml-1">Install Docker</a>
+            <a href="https://docs.docker.com/get-docker/" class="text-primary hover:text-secondary ml-1">Install Docker</a>
           </p>
         </div>
       </div>
 
-      <div class="flex items-start gap-4 bg-gray-800/50 border border-gray-700 rounded-lg p-4">
-        <div class="flex-shrink-0 w-10 h-10 bg-orange-500/20 rounded-lg flex items-center justify-center">
-          <svg class="w-5 h-5 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="flex items-start gap-4 glass-card p-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-attention/20 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-attention" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
           </svg>
         </div>
         <div>
-          <h3 class="text-white font-semibold">Supported Languages</h3>
-          <p class="text-gray-400 text-sm mt-1">
-            CodeGraph currently supports <strong class="text-white">Kotlin</strong> and <strong class="text-white">Java</strong> projects.
+          <h3 class="text-text-primary font-semibold">Supported Languages</h3>
+          <p class="text-text-secondary text-sm mt-1">
+            CodeGraph currently supports <strong class="text-text-primary">Kotlin</strong> and <strong class="text-text-primary">Java</strong> projects.
             TypeScript support is coming soon.
           </p>
         </div>
@@ -120,25 +120,25 @@ import PrevNext from '../../components/docs/PrevNext.astro';
     <Callout type="warning" title="Verify Docker">
       Before installing CodeGraph, ensure Docker is running:
       <div class="mt-2">
-        <code class="bg-gray-800 px-2 py-1 rounded text-emerald-400 text-sm">docker info</code>
+        <code class="bg-bg-subtle px-2 py-1 rounded text-primary text-sm">docker info</code>
       </div>
       <p class="mt-2">If you see an error, start Docker Desktop first.</p>
     </Callout>
 
-    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Quick Start</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Quick Start</h2>
 
-    <p class="text-gray-300 mb-6">
+    <p class="text-text-secondary mb-6">
       Get CodeGraph running in just three steps (Claude Code Plugin method):
     </p>
 
     <div class="space-y-6">
       <div class="flex gap-4">
-        <div class="flex-shrink-0 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold">
+        <div class="flex-shrink-0 w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold">
           1
         </div>
         <div class="flex-1">
-          <h3 class="text-lg font-semibold text-white mb-2">Install the Plugin</h3>
-          <p class="text-gray-400 mb-3">Add the marketplace and install the CodeGraph plugin:</p>
+          <h3 class="text-lg font-semibold text-text-primary mb-2">Install the Plugin</h3>
+          <p class="text-text-secondary mb-3">Add the marketplace and install the CodeGraph plugin:</p>
           <CodeBlock
             code={`/plugin marketplace add Bikach/claude-plugins
 /plugin install codegraph@Bikach`}
@@ -149,12 +149,12 @@ import PrevNext from '../../components/docs/PrevNext.astro';
       </div>
 
       <div class="flex gap-4">
-        <div class="flex-shrink-0 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold">
+        <div class="flex-shrink-0 w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold">
           2
         </div>
         <div class="flex-1">
-          <h3 class="text-lg font-semibold text-white mb-2">Run Setup</h3>
-          <p class="text-gray-400 mb-3">Start Neo4j and prepare the database. This only needs to be done once.</p>
+          <h3 class="text-lg font-semibold text-text-primary mb-2">Run Setup</h3>
+          <p class="text-text-secondary mb-3">Start Neo4j and prepare the database. This only needs to be done once.</p>
           <CodeBlock
             code="/codegraph:setup"
             lang="bash"
@@ -164,12 +164,12 @@ import PrevNext from '../../components/docs/PrevNext.astro';
       </div>
 
       <div class="flex gap-4">
-        <div class="flex-shrink-0 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center text-white font-bold">
+        <div class="flex-shrink-0 w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white font-bold">
           3
         </div>
         <div class="flex-1">
-          <h3 class="text-lg font-semibold text-white mb-2">Index Your Project</h3>
-          <p class="text-gray-400 mb-3">Analyze your codebase and build the code graph.</p>
+          <h3 class="text-lg font-semibold text-text-primary mb-2">Index Your Project</h3>
+          <p class="text-text-secondary mb-3">Analyze your codebase and build the code graph.</p>
           <CodeBlock
             code="/codegraph:index"
             lang="bash"
@@ -185,26 +185,26 @@ import PrevNext from '../../components/docs/PrevNext.astro';
       or "Show me the impact of changing the AuthController interface."
     </Callout>
 
-    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">What's Next</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">What's Next</h2>
 
-    <p class="text-gray-300 mb-6">
+    <p class="text-text-secondary mb-6">
       Now that you have an overview of CodeGraph, explore these resources to get started:
     </p>
 
     <div class="grid md:grid-cols-3 gap-4 mb-8">
-      <a href="/docs/installation/claude-plugin" class="block bg-gray-800/50 border border-gray-700 rounded-lg p-4 hover:border-emerald-500/50 hover:bg-gray-800 transition-all group">
-        <h3 class="text-white font-semibold mb-2 group-hover:text-emerald-400 transition-colors">Installation</h3>
-        <p class="text-gray-400 text-sm">Detailed installation guide with prerequisites and troubleshooting.</p>
+      <a href="/docs/installation/claude-plugin" class="block glass-card p-4 hover:border-secondary transition-all group">
+        <h3 class="text-text-primary font-semibold mb-2 group-hover:text-secondary transition-colors">Installation</h3>
+        <p class="text-text-secondary text-sm">Detailed installation guide with prerequisites and troubleshooting.</p>
       </a>
 
-      <a href="/docs/commands/setup" class="block bg-gray-800/50 border border-gray-700 rounded-lg p-4 hover:border-emerald-500/50 hover:bg-gray-800 transition-all group">
-        <h3 class="text-white font-semibold mb-2 group-hover:text-emerald-400 transition-colors">Commands</h3>
-        <p class="text-gray-400 text-sm">Learn about setup, index, and status commands.</p>
+      <a href="/docs/commands/setup" class="block glass-card p-4 hover:border-secondary transition-all group">
+        <h3 class="text-text-primary font-semibold mb-2 group-hover:text-secondary transition-colors">Commands</h3>
+        <p class="text-text-secondary text-sm">Learn about setup, index, and status commands.</p>
       </a>
 
-      <a href="/docs/tools/search-nodes" class="block bg-gray-800/50 border border-gray-700 rounded-lg p-4 hover:border-emerald-500/50 hover:bg-gray-800 transition-all group">
-        <h3 class="text-white font-semibold mb-2 group-hover:text-emerald-400 transition-colors">Tools</h3>
-        <p class="text-gray-400 text-sm">Explore the analysis tools available to your AI assistant.</p>
+      <a href="/docs/tools/search-nodes" class="block glass-card p-4 hover:border-secondary transition-all group">
+        <h3 class="text-text-primary font-semibold mb-2 group-hover:text-secondary transition-colors">Tools</h3>
+        <p class="text-text-secondary text-sm">Explore the analysis tools available to your AI assistant.</p>
       </a>
     </div>
   </article>

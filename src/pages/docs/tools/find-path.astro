@@ -7,62 +7,62 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
 ---
 
 <DocsLayout title="find_path">
-  <h1 class="text-4xl font-bold text-white mb-4">find_path</h1>
-  <p class="text-xl text-gray-400 mb-8">
+  <h1 class="text-4xl font-bold text-text-primary mb-4">find_path</h1>
+  <p class="text-xl text-text-secondary mb-8">
     Find the shortest path between two nodes in the code graph.
   </p>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Description</h2>
-    <p class="text-gray-300 mb-4">
-      The <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">find_path</code> tool discovers how two code elements are connected through the dependency graph. It finds the shortest chain of relationships between any two nodes, revealing hidden connections and helping you understand data and control flow through your application.
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Description</h2>
+    <p class="text-text-secondary mb-4">
+      The <code class="text-primary bg-bg-subtle px-2 py-1 rounded">find_path</code> tool discovers how two code elements are connected through the dependency graph. It finds the shortest chain of relationships between any two nodes, revealing hidden connections and helping you understand data and control flow through your application.
     </p>
-    <p class="text-gray-300">
-      Results are returned in a compact format: <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">step | Type | Name | relationship | filePath:line</code>
+    <p class="text-text-secondary">
+      Results are returned in a compact format: <code class="text-primary bg-bg-subtle px-2 py-1 rounded">step | Type | Name | relationship | filePath:line</code>
     </p>
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Parameters</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Parameters</h2>
     <div class="overflow-x-auto">
-      <table class="w-full text-left border-collapse">
-        <thead>
-          <tr class="border-b border-gray-700">
-            <th class="py-3 px-4 text-gray-300 font-semibold">Parameter</th>
-            <th class="py-3 px-4 text-gray-300 font-semibold">Type</th>
-            <th class="py-3 px-4 text-gray-300 font-semibold">Required</th>
-            <th class="py-3 px-4 text-gray-300 font-semibold">Description</th>
+      <table class="w-full text-sm text-left text-text-secondary">
+        <thead class="text-xs uppercase bg-bg-subtle text-text-muted">
+          <tr>
+            <th class="py-3 px-4 rounded-tl-lg">Parameter</th>
+            <th class="py-3 px-4">Type</th>
+            <th class="py-3 px-4">Required</th>
+            <th class="py-3 px-4 rounded-tr-lg">Description</th>
           </tr>
         </thead>
-        <tbody class="text-gray-400">
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">from_node</code></td>
+        <tbody class="bg-bg-subtle">
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">from_node</code></td>
             <td class="py-3 px-4">string</td>
-            <td class="py-3 px-4"><span class="text-red-400">Yes</span></td>
+            <td class="py-3 px-4"><span class="text-danger">Yes</span></td>
             <td class="py-3 px-4">Name of the starting node</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">to_node</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">to_node</code></td>
             <td class="py-3 px-4">string</td>
-            <td class="py-3 px-4"><span class="text-red-400">Yes</span></td>
+            <td class="py-3 px-4"><span class="text-danger">Yes</span></td>
             <td class="py-3 px-4">Name of the target node</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">max_depth</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">max_depth</code></td>
             <td class="py-3 px-4">integer</td>
-            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4"><span class="text-text-muted">No</span></td>
             <td class="py-3 px-4">Maximum path length to search: 1-10 (default: 5)</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">relationship_types</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">relationship_types</code></td>
             <td class="py-3 px-4">array</td>
-            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
-            <td class="py-3 px-4">Filter by relationship types (e.g., <code class="text-xs bg-gray-800 px-1 rounded">CALLS</code>, <code class="text-xs bg-gray-800 px-1 rounded">USES</code>, <code class="text-xs bg-gray-800 px-1 rounded">IMPLEMENTS</code>)</td>
+            <td class="py-3 px-4"><span class="text-text-muted">No</span></td>
+            <td class="py-3 px-4">Filter by relationship types (e.g., <code class="text-xs bg-bg-subtle px-1 rounded text-primary">CALLS</code>, <code class="text-xs bg-bg-subtle px-1 rounded text-primary">USES</code>, <code class="text-xs bg-bg-subtle px-1 rounded text-primary">IMPLEMENTS</code>)</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">project_path</code></td>
+          <tr>
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">project_path</code></td>
             <td class="py-3 px-4">string</td>
-            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4"><span class="text-text-muted">No</span></td>
             <td class="py-3 px-4">Filter by project path. If not provided, searches all indexed projects</td>
           </tr>
         </tbody>
@@ -71,8 +71,8 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Example</h2>
-    <p class="text-gray-400 mb-4">
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Example</h2>
+    <p class="text-text-secondary mb-4">
       Ask Claude to find the path between two nodes. Each step shows the node type, name, relationship type, and location. Step 0 is the starting node.
     </p>
     <ScreenshotPlaceholder
@@ -83,35 +83,35 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Relationship Types</h2>
-    <p class="text-gray-400 mb-4">Common relationship types you can filter by:</p>
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Relationship Types</h2>
+    <p class="text-text-secondary mb-4">Common relationship types you can filter by:</p>
     <div class="overflow-x-auto">
-      <table class="w-full text-left border-collapse">
-        <thead>
-          <tr class="border-b border-gray-700">
-            <th class="py-3 px-4 text-gray-300 font-semibold">Type</th>
-            <th class="py-3 px-4 text-gray-300 font-semibold">Description</th>
+      <table class="w-full text-sm text-left text-text-secondary">
+        <thead class="text-xs uppercase bg-bg-subtle text-text-muted">
+          <tr>
+            <th class="py-3 px-4 rounded-tl-lg">Type</th>
+            <th class="py-3 px-4 rounded-tr-lg">Description</th>
           </tr>
         </thead>
-        <tbody class="text-gray-400">
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">CALLS</code></td>
+        <tbody class="bg-bg-subtle">
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">CALLS</code></td>
             <td class="py-3 px-4">Function/method invocation</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">USES</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">USES</code></td>
             <td class="py-3 px-4">Dependency injection or field reference</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">IMPLEMENTS</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">IMPLEMENTS</code></td>
             <td class="py-3 px-4">Interface implementation</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">EXTENDS</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">EXTENDS</code></td>
             <td class="py-3 px-4">Class inheritance</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">CONTAINS</code></td>
+          <tr>
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">CONTAINS</code></td>
             <td class="py-3 px-4">Nested class or inner function</td>
           </tr>
         </tbody>
@@ -120,45 +120,45 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Use Cases</h2>
-    <ul class="space-y-3 text-gray-300">
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Use Cases</h2>
+    <ul class="space-y-3 text-text-secondary">
       <li class="flex items-start gap-3">
-        <span class="text-emerald-400 mt-1">
+        <span class="text-secondary mt-1">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Debugging:</strong> Trace how a bug in one component could affect a distant part of the application</span>
+        <span><strong class="text-text-primary">Debugging:</strong> Trace how a bug in one component could affect a distant part of the application</span>
       </li>
       <li class="flex items-start gap-3">
-        <span class="text-emerald-400 mt-1">
+        <span class="text-secondary mt-1">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Architecture understanding:</strong> Visualize how different layers of your application connect</span>
+        <span><strong class="text-text-primary">Architecture understanding:</strong> Visualize how different layers of your application connect</span>
       </li>
       <li class="flex items-start gap-3">
-        <span class="text-emerald-400 mt-1">
+        <span class="text-secondary mt-1">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Security analysis:</strong> Trace how sensitive data flows from entry points to storage or external services</span>
+        <span><strong class="text-text-primary">Security analysis:</strong> Trace how sensitive data flows from entry points to storage or external services</span>
       </li>
       <li class="flex items-start gap-3">
-        <span class="text-emerald-400 mt-1">
+        <span class="text-secondary mt-1">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Coupling analysis:</strong> Identify unexpected connections that might indicate architectural issues</span>
+        <span><strong class="text-text-primary">Coupling analysis:</strong> Identify unexpected connections that might indicate architectural issues</span>
       </li>
     </ul>
   </section>
 
   <Callout type="info" title="No Path Found?">
-    If no path is found, the nodes might be completely independent, or the path might be longer than the <code class="text-blue-300">max_depth</code>. Try increasing <code class="text-blue-300">max_depth</code> to 10 for a more thorough search.
+    If no path is found, the nodes might be completely independent, or the path might be longer than the <code class="text-primary">max_depth</code>. Try increasing <code class="text-primary">max_depth</code> to 10 for a more thorough search.
   </Callout>
 
   <PrevNext

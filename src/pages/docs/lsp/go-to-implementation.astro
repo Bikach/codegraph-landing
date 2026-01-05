@@ -7,61 +7,61 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
 ---
 
 <DocsLayout title="goToImplementation" description="Find implementations of interfaces or abstract methods using LSP">
-  <h1 class="text-4xl font-bold text-white mb-4">goToImplementation</h1>
-  <p class="text-xl text-gray-400 mb-8">
+  <h1 class="text-4xl font-bold text-text-primary mb-4">goToImplementation</h1>
+  <p class="text-xl text-text-secondary mb-8">
     Find implementations of interfaces, abstract methods, or type definitions using LSP.
   </p>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Overview</h2>
-    <p class="text-gray-300 mb-4">
-      The <code class="px-2 py-1 bg-gray-800 rounded text-emerald-400">goToImplementation</code> tool locates
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Overview</h2>
+    <p class="text-text-secondary mb-4">
+      The <code class="px-2 py-1 bg-bg-subtle rounded text-primary">goToImplementation</code> tool locates
       concrete implementations of interfaces, abstract classes, or abstract methods. This is invaluable for
       navigating polymorphic code and understanding how abstractions are realized in your codebase.
     </p>
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">How It Works</h2>
-    <p class="text-gray-300 mb-4">
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">How It Works</h2>
+    <p class="text-text-secondary mb-4">
       This tool uses the Language Server Protocol's implementation request to find all concrete implementations:
     </p>
-    <ol class="list-decimal list-inside text-gray-300 space-y-2 ml-4">
-      <li>Sends a <code class="px-2 py-1 bg-gray-800 rounded text-emerald-400">textDocument/implementation</code> request to the language server</li>
+    <ol class="list-decimal list-inside text-text-secondary space-y-2 ml-4">
+      <li>Sends a <code class="px-2 py-1 bg-bg-subtle rounded text-primary">textDocument/implementation</code> request to the language server</li>
       <li>The language server analyzes the type hierarchy and interface implementations</li>
       <li>Returns locations of all classes or methods that implement the target symbol</li>
     </ol>
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Parameters</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Parameters</h2>
     <div class="overflow-x-auto">
-      <table class="w-full text-left border-collapse">
-        <thead>
-          <tr class="border-b border-gray-700">
-            <th class="py-3 px-4 text-gray-300 font-semibold">Parameter</th>
-            <th class="py-3 px-4 text-gray-300 font-semibold">Type</th>
-            <th class="py-3 px-4 text-gray-300 font-semibold">Required</th>
-            <th class="py-3 px-4 text-gray-300 font-semibold">Description</th>
+      <table class="w-full text-sm text-left text-text-secondary">
+        <thead class="text-xs uppercase bg-bg-subtle text-text-muted">
+          <tr>
+            <th class="py-3 px-4 rounded-tl-lg">Parameter</th>
+            <th class="py-3 px-4">Type</th>
+            <th class="py-3 px-4">Required</th>
+            <th class="py-3 px-4 rounded-tr-lg">Description</th>
           </tr>
         </thead>
-        <tbody class="text-gray-400">
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">file_path</code></td>
+        <tbody class="bg-bg-subtle">
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">file_path</code></td>
             <td class="py-3 px-4">string</td>
-            <td class="py-3 px-4">Yes</td>
+            <td class="py-3 px-4"><span class="text-danger">Yes</span></td>
             <td class="py-3 px-4">Absolute path to the file containing the interface or abstract method</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">line</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">line</code></td>
             <td class="py-3 px-4">number</td>
-            <td class="py-3 px-4">Yes</td>
+            <td class="py-3 px-4"><span class="text-danger">Yes</span></td>
             <td class="py-3 px-4">Line number of the symbol (0-indexed)</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">character</code></td>
+          <tr>
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">character</code></td>
             <td class="py-3 px-4">number</td>
-            <td class="py-3 px-4">Yes</td>
+            <td class="py-3 px-4"><span class="text-danger">Yes</span></td>
             <td class="py-3 px-4">Character offset within the line (0-indexed)</td>
           </tr>
         </tbody>
@@ -70,8 +70,8 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Example</h2>
-    <p class="text-gray-400 mb-4">
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Example</h2>
+    <p class="text-text-secondary mb-4">
       Ask Claude to find implementations of an interface. The output shows all concrete implementations with their types and locations.
     </p>
     <ScreenshotPlaceholder
@@ -82,34 +82,34 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Supported Scenarios</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Supported Scenarios</h2>
     <div class="grid gap-4 md:grid-cols-2">
-      <div class="p-4 bg-gray-800 rounded-lg border border-gray-700">
-        <h3 class="text-lg font-semibold text-emerald-400 mb-2">Interfaces</h3>
-        <p class="text-gray-400 text-sm">Find all classes that implement a specific interface</p>
+      <div class="glass-card p-4">
+        <h3 class="text-lg font-semibold text-secondary mb-2">Interfaces</h3>
+        <p class="text-text-secondary text-sm">Find all classes that implement a specific interface</p>
       </div>
-      <div class="p-4 bg-gray-800 rounded-lg border border-gray-700">
-        <h3 class="text-lg font-semibold text-emerald-400 mb-2">Abstract Classes</h3>
-        <p class="text-gray-400 text-sm">Locate concrete classes that extend abstract base classes</p>
+      <div class="glass-card p-4">
+        <h3 class="text-lg font-semibold text-secondary mb-2">Abstract Classes</h3>
+        <p class="text-text-secondary text-sm">Locate concrete classes that extend abstract base classes</p>
       </div>
-      <div class="p-4 bg-gray-800 rounded-lg border border-gray-700">
-        <h3 class="text-lg font-semibold text-emerald-400 mb-2">Abstract Methods</h3>
-        <p class="text-gray-400 text-sm">Find method implementations in derived classes</p>
+      <div class="glass-card p-4">
+        <h3 class="text-lg font-semibold text-secondary mb-2">Abstract Methods</h3>
+        <p class="text-text-secondary text-sm">Find method implementations in derived classes</p>
       </div>
-      <div class="p-4 bg-gray-800 rounded-lg border border-gray-700">
-        <h3 class="text-lg font-semibold text-emerald-400 mb-2">Type Definitions</h3>
-        <p class="text-gray-400 text-sm">Navigate from type aliases to their concrete usages</p>
+      <div class="glass-card p-4">
+        <h3 class="text-lg font-semibold text-secondary mb-2">Type Definitions</h3>
+        <p class="text-text-secondary text-sm">Navigate from type aliases to their concrete usages</p>
       </div>
     </div>
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Use Cases</h2>
-    <ul class="list-disc list-inside text-gray-300 space-y-2 ml-4">
-      <li><strong>Architecture Understanding:</strong> Discover how abstractions are implemented across the codebase</li>
-      <li><strong>Dependency Injection:</strong> Find all concrete implementations that can be injected for an interface</li>
-      <li><strong>Testing:</strong> Locate mock implementations or test doubles</li>
-      <li><strong>Polymorphism Analysis:</strong> Understand the full scope of polymorphic behavior</li>
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Use Cases</h2>
+    <ul class="list-disc list-inside text-text-secondary space-y-2 ml-4">
+      <li><strong class="text-text-primary">Architecture Understanding:</strong> Discover how abstractions are implemented across the codebase</li>
+      <li><strong class="text-text-primary">Dependency Injection:</strong> Find all concrete implementations that can be injected for an interface</li>
+      <li><strong class="text-text-primary">Testing:</strong> Locate mock implementations or test doubles</li>
+      <li><strong class="text-text-primary">Polymorphism Analysis:</strong> Understand the full scope of polymorphic behavior</li>
     </ul>
   </section>
 

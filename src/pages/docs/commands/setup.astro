@@ -6,18 +6,18 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
 ---
 
 <DocsLayout title="/codegraph:setup">
-  <h1 class="text-4xl font-bold text-white mb-4">/codegraph:setup</h1>
-  <p class="text-xl text-gray-400 mb-8">
+  <h1 class="text-4xl font-bold text-text-primary mb-4">/codegraph:setup</h1>
+  <p class="text-xl text-text-secondary mb-8">
     Starts Neo4j Docker container and prepares the database for CodeGraph.
   </p>
 
-  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Overview</h2>
-  <p class="text-gray-300 mb-4">
-    The <code class="bg-gray-800 px-2 py-1 rounded text-emerald-400">/codegraph:setup</code> command initializes the Neo4j graph database environment required by CodeGraph. This is the first command you should run when setting up CodeGraph for a new project.
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Overview</h2>
+  <p class="text-text-secondary mb-4">
+    The <code class="bg-bg-subtle px-2 py-1 rounded text-primary">/codegraph:setup</code> command initializes the Neo4j graph database environment required by CodeGraph. This is the first command you should run when setting up CodeGraph for a new project.
   </p>
 
-  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">What it does</h2>
-  <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">What it does</h2>
+  <ul class="list-disc list-inside text-text-secondary space-y-2 mb-6">
     <li>Checks Docker is running</li>
     <li>Starts the Neo4j container</li>
     <li>Waits for Neo4j to be ready</li>
@@ -26,8 +26,8 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
     <li>Installs Language Server if language specified (optional)</li>
   </ul>
 
-  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Usage</h2>
-  <p class="text-gray-300 mb-4">
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Usage</h2>
+  <p class="text-text-secondary mb-4">
     Simply invoke the command in your Claude Code session:
   </p>
 
@@ -37,33 +37,33 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
     title="Claude Code"
   />
 
-  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Options</h2>
-  <p class="text-gray-300 mb-4">
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Options</h2>
+  <p class="text-text-secondary mb-4">
     You can optionally specify a language server to install:
   </p>
 
   <div class="overflow-x-auto mb-6">
-    <table class="w-full text-sm text-left text-gray-300">
-      <thead class="text-xs uppercase bg-gray-800 text-gray-400">
+    <table class="w-full text-sm text-left text-text-secondary">
+      <thead class="text-xs uppercase bg-bg-subtle text-text-muted">
         <tr>
           <th class="px-4 py-3 rounded-tl-lg">Argument</th>
           <th class="px-4 py-3 rounded-tr-lg">Description</th>
         </tr>
       </thead>
-      <tbody class="bg-gray-900">
-        <tr class="border-b border-gray-800">
-          <td class="px-4 py-3 font-medium text-white"><code class="text-emerald-400">kotlin</code></td>
-          <td class="px-4 py-3">Install Kotlin Language Server (<code class="text-emerald-400">kotlin-language-server</code>) for LSP features</td>
+      <tbody class="bg-bg-subtle">
+        <tr class="border-b border-border">
+          <td class="px-4 py-3 font-medium text-text-primary"><code class="text-primary">kotlin</code></td>
+          <td class="px-4 py-3">Install Kotlin Language Server (<code class="text-primary">kotlin-language-server</code>) for LSP features</td>
         </tr>
         <tr>
-          <td class="px-4 py-3 font-medium text-white"><code class="text-emerald-400">java</code></td>
-          <td class="px-4 py-3">Install Java Language Server (<code class="text-emerald-400">jdtls</code>) for LSP features</td>
+          <td class="px-4 py-3 font-medium text-text-primary"><code class="text-primary">java</code></td>
+          <td class="px-4 py-3">Install Java Language Server (<code class="text-primary">jdtls</code>) for LSP features</td>
         </tr>
       </tbody>
     </table>
   </div>
 
-  <h3 class="text-xl font-semibold text-white mt-8 mb-3">Examples</h3>
+  <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Examples</h3>
 
   <CodeBlock
     code={`/codegraph:setup              # Neo4j only
@@ -74,10 +74,10 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
   />
 
   <Callout type="tip" title="LSP Integration">
-    Installing a language server enables more accurate code navigation features like <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">incomingCalls</code> and <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">goToImplementation</code>.
+    Installing a language server enables more accurate code navigation features like <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">incomingCalls</code> and <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">goToImplementation</code>.
   </Callout>
 
-  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Example Output</h2>
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Example Output</h2>
   <CodeBlock
     code={`Starting Neo4j setup...
 Pulling Neo4j image (if needed)...
@@ -96,35 +96,35 @@ Browser: http://localhost:7474`}
     This command requires Docker to be installed and running on your machine. Make sure the Docker daemon is active before running this command.
   </Callout>
 
-  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Container Configuration</h2>
-  <p class="text-gray-300 mb-4">
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Container Configuration</h2>
+  <p class="text-text-secondary mb-4">
     The setup command creates a container with the following default configuration:
   </p>
 
   <div class="overflow-x-auto mb-6">
-    <table class="w-full text-sm text-left text-gray-300">
-      <thead class="text-xs uppercase bg-gray-800 text-gray-400">
+    <table class="w-full text-sm text-left text-text-secondary">
+      <thead class="text-xs uppercase bg-bg-subtle text-text-muted">
         <tr>
           <th class="px-4 py-3 rounded-tl-lg">Setting</th>
           <th class="px-4 py-3 rounded-tr-lg">Value</th>
         </tr>
       </thead>
-      <tbody class="bg-gray-900">
-        <tr class="border-b border-gray-800">
-          <td class="px-4 py-3 font-medium text-white">Container Name</td>
-          <td class="px-4 py-3"><code class="text-emerald-400">codegraph-neo4j</code></td>
+      <tbody class="bg-bg-subtle">
+        <tr class="border-b border-border">
+          <td class="px-4 py-3 font-medium text-text-primary">Container Name</td>
+          <td class="px-4 py-3"><code class="text-primary">codegraph-neo4j</code></td>
         </tr>
-        <tr class="border-b border-gray-800">
-          <td class="px-4 py-3 font-medium text-white">Bolt Port</td>
-          <td class="px-4 py-3"><code class="text-emerald-400">7687</code></td>
+        <tr class="border-b border-border">
+          <td class="px-4 py-3 font-medium text-text-primary">Bolt Port</td>
+          <td class="px-4 py-3"><code class="text-primary">7687</code></td>
         </tr>
-        <tr class="border-b border-gray-800">
-          <td class="px-4 py-3 font-medium text-white">HTTP Port</td>
-          <td class="px-4 py-3"><code class="text-emerald-400">7474</code></td>
+        <tr class="border-b border-border">
+          <td class="px-4 py-3 font-medium text-text-primary">HTTP Port</td>
+          <td class="px-4 py-3"><code class="text-primary">7474</code></td>
         </tr>
         <tr>
-          <td class="px-4 py-3 font-medium text-white">Authentication</td>
-          <td class="px-4 py-3"><code class="text-emerald-400">Disabled (local development)</code></td>
+          <td class="px-4 py-3 font-medium text-text-primary">Authentication</td>
+          <td class="px-4 py-3"><code class="text-primary">Disabled (local development)</code></td>
         </tr>
       </tbody>
     </table>
@@ -134,9 +134,9 @@ Browser: http://localhost:7474`}
     The Neo4j data is stored in a Docker volume, so your indexed code graph persists between container restarts.
   </Callout>
 
-  <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Next Steps</h2>
-  <p class="text-gray-300 mb-4">
-    After setting up Neo4j, you can index your codebase using the <a href="/docs/commands/index-cmd" class="text-emerald-400 hover:text-emerald-300 underline">/codegraph:index</a> command.
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Next Steps</h2>
+  <p class="text-text-secondary mb-4">
+    After setting up Neo4j, you can index your codebase using the <a href="/docs/commands/index-cmd" class="text-primary hover:text-secondary underline">/codegraph:index</a> command.
   </p>
 
   <PrevNext

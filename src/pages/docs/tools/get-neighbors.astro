@@ -7,66 +7,66 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
 ---
 
 <DocsLayout title="get_neighbors">
-  <h1 class="text-4xl font-bold text-white mb-4">get_neighbors</h1>
-  <p class="text-xl text-gray-400 mb-8">
+  <h1 class="text-4xl font-bold text-text-primary mb-4">get_neighbors</h1>
+  <p class="text-xl text-text-secondary mb-8">
     Get all neighboring nodes (dependencies and dependents) of a class or interface.
   </p>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Description</h2>
-    <p class="text-gray-300 mb-4">
-      The <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">get_neighbors</code> tool reveals the relationships between classes and interfaces in your codebase. It can show both <em>outgoing</em> connections (what a class depends on) and <em>incoming</em> connections (what depends on a class), giving you a complete picture of a node's role in the architecture.
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Description</h2>
+    <p class="text-text-secondary mb-4">
+      The <code class="text-primary bg-bg-subtle px-2 py-1 rounded">get_neighbors</code> tool reveals the relationships between classes and interfaces in your codebase. It can show both <em>outgoing</em> connections (what a class depends on) and <em>incoming</em> connections (what depends on a class), giving you a complete picture of a node's role in the architecture.
     </p>
-    <p class="text-gray-300">
-      Results are returned in a compact format: <code class="text-emerald-400 bg-gray-800 px-2 py-1 rounded">direction | depth | Type | Name | filePath</code>
+    <p class="text-text-secondary">
+      Results are returned in a compact format: <code class="text-primary bg-bg-subtle px-2 py-1 rounded">direction | depth | Type | Name | filePath</code>
     </p>
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Parameters</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Parameters</h2>
     <div class="overflow-x-auto">
-      <table class="w-full text-left border-collapse">
-        <thead>
-          <tr class="border-b border-gray-700">
-            <th class="py-3 px-4 text-gray-300 font-semibold">Parameter</th>
-            <th class="py-3 px-4 text-gray-300 font-semibold">Type</th>
-            <th class="py-3 px-4 text-gray-300 font-semibold">Required</th>
-            <th class="py-3 px-4 text-gray-300 font-semibold">Description</th>
+      <table class="w-full text-sm text-left text-text-secondary">
+        <thead class="text-xs uppercase bg-bg-subtle text-text-muted">
+          <tr>
+            <th class="py-3 px-4 rounded-tl-lg">Parameter</th>
+            <th class="py-3 px-4">Type</th>
+            <th class="py-3 px-4">Required</th>
+            <th class="py-3 px-4 rounded-tr-lg">Description</th>
           </tr>
         </thead>
-        <tbody class="text-gray-400">
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">node_name</code></td>
+        <tbody class="bg-bg-subtle">
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">node_name</code></td>
             <td class="py-3 px-4">string</td>
-            <td class="py-3 px-4"><span class="text-red-400">Yes</span></td>
+            <td class="py-3 px-4"><span class="text-danger">Yes</span></td>
             <td class="py-3 px-4">Name of the class or interface to get neighbors for</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">direction</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">direction</code></td>
             <td class="py-3 px-4">string</td>
-            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4"><span class="text-text-muted">No</span></td>
             <td class="py-3 px-4">
-              <code class="text-xs bg-gray-800 px-1 rounded">outgoing</code> (dependencies),
-              <code class="text-xs bg-gray-800 px-1 rounded">incoming</code> (dependents), or
-              <code class="text-xs bg-gray-800 px-1 rounded">both</code> (default)
+              <code class="text-xs bg-bg-subtle px-1 rounded text-primary">outgoing</code> (dependencies),
+              <code class="text-xs bg-bg-subtle px-1 rounded text-primary">incoming</code> (dependents), or
+              <code class="text-xs bg-bg-subtle px-1 rounded text-primary">both</code> (default)
             </td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">depth</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">depth</code></td>
             <td class="py-3 px-4">integer</td>
-            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4"><span class="text-text-muted">No</span></td>
             <td class="py-3 px-4">Search depth: 1 = direct only, up to 5 (default: 1)</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">include_external</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">include_external</code></td>
             <td class="py-3 px-4">boolean</td>
-            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4"><span class="text-text-muted">No</span></td>
             <td class="py-3 px-4">Include external dependencies like npm packages (default: false)</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="text-emerald-400">project_path</code></td>
+          <tr>
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">project_path</code></td>
             <td class="py-3 px-4">string</td>
-            <td class="py-3 px-4"><span class="text-gray-500">No</span></td>
+            <td class="py-3 px-4"><span class="text-text-muted">No</span></td>
             <td class="py-3 px-4">Filter by project path. If not provided, searches all indexed projects</td>
           </tr>
         </tbody>
@@ -75,8 +75,8 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Example</h2>
-    <p class="text-gray-400 mb-4">
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Example</h2>
+    <p class="text-text-secondary mb-4">
       Ask Claude to find all neighbors of a class. The direction column indicates whether the relationship is outgoing (dependencies) or incoming (dependents).
     </p>
     <ScreenshotPlaceholder
@@ -87,45 +87,45 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
   </section>
 
   <section class="mb-12">
-    <h2 class="text-2xl font-semibold text-white mb-4">Use Cases</h2>
-    <ul class="space-y-3 text-gray-300">
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Use Cases</h2>
+    <ul class="space-y-3 text-text-secondary">
       <li class="flex items-start gap-3">
-        <span class="text-emerald-400 mt-1">
+        <span class="text-secondary mt-1">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Dependency analysis:</strong> Understand what a class needs to function and identify potential coupling issues</span>
+        <span><strong class="text-text-primary">Dependency analysis:</strong> Understand what a class needs to function and identify potential coupling issues</span>
       </li>
       <li class="flex items-start gap-3">
-        <span class="text-emerald-400 mt-1">
+        <span class="text-secondary mt-1">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Impact assessment:</strong> Before modifying a class, see all the classes that depend on it</span>
+        <span><strong class="text-text-primary">Impact assessment:</strong> Before modifying a class, see all the classes that depend on it</span>
       </li>
       <li class="flex items-start gap-3">
-        <span class="text-emerald-400 mt-1">
+        <span class="text-secondary mt-1">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Architecture review:</strong> Verify that dependencies follow the expected direction (e.g., controllers depend on services, not vice versa)</span>
+        <span><strong class="text-text-primary">Architecture review:</strong> Verify that dependencies follow the expected direction (e.g., controllers depend on services, not vice versa)</span>
       </li>
       <li class="flex items-start gap-3">
-        <span class="text-emerald-400 mt-1">
+        <span class="text-secondary mt-1">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
           </svg>
         </span>
-        <span><strong>Refactoring planning:</strong> Identify all the places that need to be updated when extracting or moving a class</span>
+        <span><strong class="text-text-primary">Refactoring planning:</strong> Identify all the places that need to be updated when extracting or moving a class</span>
       </li>
     </ul>
   </section>
 
   <Callout type="warning" title="Direction Matters">
-    Remember: <code class="text-yellow-300">outgoing</code> means "what does this class use?" while <code class="text-yellow-300">incoming</code> means "what uses this class?". Choosing the right direction helps you get relevant results faster.
+    Remember: <code class="text-attention">outgoing</code> means "what does this class use?" while <code class="text-attention">incoming</code> means "what uses this class?". Choosing the right direction helps you get relevant results faster.
   </Callout>
 
   <PrevNext

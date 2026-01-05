@@ -20,10 +20,10 @@ const mcpConfig = `{
 ---
 
 <DocsLayout title="Installation - MCP Standalone">
-  <article class="prose prose-invert max-w-none">
-    <h1 class="text-4xl font-bold text-white mb-4">MCP Standalone Installation</h1>
+  <article class="prose max-w-none">
+    <h1 class="text-4xl font-bold text-text-primary mb-4">MCP Standalone Installation</h1>
 
-    <p class="text-xl text-gray-300 mb-8">
+    <p class="text-xl text-text-secondary mb-8">
       Run CodeGraph as a standalone MCP server for use with any MCP-compatible client.
     </p>
 
@@ -36,57 +36,57 @@ const mcpConfig = `{
       </ul>
     </Callout>
 
-    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Prerequisites</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Prerequisites</h2>
 
     <div class="space-y-4 mb-8">
-      <div class="flex items-start gap-4 bg-gray-800/50 border border-gray-700 rounded-lg p-4">
-        <div class="flex-shrink-0 w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
-          <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="flex items-start gap-4 glass-card p-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-secondary/20 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2" />
           </svg>
         </div>
         <div>
-          <h3 class="text-white font-semibold">Node.js >= 18</h3>
-          <p class="text-gray-400 text-sm mt-1">
+          <h3 class="text-text-primary font-semibold">Node.js >= 18</h3>
+          <p class="text-text-secondary text-sm mt-1">
             Required for building and running the MCP server.
-            <a href="https://nodejs.org/" class="text-emerald-400 hover:text-emerald-300">Install Node.js</a>
+            <a href="https://nodejs.org/" class="text-primary hover:text-secondary">Install Node.js</a>
           </p>
         </div>
       </div>
 
-      <div class="flex items-start gap-4 bg-gray-800/50 border border-gray-700 rounded-lg p-4">
-        <div class="flex-shrink-0 w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center">
-          <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="flex items-start gap-4 glass-card p-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
           </svg>
         </div>
         <div>
-          <h3 class="text-white font-semibold">Docker</h3>
-          <p class="text-gray-400 text-sm mt-1">
+          <h3 class="text-text-primary font-semibold">Docker</h3>
+          <p class="text-text-secondary text-sm mt-1">
             Required for running the Neo4j database.
-            <a href="https://docs.docker.com/get-docker/" class="text-emerald-400 hover:text-emerald-300">Install Docker</a>
+            <a href="https://docs.docker.com/get-docker/" class="text-primary hover:text-secondary">Install Docker</a>
           </p>
         </div>
       </div>
 
-      <div class="flex items-start gap-4 bg-gray-800/50 border border-gray-700 rounded-lg p-4">
-        <div class="flex-shrink-0 w-10 h-10 bg-purple-500/20 rounded-lg flex items-center justify-center">
-          <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div class="flex items-start gap-4 glass-card p-4">
+        <div class="flex-shrink-0 w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
           </svg>
         </div>
         <div>
-          <h3 class="text-white font-semibold">Neo4j 5 (via Docker)</h3>
-          <p class="text-gray-400 text-sm mt-1">
+          <h3 class="text-text-primary font-semibold">Neo4j 5 (via Docker)</h3>
+          <p class="text-text-secondary text-sm mt-1">
             Graph database for storing code relationships. Included in docker-compose.yml.
           </p>
         </div>
       </div>
     </div>
 
-    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Quick Start</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Quick Start</h2>
 
-    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 1: Clone the Repository</h3>
+    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 1: Clone the Repository</h3>
 
     <CodeBlock
       code={`git clone https://github.com/Bikach/codeGraph.git
@@ -95,9 +95,9 @@ cd codeGraph`}
       title="Terminal"
     />
 
-    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 2: Start Neo4j</h3>
+    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 2: Start Neo4j</h3>
 
-    <p class="text-gray-300 mb-4">
+    <p class="text-text-secondary mb-4">
       Start the Neo4j database using Docker Compose:
     </p>
 
@@ -107,11 +107,11 @@ cd codeGraph`}
       title="Terminal"
     />
 
-    <p class="text-gray-400 mt-4 text-sm">
-      Neo4j Browser will be available at <a href="http://localhost:7474" class="text-emerald-400 hover:text-emerald-300">http://localhost:7474</a> (Bolt: <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">bolt://localhost:7687</code>)
+    <p class="text-text-muted mt-4 text-sm">
+      Neo4j Browser will be available at <a href="http://localhost:7474" class="text-primary hover:text-secondary">http://localhost:7474</a> (Bolt: <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">bolt://localhost:7687</code>)
     </p>
 
-    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 3: Build the MCP Server</h3>
+    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 3: Build the MCP Server</h3>
 
     <CodeBlock
       code={`cd mcp-server
@@ -121,9 +121,9 @@ npm run build`}
       title="Terminal"
     />
 
-    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 4: Index Your Project</h3>
+    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 4: Index Your Project</h3>
 
-    <p class="text-gray-300 mb-4">
+    <p class="text-text-secondary mb-4">
       Run the indexing script to analyze your codebase:
     </p>
 
@@ -133,11 +133,11 @@ npm run build`}
       title="Terminal"
     />
 
-    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 5: Configure Your MCP Client</h3>
+    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 5: Configure Your MCP Client</h3>
 
-    <p class="text-gray-300 mb-4">
-      Add CodeGraph to your MCP client configuration. For Claude Desktop, edit <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">claude_desktop_config.json</code>.
-      For Claude Code, edit <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">.mcp.json</code> (project) or <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">~/.claude/claude.json</code> (global):
+    <p class="text-text-secondary mb-4">
+      Add CodeGraph to your MCP client configuration. For Claude Desktop, edit <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">claude_desktop_config.json</code>.
+      For Claude Code, edit <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">.mcp.json</code> (project) or <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">~/.claude/claude.json</code> (global):
     </p>
 
     <CodeBlock
@@ -147,41 +147,41 @@ npm run build`}
     />
 
     <Callout type="tip" title="Password Configuration">
-      Leave <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">NEO4J_PASSWORD</code> empty if using the default Docker setup (<code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">NEO4J_AUTH=none</code>).
+      Leave <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">NEO4J_PASSWORD</code> empty if using the default Docker setup (<code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">NEO4J_AUTH=none</code>).
     </Callout>
 
-    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Indexing Options</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Indexing Options</h2>
 
-    <p class="text-gray-300 mb-4">
+    <p class="text-text-secondary mb-4">
       The indexing script supports several options:
     </p>
 
     <div class="overflow-x-auto mb-6">
       <table class="w-full text-left border-collapse">
         <thead>
-          <tr class="border-b border-gray-700">
-            <th class="py-3 px-4 text-white font-semibold">Option</th>
-            <th class="py-3 px-4 text-white font-semibold">Description</th>
+          <tr class="border-b border-border">
+            <th class="py-3 px-4 text-text-primary font-semibold">Option</th>
+            <th class="py-3 px-4 text-text-primary font-semibold">Description</th>
           </tr>
         </thead>
-        <tbody class="text-gray-300">
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">--clear</code></td>
+        <tbody class="text-text-secondary">
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">--clear</code></td>
             <td class="py-3 px-4">Clear the database before indexing. Use for fresh re-index.</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">--exclude-tests</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">--exclude-tests</code></td>
             <td class="py-3 px-4">Exclude test files (<code>*Test.kt</code>, <code>*Spec.kt</code>, <code>/test/</code>, <code>/tests/</code>).</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">--dry-run</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">--dry-run</code></td>
             <td class="py-3 px-4">Parse and resolve only, skip Neo4j write. Useful for validation.</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <p class="text-gray-300 mb-4">Examples:</p>
+    <p class="text-text-secondary mb-4">Examples:</p>
 
     <CodeBlock
       code={`# Index with fresh database
@@ -196,60 +196,60 @@ npx tsx src/scripts/index-project.ts --dry-run /path/to/project`}
       title="Terminal"
     />
 
-    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Available Tools</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Available Tools</h2>
 
-    <p class="text-gray-300 mb-4">
-      In MCP Standalone mode, you have access to all <strong class="text-white">8 MCP tools</strong>:
+    <p class="text-text-secondary mb-4">
+      In MCP Standalone mode, you have access to all <strong class="text-text-primary">8 MCP tools</strong>:
     </p>
 
     <div class="overflow-x-auto mb-6">
       <table class="w-full text-left border-collapse">
         <thead>
-          <tr class="border-b border-gray-700">
-            <th class="py-3 px-4 text-white font-semibold">Tool</th>
-            <th class="py-3 px-4 text-white font-semibold">Description</th>
+          <tr class="border-b border-border">
+            <th class="py-3 px-4 text-text-primary font-semibold">Tool</th>
+            <th class="py-3 px-4 text-text-primary font-semibold">Description</th>
           </tr>
         </thead>
-        <tbody class="text-gray-300">
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">search_nodes</code></td>
+        <tbody class="text-text-secondary">
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">search_nodes</code></td>
             <td class="py-3 px-4">Search classes, interfaces, functions by name or pattern</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">get_callers</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_callers</code></td>
             <td class="py-3 px-4">Find all functions calling a specified function</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">get_callees</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_callees</code></td>
             <td class="py-3 px-4">Find all functions called by a specified function</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">get_neighbors</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_neighbors</code></td>
             <td class="py-3 px-4">Get dependencies and dependents of a class/interface</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">get_implementations</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_implementations</code></td>
             <td class="py-3 px-4">Find implementations of an interface</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">get_impact</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_impact</code></td>
             <td class="py-3 px-4">Analyze impact of modifying a node</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">find_path</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">find_path</code></td>
             <td class="py-3 px-4">Find shortest path between two nodes</td>
           </tr>
-          <tr class="border-b border-gray-800">
-            <td class="py-3 px-4"><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">get_file_symbols</code></td>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_file_symbols</code></td>
             <td class="py-3 px-4">List all symbols defined in a file</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Docker Commands</h2>
+    <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Docker Commands</h2>
 
-    <p class="text-gray-300 mb-4">
+    <p class="text-text-secondary mb-4">
       Useful commands for managing Neo4j:
     </p>
 
@@ -270,7 +270,7 @@ docker-compose logs -f neo4j`}
     />
 
     <Callout type="warning" title="Data Persistence">
-      Using <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">docker-compose down -v</code> removes all data.
+      Using <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">docker-compose down -v</code> removes all data.
       You will need to re-index your projects after this command.
     </Callout>
   </article>

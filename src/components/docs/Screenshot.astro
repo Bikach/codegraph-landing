@@ -13,15 +13,15 @@ const { src, alt, caption } = Astro.props;
     <img
       src={src}
       alt={alt}
-      class="w-full rounded-lg border border-gray-700 shadow-lg transition-transform duration-200 hover:scale-[1.02]"
+      class="w-full rounded-lg border border-border shadow-sm transition-transform duration-200 hover:scale-[1.02]"
     />
   ) : (
-    <div class="flex h-64 w-full items-center justify-center rounded-lg border border-gray-700 bg-gray-800 shadow-lg transition-transform duration-200 hover:scale-[1.02]">
-      <span class="text-gray-400">Screenshot coming soon</span>
+    <div class="flex h-64 w-full items-center justify-center rounded-lg border border-border bg-bg-subtle shadow-sm transition-transform duration-200 hover:scale-[1.02]">
+      <span class="text-text-muted">Screenshot coming soon</span>
     </div>
   )}
   {caption && (
-    <figcaption class="mt-2 text-center text-sm text-gray-400">
+    <figcaption class="mt-2 text-center text-sm text-text-muted">
       {caption}
     </figcaption>
   )}

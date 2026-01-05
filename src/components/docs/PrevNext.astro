@@ -12,11 +12,11 @@ interface Props {
 const { prev, next } = Astro.props;
 ---
 
-<nav class="mt-12 flex items-center justify-between border-t border-gray-700 pt-6">
+<nav class="mt-12 flex items-center justify-between border-t border-border pt-6">
   {prev ? (
     <a
       href={prev.href}
-      class="group flex items-center gap-2 rounded-lg px-4 py-2 text-gray-400 transition-colors hover:bg-gray-800 hover:text-white"
+      class="group flex items-center gap-2 rounded-lg px-4 py-2 text-text-secondary transition-colors hover:bg-surface-hover hover:text-text-primary"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@ const { prev, next } = Astro.props;
   {next ? (
     <a
       href={next.href}
-      class="group flex items-center gap-2 rounded-lg px-4 py-2 text-right text-gray-400 transition-colors hover:bg-gray-800 hover:text-white"
+      class="group flex items-center gap-2 rounded-lg px-4 py-2 text-right text-text-secondary transition-colors hover:bg-surface-hover hover:text-text-primary"
     >
       <span>
         <span class="block text-xs uppercase tracking-wide">Next</span>
