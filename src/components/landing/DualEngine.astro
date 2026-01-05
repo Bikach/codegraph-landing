@@ -92,6 +92,20 @@
               <code class="text-blue-400 font-mono text-sm whitespace-nowrap">search_nodes</code>
               <span class="text-gray-400 text-sm">"Find by name/pattern"</span>
             </div>
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors">
+              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">get_file_symbols</code>
+              <span class="text-gray-400 text-sm">"List symbols in a file"</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors border border-blue-500/20">
+              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">get_callers</code>
+              <span class="text-gray-400 text-sm">"Who calls this function?"</span>
+              <span class="ml-auto px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">Standalone</span>
+            </div>
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-gray-800/50 hover:bg-gray-800 transition-colors border border-blue-500/20">
+              <code class="text-blue-400 font-mono text-sm whitespace-nowrap">get_implementations</code>
+              <span class="text-gray-400 text-sm">"Find implementations"</span>
+              <span class="ml-auto px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">Standalone</span>
+            </div>
           </div>
 
           <!-- Strengths -->
@@ -202,8 +216,17 @@
             <td class="py-4 px-6 text-center text-gray-600">-</td>
           </tr>
           <tr class="hover:bg-gray-900/50 transition-colors">
-            <td class="py-4 px-6 text-gray-300">"Who calls this function?"</td>
-            <td class="py-4 px-6 text-center text-gray-600">-</td>
+            <td class="py-4 px-6 text-gray-300">
+              "Who calls this function?"
+              <span class="ml-2 px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">MCP Standalone</span>
+            </td>
+            <td class="py-4 px-6 text-center">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-500/20 text-blue-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            </td>
             <td class="py-4 px-6 text-center">
               <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-purple-500/20 text-purple-400">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -224,8 +247,17 @@
             <td class="py-4 px-6 text-center text-gray-600">-</td>
           </tr>
           <tr class="hover:bg-gray-900/50 transition-colors">
-            <td class="py-4 px-6 text-gray-300">"Find interface implementations"</td>
-            <td class="py-4 px-6 text-center text-gray-600">-</td>
+            <td class="py-4 px-6 text-gray-300">
+              "Find interface implementations"
+              <span class="ml-2 px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">MCP Standalone</span>
+            </td>
+            <td class="py-4 px-6 text-center">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-blue-500/20 text-blue-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+              </span>
+            </td>
             <td class="py-4 px-6 text-center">
               <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-purple-500/20 text-purple-400">
                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -258,6 +290,16 @@
           </tr>
         </tbody>
       </table>
+
+      <!-- Note about MCP Standalone -->
+      <div class="mt-4 p-4 rounded-lg bg-blue-500/5 border border-blue-500/20">
+        <p class="text-sm text-gray-300">
+          <span class="inline-flex items-center gap-1.5">
+            <span class="px-2 py-0.5 text-xs text-blue-300 bg-blue-500/10 rounded border border-blue-500/30">MCP Standalone</span>
+          </span>
+          <span class="ml-2">These Graph features (<code class="text-blue-400">get_callers</code>, <code class="text-blue-400">get_implementations</code>) are available when using the standalone MCP server. The Claude Code Plugin uses LSP for these queries instead.</span>
+        </p>
+      </div>
     </div>
 
     <!-- Bottom Summary -->

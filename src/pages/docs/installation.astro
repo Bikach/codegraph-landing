@@ -4,10 +4,18 @@ import CodeBlock from '../../components/docs/CodeBlock.astro';
 import Callout from '../../components/docs/Callout.astro';
 import PrevNext from '../../components/docs/PrevNext.astro';
 
-const jsonConfig = `{
-  "plugins": [
-    "@anthropic/codegraph-plugin"
-  ]
+const mcpConfig = `{
+  "mcpServers": {
+    "codegraph": {
+      "command": "node",
+      "args": ["/absolute/path/to/codegraph/mcp-server/dist/index.js"],
+      "env": {
+        "NEO4J_URI": "bolt://localhost:7687",
+        "NEO4J_USER": "neo4j",
+        "NEO4J_PASSWORD": ""
+      }
+    }
+  }
 }`;
 
 const dockerCode = `# Check Docker status
@@ -30,7 +38,7 @@ docker stop $(docker ps -q --filter ancestor=neo4j)`;
     <h1 class="text-4xl font-bold text-white mb-4">Installation</h1>
 
     <p class="text-xl text-gray-300 mb-8">
-      This guide walks you through installing CodeGraph and its dependencies.
+      CodeGraph can be installed in two ways: as a Claude Code plugin (recommended) or as a standalone MCP server.
     </p>
 
     <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Prerequisites</h2>
@@ -86,41 +94,45 @@ docker stop $(docker ps -q --filter ancestor=neo4j)`;
       </div>
     </div>
 
-    <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Installation Steps</h2>
+    <!-- Section 1: Claude Code Plugin -->
+    <h2 class="text-2xl font-semibold text-white mt-10 mb-4" id="claude-code-plugin">Option 1: Claude Code Plugin (Recommended)</h2>
 
-    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 1: Install the Plugin</h3>
+    <p class="text-gray-300 mb-6">
+      The easiest way to use CodeGraph is through the Claude Code plugin. This method provides seamless integration with Claude Code commands and automatic Neo4j management.
+    </p>
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 1: Add the Plugin Marketplace</h3>
 
     <p class="text-gray-300 mb-4">
-      Install the CodeGraph plugin globally using npm:
+      First, add the Bikach plugin marketplace to Claude Code:
     </p>
 
     <CodeBlock
-      code="npm install -g @anthropic/codegraph-plugin"
-      lang="bash"
-      title="Terminal"
-    />
-
-    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 2: Add to Claude Code</h3>
-
-    <p class="text-gray-300 mb-4">
-      Add CodeGraph to your Claude Code plugins configuration. Edit your <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">~/.claude/settings.json</code>:
-    </p>
-
-    <CodeBlock
-      code={jsonConfig}
-      lang="json"
-      title="~/.claude/settings.json"
-    />
-
-    <p class="text-gray-300 mt-4 mb-4">
-      Alternatively, you can add the plugin directly from Claude Code:
-    </p>
-
-    <CodeBlock
-      code="/plugins add @anthropic/codegraph-plugin"
+      code="/plugin marketplace add Bikach/claude-plugins"
       lang="bash"
       title="Claude Code"
     />
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 2: Install the Plugin</h3>
+
+    <p class="text-gray-300 mb-4">
+      Install the CodeGraph plugin from the marketplace:
+    </p>
+
+    <CodeBlock
+      code="/plugin install codegraph@Bikach"
+      lang="bash"
+      title="Claude Code"
+    />
+
+    <Callout type="info" title="Installation Scopes">
+      You can specify the installation scope:
+      <ul class="mt-2 space-y-1">
+        <li><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">--scope user</code> - Available in all your projects (default)</li>
+        <li><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">--scope project</code> - Shared with collaborators via <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">.claude/settings.json</code></li>
+        <li><code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">--scope local</code> - Only for you in this repo</li>
+      </ul>
+    </Callout>
 
     <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 3: Initialize CodeGraph</h3>
 
@@ -134,11 +146,82 @@ docker stop $(docker ps -q --filter ancestor=neo4j)`;
       title="Claude Code"
     />
 
-    <Callout type="info" title="First-time Setup">
-      The setup command will download the Neo4j Docker image on first run, which may take a few minutes
-      depending on your internet connection.
+    <Callout type="tip" title="What's Included">
+      The plugin provides:
+      <ul class="mt-2 space-y-1">
+        <li><strong class="text-white">3 Claude Code commands:</strong> <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">/codegraph:setup</code>, <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">/codegraph:index</code>, <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">/codegraph:status</code></li>
+        <li><strong class="text-white">6 MCP tools:</strong> search_nodes, get_callees, get_neighbors, get_impact, find_path, get_file_symbols</li>
+        <li><strong class="text-white">2 LSP tools:</strong> incomingCalls, goToImplementation (via language servers)</li>
+      </ul>
     </Callout>
 
+    <!-- Section 2: MCP Standalone -->
+    <h2 class="text-2xl font-semibold text-white mt-10 mb-4" id="mcp-standalone">Option 2: MCP Standalone</h2>
+
+    <p class="text-gray-300 mb-6">
+      If you prefer more control or want to use CodeGraph with other MCP-compatible clients, you can run the MCP server standalone.
+    </p>
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 1: Start Neo4j</h3>
+
+    <p class="text-gray-300 mb-4">
+      Start the Neo4j database using Docker Compose:
+    </p>
+
+    <CodeBlock
+      code="docker-compose up -d"
+      lang="bash"
+      title="Terminal"
+    />
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 2: Build the MCP Server</h3>
+
+    <p class="text-gray-300 mb-4">
+      Navigate to the MCP server directory and build it:
+    </p>
+
+    <CodeBlock
+      code={`cd mcp-server
+npm install
+npm run build`}
+      lang="bash"
+      title="Terminal"
+    />
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 3: Index Your Project</h3>
+
+    <p class="text-gray-300 mb-4">
+      Run the indexing script on your project:
+    </p>
+
+    <CodeBlock
+      code="npx tsx src/scripts/index-project.ts /path/to/project"
+      lang="bash"
+      title="Terminal"
+    />
+
+    <h3 class="text-xl font-semibold text-white mt-8 mb-3">Step 4: Configure MCP</h3>
+
+    <p class="text-gray-300 mb-4">
+      Add the CodeGraph MCP server to your configuration. Edit <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">.mcp.json</code> (project) or <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">~/.claude/claude.json</code> (global):
+    </p>
+
+    <CodeBlock
+      code={mcpConfig}
+      lang="json"
+      title=".mcp.json"
+    />
+
+    <Callout type="info" title="Standalone Mode Features">
+      In standalone mode, you get access to <strong class="text-white">8 MCP tools</strong>:
+      <ul class="mt-2 space-y-1">
+        <li>search_nodes, get_callees, get_neighbors, get_impact, find_path, get_file_symbols</li>
+        <li><strong class="text-white">Plus:</strong> get_callers, get_implementations (graph-based, no LSP required)</li>
+      </ul>
+      <p class="mt-2 text-yellow-300">Note: Claude Code commands (<code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">/codegraph:*</code>) are not available in standalone mode.</p>
+    </Callout>
+
+    <!-- Verify Installation -->
     <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Verify Installation</h2>
 
     <p class="text-gray-300 mb-4">
@@ -148,7 +231,7 @@ docker stop $(docker ps -q --filter ancestor=neo4j)`;
     <CodeBlock
       code="/codegraph:status"
       lang="bash"
-      title="Claude Code"
+      title="Claude Code (Plugin mode only)"
     />
 
     <p class="text-gray-300 mt-4 mb-4">
@@ -166,6 +249,7 @@ docker stop $(docker ps -q --filter ancestor=neo4j)`;
       to index your first project. Then try asking Claude "What classes are in this project?"
     </Callout>
 
+    <!-- Troubleshooting -->
     <h2 class="text-2xl font-semibold text-white mt-10 mb-4">Troubleshooting</h2>
 
     <div class="space-y-6 mb-8">
@@ -209,12 +293,12 @@ docker stop $(docker ps -q --filter ancestor=neo4j)`;
             or verify the plugin is correctly listed:
           </p>
           <CodeBlock
-            code="/plugins list"
+            code="/plugin list"
             lang="bash"
             title="Claude Code"
           />
           <p class="text-gray-400 mt-3">
-            You should see <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">@anthropic/codegraph-plugin</code> in the list.
+            You should see <code class="bg-gray-800 px-2 py-0.5 rounded text-emerald-400">codegraph@Bikach-claude-plugins</code> in the list.
           </p>
         </div>
       </div>
@@ -242,7 +326,7 @@ docker stop $(docker ps -q --filter ancestor=neo4j)`;
 
     <Callout type="warning" title="Need Help?">
       If you're still experiencing issues, check the
-      <a href="https://github.com/anthropics/codegraph-plugin/issues" class="text-yellow-300 hover:text-yellow-200"> GitHub Issues</a>
+      <a href="https://github.com/Bikach/claude-plugins/issues" class="text-yellow-300 hover:text-yellow-200"> GitHub Issues</a>
       or open a new issue with your error logs.
     </Callout>
   </article>

@@ -18,9 +18,19 @@ const features: Feature[] = [
     icon: "arrow-outgoing"
   },
   {
+    name: "get_callers",
+    description: "Find all functions that call a specified function",
+    icon: "arrow-incoming"
+  },
+  {
     name: "get_neighbors",
     description: "Get dependencies and dependents of a class",
     icon: "network"
+  },
+  {
+    name: "get_implementations",
+    description: "Find all classes implementing an interface",
+    icon: "hierarchy"
   },
   {
     name: "get_impact",
@@ -63,9 +73,19 @@ const features: Feature[] = [
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
               </svg>
             )}
+            {feature.icon === "arrow-incoming" && (
+              <svg class="w-6 h-6 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+              </svg>
+            )}
             {feature.icon === "network" && (
               <svg class="w-6 h-6 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+            )}
+            {feature.icon === "hierarchy" && (
+              <svg class="w-6 h-6 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM14 5a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1V5zM9 15a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4zM12 10v4M7 10v2a2 2 0 002 2h6a2 2 0 002-2v-2"></path>
               </svg>
             )}
             {feature.icon === "ripple" && (
