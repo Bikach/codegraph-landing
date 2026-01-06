@@ -1,43 +1,81 @@
-# Astro Starter Kit: Minimal
+# CodeGraph Landing Page
 
-```sh
-npm create astro@latest -- --template minimal
+Landing page and documentation site for **CodeGraph** - an MCP server that gives AI assistants deep code understanding through knowledge graphs.
+
+## About CodeGraph
+
+CodeGraph enhances Claude and other AI assistants with a knowledge graph of your codebase using Neo4j, enabling:
+
+- Intelligent code navigation with fewer LLM calls
+- Impact analysis on code changes
+- Dependency tracking and relationship mapping
+- LSP integration for real-time code intelligence
+
+**Performance improvements:**
+- 45% fewer LLM calls
+- 46% fewer tokens used
+- 41% cost reduction
+- 51% faster code analysis
+
+## Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| [Astro](https://astro.build) | Static site generator |
+| [Tailwind CSS](https://tailwindcss.com) | Styling (GitHub Light design system) |
+| GitHub Pages | Deployment |
+
+## Project Structure
+
+```
+src/
+├── pages/
+│   ├── index.astro          # Landing page
+│   └── docs/                 # Documentation pages
+├── components/
+│   ├── landing/              # Landing page sections
+│   └── docs/                 # Documentation components
+├── layouts/
+│   ├── Landing.astro         # Landing page layout
+│   └── Docs.astro            # Documentation layout
+└── styles/
+    └── global.css            # Global styles and theme
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Development
 
-## 🚀 Project Structure
+```bash
+# Install dependencies
+npm install
 
-Inside of your Astro project, you'll see the following folders and files:
+# Start dev server
+npm run dev
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Deployment
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+The site is automatically deployed to GitHub Pages via GitHub Actions on push to `main`.
 
-Any static assets, like images, can be placed in the `public/` directory.
+**Live site:** https://bikach.github.io/codegraph-landing
 
-## 🧞 Commands
+## Documentation
 
-All commands are run from the root of the project, from a terminal:
+The site includes comprehensive documentation covering:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+- **Getting Started** - Overview and prerequisites
+- **Installation** - Claude Plugin and MCP Standalone setup
+- **Commands** - `/codegraph:setup`, `/codegraph:index`, `/codegraph:status`
+- **MCP Tools** - 8 analysis tools (`search_nodes`, `get_callees`, `get_neighbors`, etc.)
+- **LSP Tools** - `incomingCalls` and `goToImplementation`
+- **Languages** - Kotlin and Java support (TypeScript coming soon)
+- **Benchmark** - Performance metrics
 
-## 👀 Want to learn more?
+## License
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+MIT
