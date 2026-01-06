@@ -3,7 +3,6 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
-import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="get_callers">
@@ -76,10 +75,21 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
     <p class="text-text-secondary mb-4">
       Ask Claude to find all callers of a function. The depth column shows how many levels up each caller is from the original function.
     </p>
-    <ScreenshotPlaceholder
-      path="tools/get-callers-example.png"
-      alt="get_callers tool invocation and output"
-      caption="Finding all callers of a function"
+    <CodeBlock
+      code={`⏺ codegraph:get_callers (MCP)(function_name: "findByEmail", depth: 2)
+
+  ⎿  CALLERS (8):
+     1 | LoginUseCase.execute() | .../usecase/LoginUseCase.kt:35
+     1 | RegisterPatientUseCase.execute() | .../usecase/RegisterPatientUseCase.kt:42
+     1 | ResetPasswordUseCase.execute() | .../usecase/ResetPasswordUseCase.kt:28
+     2 | AuthController.login() | .../adapter/AuthController.kt:25
+     2 | AuthController.register() | .../adapter/AuthController.kt:48
+     2 | AuthController.resetPassword() | .../adapter/AuthController.kt:67
+     2 | AuthIntegrationTest.shouldLogin() | .../test/AuthIntegrationTest.kt:34
+     2 | AuthIntegrationTest.shouldRegister() | .../test/AuthIntegrationTest.kt:58`}
+      lang="bash"
+      title="Claude Code"
+      copyable={false}
     />
   </section>
 

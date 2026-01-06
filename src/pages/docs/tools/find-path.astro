@@ -3,7 +3,6 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
-import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="find_path">
@@ -75,10 +74,16 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
     <p class="text-text-secondary mb-4">
       Ask Claude to find the path between two nodes. Each step shows the node type, name, relationship type, and location. Step 0 is the starting node.
     </p>
-    <ScreenshotPlaceholder
-      path="tools/find-path-example.png"
-      alt="find_path tool invocation and output"
-      caption="Finding the path between two classes"
+    <CodeBlock
+      code={`⏺ codegraph:find_path (MCP)(from_node: "LoginUseCase", to_node: "User", max_depth: 5)
+
+  ⎿  PATH (3 nodes):
+     0 | class | LoginUseCase | - | .../usecase/LoginUseCase.kt:20
+     1 | function | authenticateUser | DECLARES | .../usecase/LoginUseCase.kt:77
+     2 | class | User | RETURNS | .../domain/model/User.kt:7`}
+      lang="bash"
+      title="Claude Code"
+      copyable={false}
     />
   </section>
 

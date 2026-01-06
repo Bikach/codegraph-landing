@@ -3,7 +3,6 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
-import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="get_impact">
@@ -69,10 +68,15 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
     <p class="text-text-secondary mb-4">
       Ask Claude to analyze the impact of modifying a node. The impact type shows whether the effect is direct (immediately uses the node) or transitive (affected through a chain of dependencies).
     </p>
-    <ScreenshotPlaceholder
-      path="tools/get-impact-example.png"
-      alt="get_impact tool invocation and output"
-      caption="Analyzing the impact of modifying a class"
+    <CodeBlock
+      code={`⏺ codegraph:get_impact (MCP)(node_name: "User", depth: 3)
+
+  ⎿  IMPACT ANALYSIS (2):
+     dependent | 1 | Class | PanacheUserRepository | .../persistence/repository/PanacheUserRepository.kt:13
+     dependent | 1 | Interface | UserRepository | .../domain/port/UserRepository.kt:7`}
+      lang="bash"
+      title="Claude Code"
+      copyable={false}
     />
   </section>
 

@@ -3,7 +3,6 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
-import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="search_nodes">
@@ -75,10 +74,23 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
     <p class="text-text-secondary mb-4">
       Ask Claude to search for nodes by name or pattern. Results show type, name, visibility, and location.
     </p>
-    <ScreenshotPlaceholder
-      path="tools/search-nodes-example.png"
-      alt="search_nodes tool invocation and output"
-      caption="Searching for nodes in the codebase"
+    <CodeBlock
+      code={`⏺ codegraph:search_nodes (MCP)(query: "UseCase", limit: 10)
+
+  ⎿  NODES (10):
+     class | LoginUseCase | public | .../usecase/LoginUseCase.kt:20
+     class | LogoutUseCase | public | .../usecase/LogoutUseCase.kt:11
+     class | RegisterPatientUseCase | public | .../usecase/RegisterPatientUseCase.kt:18
+     class | RefreshAccessTokenUseCase | public | .../usecase/RefreshAccessTokenUseCase.kt:15
+     class | RegisterDeviceTokenUseCase | public | .../usecase/RegisterDeviceTokenUseCase.kt:13
+     class | GetCurrentUserUseCase | public | .../usecase/GetCurrentUserUseCase.kt:11
+     class | GetFreeContentByImpactUseCase | public | .../usecase/GetFreeContentByImpactUseCase.kt:11
+     class | SaveAnswersUseCase | public | .../usecase/SaveAnswersUseCase.kt:22
+     class | SendNotificationUseCase | public | .../usecase/SendNotificationUseCase.kt:14
+     class | PlanDailyNotificationsUseCase | public | .../usecase/PlanDailyNotificationsUseCase.kt:12`}
+      lang="bash"
+      title="Claude Code"
+      copyable={false}
     />
   </section>
 

@@ -80,17 +80,27 @@ import { url } from '../../../utils/paths';
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Example Output</h2>
   <CodeBlock
-    code={`Starting Neo4j setup...
-Pulling Neo4j image (if needed)...
-Starting Neo4j container...
-Waiting for Neo4j to be ready...
-Neo4j is now running and ready!
+    code={`> /codegraph:setup
 
-Container: codegraph-neo4j
-Bolt URL: bolt://localhost:7687
-Browser: http://localhost:7474`}
+⏺ Bash(bash ".../codegraph/scripts/setup.sh")
+  ⎿  {
+       "success": true,
+       "docker": true,
+       "container": true,
+       "neo4j": true,
+       "indexes": true,
+       "message": "Neo4j is ready",
+       "neo4jUri": "bolt://localhost:7687",
+       "browserUrl": "http://localhost:7474"
+     }
+     {
+       "step": "tree_sitter",
+       "status": "ok",
+       "message": "tree-sitter already installed"
+     }`}
     lang="bash"
-    title="Output"
+    title="Claude Code"
+    copyable={false}
   />
 
   <Callout type="tip" title="Docker Required">

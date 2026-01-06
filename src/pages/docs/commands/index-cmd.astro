@@ -80,31 +80,25 @@ import { url } from '../../../utils/paths';
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Example Output</h2>
   <CodeBlock
-    code={`Indexing project: /path/to/your/project
-Scanning source files...
-Found 156 source files
+    code={`> /codegraph:index --clear .
 
-Parsing files...
-[========================================] 100%
-
-Extracting nodes:
-  - Classes: 45
-  - Interfaces: 12
-  - Functions: 234
-  - Properties: 89
-
-Building relationships:
-  - EXTENDS: 23
-  - IMPLEMENTS: 18
-  - CALLS: 456
-  - USES: 312
-
-Indexing complete!
-Total nodes: 380
-Total relationships: 809
-Time elapsed: 4.2s`}
+⏺ Bash(bash ".../codegraph/scripts/index-project.sh" --clear /path/to/my-backend)
+  ⎿  {
+       "success": true,
+       "projectPath": "/path/to/my-backend",
+       "filesFound": 208,
+       "filesParsed": 208,
+       "parseErrors": 0,
+       "symbolsResolved": 1050,
+       "nodesCreated": 1863,
+       "relationshipsCreated": 3282,
+       "writeErrors": 0,
+       "dryRun": false,
+       "message": "Indexed 208 files. Created 1863 nodes and 3282 relationships."
+     }`}
     lang="bash"
-    title="Output"
+    title="Claude Code"
+    copyable={false}
   />
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Supported Languages</h2>

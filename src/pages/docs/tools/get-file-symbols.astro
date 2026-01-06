@@ -3,7 +3,6 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
-import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="get_file_symbols">
@@ -63,10 +62,29 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
     <p class="text-text-secondary mb-4">
       Ask Claude to list all symbols in a file. Each line shows the symbol type, name, visibility modifier, and line number.
     </p>
-    <ScreenshotPlaceholder
-      path="tools/get-file-symbols-example.png"
-      alt="get_file_symbols tool invocation and output"
-      caption="Listing all symbols defined in a file"
+    <CodeBlock
+      code={`⏺ codegraph:get_file_symbols (MCP)(file_path: "src/.../domain/model/User.kt")
+
+  ⎿  SYMBOLS in src/.../domain/model/User.kt (16):
+     class | User | public | 7
+     property | id | public | 8
+     property | email | public | 9
+     property | phoneNumber | public | 10
+     property | roles | public | 11
+     property | accountStatus | public | 12
+     property | createdAt | public | 13
+     property | lastLoginAt | public | 14
+     property | updatedAt | public | 15
+     function | isSuspended | public | 18
+     function | rolesNames | public | 20
+     function | rolesString | public | 22
+     function | getId | public | 24
+     function | getEmail | public | 26
+     function | getPhoneNumber | public | 28
+     function | ensureSessionNotExpired | public | 30`}
+      lang="bash"
+      title="Claude Code"
+      copyable={false}
     />
   </section>
 

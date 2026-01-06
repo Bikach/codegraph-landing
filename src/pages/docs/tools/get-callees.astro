@@ -3,7 +3,6 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
-import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="get_callees">
@@ -69,10 +68,24 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
     <p class="text-text-secondary mb-4">
       Ask Claude to find all functions called by a specific function. The depth column shows how many levels deep each call is from the original function.
     </p>
-    <ScreenshotPlaceholder
-      path="tools/get-callees-example.png"
-      alt="get_callees tool invocation and output"
-      caption="Finding all functions called by a function"
+    <CodeBlock
+      code={`⏺ codegraph:get_callees (MCP)(function_name: "execute", depth: 2)
+
+  ⎿  CALLEES (22):
+     1 | UserRepository.findByEmail() | .../domain/port/UserRepository.kt:10
+     1 | PasswordHasher.verify() | .../domain/port/PasswordHasher.kt:5
+     1 | TokenGenerator.generateAccessToken() | .../domain/port/TokenGenerator.kt:6
+     1 | TokenGenerator.generateRefreshToken() | .../domain/port/TokenGenerator.kt:7
+     1 | RefreshTokenRepository.save() | .../domain/port/RefreshTokenRepository.kt:6
+     1 | User.ensureSessionNotExpired() | .../domain/model/User.kt:30
+     1 | User.isSuspended() | .../domain/model/User.kt:18
+     1 | DateTimeProvider.now() | .../provider/DateTimeProvider.kt:7
+     2 | User.isExpired() | .../domain/model/User.kt:42
+     2 | RefreshToken.isRevoked() | .../domain/model/RefreshToken.kt:27
+     ... (12 more)`}
+      lang="bash"
+      title="Claude Code"
+      copyable={false}
     />
   </section>
 

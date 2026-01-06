@@ -3,7 +3,6 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
-import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="get_neighbors">
@@ -79,10 +78,17 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
     <p class="text-text-secondary mb-4">
       Ask Claude to find all neighbors of a class. The direction column indicates whether the relationship is outgoing (dependencies) or incoming (dependents).
     </p>
-    <ScreenshotPlaceholder
-      path="tools/get-neighbors-example.png"
-      alt="get_neighbors tool invocation and output"
-      caption="Finding all neighbors of a class"
+    <CodeBlock
+      code={`⏺ codegraph:get_neighbors (MCP)(node_name: "UserRepository", direction: "both", depth: 2)
+
+  ⎿  NEIGHBORS (4):
+     outgoing | 1 | Class | User | .../domain/model/User.kt
+     outgoing | 1 | Class | UserId | .../domain/model/UserId.kt
+     outgoing | 1 | Class | Email | .../domain/model/Email.kt
+     incoming | 1 | Class | PanacheUserRepository | .../persistence/repository/PanacheUserRepository.kt`}
+      lang="bash"
+      title="Claude Code"
+      copyable={false}
     />
   </section>
 

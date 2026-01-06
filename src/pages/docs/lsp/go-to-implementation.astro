@@ -3,7 +3,6 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
-import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="goToImplementation" description="Find implementations of interfaces or abstract methods using LSP">
@@ -74,10 +73,15 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
     <p class="text-text-secondary mb-4">
       Ask Claude to find implementations of an interface. The output shows all concrete implementations with their types and locations.
     </p>
-    <ScreenshotPlaceholder
-      path="lsp/go-to-implementation-example.png"
-      alt="goToImplementation LSP operation invocation and output"
-      caption="Finding implementations of an interface"
+    <CodeBlock
+      code={`⏺ LSP(operation: "goToImplementation", file: ".../domain/port/UserRepository.kt", line: 7, character: 12)
+
+  ⎿  IMPLEMENTATIONS (2):
+     class | PanacheUserRepository | .../persistence/repository/PanacheUserRepository.kt:13:1
+     class | InMemoryUserRepository | .../test/fake/InMemoryUserRepository.kt:8:1`}
+      lang="bash"
+      title="Claude Code"
+      copyable={false}
     />
   </section>
 

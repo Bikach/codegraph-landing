@@ -3,7 +3,6 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
-import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="incomingCalls" description="Find all functions that call a specific function using LSP call hierarchy">
@@ -75,10 +74,17 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
     <p class="text-text-secondary mb-4">
       Ask Claude to find all incoming calls to a function. The output shows all functions that call the target function with their locations.
     </p>
-    <ScreenshotPlaceholder
-      path="lsp/incoming-calls-example.png"
-      alt="incomingCalls LSP operation invocation and output"
-      caption="Finding all callers of a function"
+    <CodeBlock
+      code={`⏺ LSP(operation: "incomingCalls", file: ".../domain/port/UserRepository.kt", line: 10, character: 8)
+
+  ⎿  INCOMING CALLS (4):
+     LoginUseCase.execute | .../usecase/LoginUseCase.kt:35:12
+     RegisterPatientUseCase.execute | .../usecase/RegisterPatientUseCase.kt:42:8
+     GetCurrentUserUseCase.execute | .../usecase/GetCurrentUserUseCase.kt:18:12
+     RefreshAccessTokenUseCase.execute | .../usecase/RefreshAccessTokenUseCase.kt:28:16`}
+      lang="bash"
+      title="Claude Code"
+      copyable={false}
     />
   </section>
 

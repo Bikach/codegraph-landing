@@ -3,7 +3,6 @@ import DocsLayout from '../../../layouts/Docs.astro';
 import CodeBlock from '../../../components/docs/CodeBlock.astro';
 import Callout from '../../../components/docs/Callout.astro';
 import PrevNext from '../../../components/docs/PrevNext.astro';
-import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholder.astro';
 ---
 
 <DocsLayout title="get_implementations">
@@ -70,10 +69,16 @@ import ScreenshotPlaceholder from '../../../components/docs/ScreenshotPlaceholde
     <p class="text-text-secondary mb-4">
       Ask Claude to find all implementations of an interface. The first column indicates whether the implementation is direct or indirect (via inheritance chain).
     </p>
-    <ScreenshotPlaceholder
-      path="tools/get-implementations-example.png"
-      alt="get_implementations tool invocation and output"
-      caption="Finding all implementations of an interface"
+    <CodeBlock
+      code={`⏺ codegraph:get_implementations (MCP)(interface_name: "UserRepository", include_indirect: true)
+
+  ⎿  IMPLEMENTATIONS (3):
+     direct | PanacheUserRepository | .../persistence/repository/PanacheUserRepository.kt:13
+     direct | InMemoryUserRepository | .../test/fake/InMemoryUserRepository.kt:8
+     indirect | MockUserRepository | .../test/mock/MockUserRepository.kt:12`}
+      lang="bash"
+      title="Claude Code"
+      copyable={false}
     />
   </section>
 

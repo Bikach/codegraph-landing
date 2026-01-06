@@ -39,42 +39,40 @@ import { url } from '../../../utils/paths';
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Example Output</h2>
   <CodeBlock
-    code={`CodeGraph Status
-================
+    code={`> /codegraph:status
 
-Neo4j Container: Running
-Container Name: codegraph-neo4j
-Bolt URL: bolt://localhost:7687
-Browser URL: http://localhost:7474
-
-Database Statistics
--------------------
-
-Indexed Projects: 2
-  - /Users/dev/my-kotlin-app
-  - /Users/dev/shared-library
-
-Node Counts:
-  Classes:     124
-  Interfaces:   38
-  Functions:   567
-  Properties:  289
-  Objects:      15
-  ─────────────────
-  Total:     1,033
-
-Relationship Counts:
-  EXTENDS:      45
-  IMPLEMENTS:   52
-  CALLS:       892
-  USES:        634
-  CONTAINS:    623
-  ─────────────────
-  Total:     2,246
-
-Last indexed: 2 hours ago`}
+⏺ Bash(bash ".../codegraph/scripts/status.sh")
+  ⎿  {
+       "connected": true,
+       "neo4jUri": "bolt://localhost:7687",
+       "browserUrl": "http://localhost:7474",
+       "nodes": {
+         "Package": 63,
+         "Class": 200,
+         "Interface": 23,
+         "Object": 10,
+         "Function": 321,
+         "Property": 496,
+         "Parameter": 195,
+         "Annotation": 38
+       },
+       "relationships": {
+         "CONTAINS": 297,
+         "DECLARES": 806,
+         "IMPLEMENTS": 23,
+         "CALLS": 678,
+         "USES": 163,
+         "HAS_PARAMETER": 195,
+         "ANNOTATED_WITH": 529,
+         "RETURNS": 95
+       },
+       "totalNodes": 1346,
+       "totalRelationships": 2786,
+       "message": "Neo4j connected. Graph contains 1346 nodes and 2786 relationships."
+     }`}
     lang="bash"
-    title="Output"
+    title="Claude Code"
+    copyable={false}
   />
 
   <Callout type="tip" title="Quick Health Check">
