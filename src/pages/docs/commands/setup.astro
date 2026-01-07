@@ -24,7 +24,6 @@ import { url } from '../../../utils/paths';
     <li>Waits for Neo4j to be ready</li>
     <li>Creates indexes and constraints</li>
     <li>Installs tree-sitter native dependencies (required for parsing)</li>
-    <li>Installs Language Server if language specified (optional)</li>
   </ul>
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Usage</h2>
@@ -38,45 +37,6 @@ import { url } from '../../../utils/paths';
     title="Claude Code"
   />
 
-  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Options</h2>
-  <p class="text-text-secondary mb-4">
-    You can optionally specify a language server to install:
-  </p>
-
-  <div class="overflow-x-auto mb-6">
-    <table class="w-full text-sm text-left text-text-secondary">
-      <thead class="text-xs uppercase bg-bg-subtle text-text-muted">
-        <tr>
-          <th class="px-4 py-3 rounded-tl-lg">Argument</th>
-          <th class="px-4 py-3 rounded-tr-lg">Description</th>
-        </tr>
-      </thead>
-      <tbody class="bg-bg-subtle">
-        <tr class="border-b border-border">
-          <td class="px-4 py-3 font-medium text-text-primary"><code class="text-primary">kotlin</code></td>
-          <td class="px-4 py-3">Install Kotlin Language Server (<code class="text-primary">kotlin-language-server</code>) for LSP features</td>
-        </tr>
-        <tr>
-          <td class="px-4 py-3 font-medium text-text-primary"><code class="text-primary">java</code></td>
-          <td class="px-4 py-3">Install Java Language Server (<code class="text-primary">jdtls</code>) for LSP features</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Examples</h3>
-
-  <CodeBlock
-    code={`/codegraph:setup              # Neo4j only
-/codegraph:setup kotlin       # Neo4j + Kotlin LSP
-/codegraph:setup java         # Neo4j + Java LSP`}
-    lang="bash"
-    title="Claude Code"
-  />
-
-  <Callout type="tip" title="LSP Integration">
-    Installing a language server enables more accurate code navigation features like <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">incomingCalls</code> and <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">goToImplementation</code>.
-  </Callout>
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Example Output</h2>
   <CodeBlock

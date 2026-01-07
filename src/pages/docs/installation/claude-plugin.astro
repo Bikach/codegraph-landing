@@ -18,7 +18,7 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
       <ul class="mt-2 space-y-1">
         <li>Automatic Neo4j management</li>
         <li>Simple slash commands (<code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:setup</code>, <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:index</code>)</li>
-        <li>LSP integration for accurate code navigation</li>
+        <li>8 powerful graph analysis tools</li>
       </ul>
     </Callout>
 
@@ -139,16 +139,6 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
       title="Claude Code"
     />
 
-    <p class="text-text-secondary mt-4 mb-4">
-      <strong class="text-text-primary">Optional:</strong> Add a language server for accurate code navigation:
-    </p>
-
-    <CodeBlock
-      code={`/codegraph:setup kotlin       # Neo4j + Kotlin LSP
-/codegraph:setup java         # Neo4j + Java LSP`}
-      lang="bash"
-      title="Claude Code"
-    />
 
     <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 4: Index Your Project</h3>
 
@@ -207,36 +197,22 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
       </table>
     </div>
 
-    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">MCP Tools (6)</h3>
+    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Graph Tools (8)</h3>
 
     <p class="text-text-secondary mb-4">
-      Graph-based code analysis:
+      Pre-indexed graph queries for instant code analysis:
     </p>
 
     <ul class="list-disc list-inside text-text-secondary space-y-2 mb-6">
       <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">search_nodes</code> - Search by name or pattern</li>
+      <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_callers</code> - Who calls this function?</li>
       <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_callees</code> - What functions are called?</li>
       <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_neighbors</code> - Get dependencies and dependents</li>
+      <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_implementations</code> - Find interface implementations</li>
       <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_impact</code> - Analyze modification impact</li>
       <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">find_path</code> - Find shortest path between nodes</li>
       <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_file_symbols</code> - List all symbols in a file</li>
     </ul>
-
-    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">LSP Tools (2)</h3>
-
-    <p class="text-text-secondary mb-4">
-      Semantic analysis via language servers (more accurate):
-    </p>
-
-    <ul class="list-disc list-inside text-text-secondary space-y-2 mb-6">
-      <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">LSP incomingCalls</code> - Who calls this function?</li>
-      <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">LSP goToImplementation</code> - Find interface implementations</li>
-    </ul>
-
-    <Callout type="info" title="LSP vs MCP Tools">
-      The LSP tools replace <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_callers</code> and <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_implementations</code> from MCP Standalone mode.
-      LSP tools provide more accurate results by using the language server's semantic understanding.
-    </Callout>
 
     <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Supported Languages</h2>
 

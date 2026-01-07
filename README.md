@@ -9,7 +9,6 @@ CodeGraph enhances Claude and other AI assistants with a knowledge graph of your
 - Intelligent code navigation with fewer LLM calls
 - Impact analysis on code changes
 - Dependency tracking and relationship mapping
-- LSP integration for real-time code intelligence
 
 **Performance improvements:**
 - 45% fewer LLM calls
@@ -71,8 +70,7 @@ The site includes comprehensive documentation covering:
 - **Getting Started** - Overview and prerequisites
 - **Installation** - Claude Plugin and MCP Standalone setup
 - **Commands** - `/codegraph:setup`, `/codegraph:index`, `/codegraph:status`
-- **MCP Tools** - 8 analysis tools (`search_nodes`, `get_callees`, `get_neighbors`, etc.)
-- **LSP Tools** - `incomingCalls` and `goToImplementation`
+- **Tools** - 8 graph analysis tools (`search_nodes`, `get_callers`, `get_callees`, `get_neighbors`, etc.)
 - **Languages** - Kotlin and Java support (TypeScript coming soon)
 - **Benchmark** - Performance metrics
 

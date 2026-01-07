@@ -12,53 +12,37 @@ import { url } from '../../utils/paths';
 
     <p class="text-xl text-text-secondary mb-8">
       CodeGraph is an MCP server that gives your AI assistant deep understanding of your codebase
-      through a Neo4j-powered code graph and LSP integration.
+      through a Neo4j-powered knowledge graph.
     </p>
 
     <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">What CodeGraph Does</h2>
 
     <p class="text-text-secondary mb-6">
-      CodeGraph enhances MCP-compatible AI assistants with two powerful engines that work together to provide
+      CodeGraph enhances MCP-compatible AI assistants with a powerful graph engine that provides
       comprehensive code intelligence:
     </p>
 
-    <div class="grid md:grid-cols-2 gap-6 mb-8">
-      <div class="glass-card p-6">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="w-10 h-10 bg-secondary/20 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-text-primary">Graph Engine</h3>
+    <div class="glass-card p-6 mb-8">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+          </svg>
         </div>
-        <p class="text-text-secondary text-sm">
-          Powered by Neo4j, the Graph Engine analyzes your entire codebase structure.
-          It maps classes, interfaces, functions, and their relationships to enable
-          impact analysis, dependency tracking, and architectural queries.
-        </p>
+        <h3 class="text-lg font-semibold text-text-primary">Neo4j Knowledge Graph</h3>
       </div>
-
-      <div class="glass-card p-6">
-        <div class="flex items-center gap-3 mb-3">
-          <div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-            </svg>
-          </div>
-          <h3 class="text-lg font-semibold text-text-primary">LSP Engine</h3>
-        </div>
-        <p class="text-text-secondary text-sm">
-          The LSP Engine provides real-time code intelligence through Language Server Protocol integration.
-          Get precise definitions, references, hover information, and diagnostics
-          directly within your AI sessions.
-        </p>
-      </div>
+      <p class="text-text-secondary text-sm">
+        Powered by Neo4j, CodeGraph analyzes your entire codebase structure.
+        It maps classes, interfaces, functions, and their relationships to enable
+        impact analysis, dependency tracking, and architectural queries.
+        With 8 specialized tools, your AI assistant can instantly answer questions like
+        "who calls this function?" or "what breaks if I change this?"
+      </p>
     </div>
 
-    <Callout type="tip" title="Best of Both Worlds">
-      The Graph Engine excels at big-picture analysis like "what would break if I change this interface?",
-      while the LSP Engine provides precise, real-time intelligence for specific code locations.
+    <Callout type="tip" title="Pre-indexed for Speed">
+      Unlike file-based searches, CodeGraph queries are instant because the entire codebase
+      is pre-indexed into a graph database. No scanning, no grep - just answers.
     </Callout>
 
     <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Prerequisites</h2>

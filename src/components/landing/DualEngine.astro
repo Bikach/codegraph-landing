@@ -1,21 +1,21 @@
 ---
-// DualEngine.astro - Section explaining Graph (MCP) + LSP dual approach
+// Tools.astro - Section showing all 8 graph analysis tools
 ---
 
-<section id="dual-engine" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+<section id="tools" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
 
   <div class="max-w-6xl mx-auto relative z-10">
     <!-- Section Header -->
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold mb-4 text-[var(--color-text-primary)]">
-        Graph + LSP: <span class="text-[var(--color-primary)]">Best of Both Worlds</span>
+        8 Powerful <span class="text-[var(--color-primary)]">Graph Tools</span>
       </h2>
       <p class="text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-        Two complementary engines working together to give your LLM complete understanding of your codebase.
+        Pre-indexed queries for instant code understanding. No file scanning, no grep - just answers.
       </p>
     </div>
 
-    <!-- Visual Connection Diagram -->
+    <!-- Visual Badge -->
     <div class="flex justify-center mb-12">
       <div class="flex items-center gap-4 px-6 py-3 rounded-md border border-[var(--color-border)] bg-[var(--color-bg)]">
         <div class="flex items-center gap-2">
@@ -38,379 +38,103 @@
           <div class="w-2 h-0.5 bg-[var(--color-border)]"></div>
         </div>
         <div class="flex items-center gap-2">
-          <span class="text-sm text-[var(--color-text-secondary)]">Language Server</span>
+          <span class="text-sm text-[var(--color-text-secondary)]">Instant Queries</span>
           <div class="w-3 h-3 rounded-full bg-[var(--color-secondary)]"></div>
         </div>
       </div>
     </div>
 
-    <!-- Two Column Layout -->
-    <div class="grid md:grid-cols-2 gap-6 mb-16">
+    <!-- Tools Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
 
-      <!-- Left Card: Neo4j Graph (MCP Tools) -->
-      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-6 h-full shadow-sm">
-        <!-- Header -->
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-10 h-10 rounded-md bg-[var(--color-primary)]/10 flex items-center justify-center">
-            <svg class="w-5 h-5 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-            </svg>
-          </div>
-          <h3 class="text-2xl font-semibold text-[var(--color-primary)]">Neo4j Graph</h3>
-          <span class="px-2 py-1 text-xs font-medium text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded-md border border-[var(--color-primary)]/20">MCP Tools</span>
-        </div>
-
-        <!-- Subtitle -->
-        <p class="text-[var(--color-text-secondary)] mb-6 ml-13">Static Analysis - Fast Traversal</p>
-
-        <!-- Tools List -->
-        <div class="space-y-2">
-          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
-            <code class="text-[var(--color-primary)] font-mono text-sm">get_callees</code>
-            <p class="text-[var(--color-text-secondary)] text-sm mt-1">"What does this function call?"</p>
-          </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
-            <code class="text-[var(--color-primary)] font-mono text-sm">get_neighbors</code>
-            <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Dependencies of this class"</p>
-          </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
-            <code class="text-[var(--color-primary)] font-mono text-sm">get_impact</code>
-            <p class="text-[var(--color-text-secondary)] text-sm mt-1">"What breaks if I change this?"</p>
-          </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
-            <code class="text-[var(--color-primary)] font-mono text-sm">find_path</code>
-            <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Path between two nodes"</p>
-          </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
-            <code class="text-[var(--color-primary)] font-mono text-sm">search_nodes</code>
-            <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Find by name/pattern"</p>
-          </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
-            <code class="text-[var(--color-primary)] font-mono text-sm">get_file_symbols</code>
-            <p class="text-[var(--color-text-secondary)] text-sm mt-1">"List symbols in a file"</p>
-          </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors border border-[var(--color-primary)]/20">
-            <div class="flex items-center justify-between flex-wrap gap-2">
-              <code class="text-[var(--color-primary)] font-mono text-sm">get_callers</code>
-              <span class="px-2 py-0.5 text-xs text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded border border-[var(--color-primary)]/20">Standalone</span>
-            </div>
-            <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Who calls this function?"</p>
-          </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors border border-[var(--color-primary)]/20">
-            <div class="flex items-center justify-between flex-wrap gap-2">
-              <code class="text-[var(--color-primary)] font-mono text-sm">get_implementations</code>
-              <span class="px-2 py-0.5 text-xs text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded border border-[var(--color-primary)]/20">Standalone</span>
-            </div>
-            <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Find implementations"</p>
-          </div>
-        </div>
-
-        <!-- Strengths -->
-        <div class="mt-6 pt-6 border-t border-[var(--color-border)]">
-          <div class="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
-            <svg class="w-4 h-4 text-[var(--color-secondary)]" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            <span>Pre-indexed for instant queries</span>
-          </div>
-          <div class="flex items-center gap-2 text-sm text-[var(--color-text-secondary)] mt-2">
-            <svg class="w-4 h-4 text-[var(--color-secondary)]" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            <span>Graph traversal for complex relationships</span>
-          </div>
-        </div>
+      <!-- Tool 1: search_nodes -->
+      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-5 hover:border-[var(--color-primary)]/50 transition-colors">
+        <code class="text-[var(--color-primary)] font-mono text-sm font-semibold">search_nodes</code>
+        <p class="text-[var(--color-text-secondary)] text-sm mt-2">"Find by name or pattern"</p>
       </div>
 
-      <!-- Right Card: Language Server (LSP) -->
-      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-6 h-full shadow-sm">
-        <!-- Header -->
-        <div class="flex items-center gap-3 mb-2">
-          <div class="w-10 h-10 rounded-md bg-[var(--color-secondary)]/10 flex items-center justify-center">
-            <svg class="w-5 h-5 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-            </svg>
-          </div>
-          <h3 class="text-2xl font-semibold text-[var(--color-secondary)]">Language Server</h3>
-          <span class="px-2 py-1 text-xs font-medium text-[var(--color-secondary)] bg-[var(--color-secondary)]/10 rounded-md border border-[var(--color-secondary)]/20">LSP</span>
-        </div>
-
-        <!-- Subtitle -->
-        <p class="text-[var(--color-text-secondary)] mb-6 ml-13">Semantic Analysis - Compiler Accuracy</p>
-
-        <!-- Tools List -->
-        <div class="space-y-2">
-          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
-            <code class="text-[var(--color-secondary)] font-mono text-sm">incomingCalls</code>
-            <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Who calls this function?"</p>
-          </div>
-          <div class="p-3 rounded-md bg-[var(--color-bg-subtle)] hover:bg-[var(--color-border-muted)] transition-colors">
-            <code class="text-[var(--color-secondary)] font-mono text-sm">goToImplementation</code>
-            <p class="text-[var(--color-text-secondary)] text-sm mt-1">"Find interface implementations"</p>
-          </div>
-        </div>
-
-        <!-- Why LSP Matters -->
-        <div class="mt-6 p-4 rounded-md bg-[var(--color-secondary)]/5 border border-[var(--color-secondary)]/20">
-          <p class="text-sm text-[var(--color-text-secondary)]">
-            <span class="text-[var(--color-secondary)] font-semibold">Why LSP?</span> The graph shows <em>outgoing</em> calls from static analysis.
-            LSP provides <em>incoming</em> calls with compiler-level precision - essential for understanding who depends on your code.
-          </p>
-        </div>
-
-        <!-- Strengths -->
-        <div class="mt-6 pt-6 border-t border-[var(--color-border)]">
-          <div class="flex items-center gap-2 text-sm text-[var(--color-text-secondary)]">
-            <svg class="w-4 h-4 text-[var(--color-secondary)]" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            <span>Compiler-accurate type resolution</span>
-          </div>
-          <div class="flex items-center gap-2 text-sm text-[var(--color-text-secondary)] mt-2">
-            <svg class="w-4 h-4 text-[var(--color-secondary)]" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-            <span>Real-time analysis of current code</span>
-          </div>
-        </div>
+      <!-- Tool 2: get_callers -->
+      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-5 hover:border-[var(--color-primary)]/50 transition-colors">
+        <code class="text-[var(--color-primary)] font-mono text-sm font-semibold">get_callers</code>
+        <p class="text-[var(--color-text-secondary)] text-sm mt-2">"Who calls this function?"</p>
       </div>
+
+      <!-- Tool 3: get_callees -->
+      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-5 hover:border-[var(--color-primary)]/50 transition-colors">
+        <code class="text-[var(--color-primary)] font-mono text-sm font-semibold">get_callees</code>
+        <p class="text-[var(--color-text-secondary)] text-sm mt-2">"What does this function call?"</p>
+      </div>
+
+      <!-- Tool 4: get_neighbors -->
+      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-5 hover:border-[var(--color-primary)]/50 transition-colors">
+        <code class="text-[var(--color-primary)] font-mono text-sm font-semibold">get_neighbors</code>
+        <p class="text-[var(--color-text-secondary)] text-sm mt-2">"Dependencies of this class"</p>
+      </div>
+
+      <!-- Tool 5: get_implementations -->
+      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-5 hover:border-[var(--color-primary)]/50 transition-colors">
+        <code class="text-[var(--color-primary)] font-mono text-sm font-semibold">get_implementations</code>
+        <p class="text-[var(--color-text-secondary)] text-sm mt-2">"Find interface implementations"</p>
+      </div>
+
+      <!-- Tool 6: get_impact -->
+      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-5 hover:border-[var(--color-primary)]/50 transition-colors">
+        <code class="text-[var(--color-primary)] font-mono text-sm font-semibold">get_impact</code>
+        <p class="text-[var(--color-text-secondary)] text-sm mt-2">"What breaks if I change this?"</p>
+      </div>
+
+      <!-- Tool 7: find_path -->
+      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-5 hover:border-[var(--color-primary)]/50 transition-colors">
+        <code class="text-[var(--color-primary)] font-mono text-sm font-semibold">find_path</code>
+        <p class="text-[var(--color-text-secondary)] text-sm mt-2">"Path between two nodes"</p>
+      </div>
+
+      <!-- Tool 8: get_file_symbols -->
+      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-5 hover:border-[var(--color-primary)]/50 transition-colors">
+        <code class="text-[var(--color-primary)] font-mono text-sm font-semibold">get_file_symbols</code>
+        <p class="text-[var(--color-text-secondary)] text-sm mt-2">"List symbols in a file"</p>
+      </div>
+
     </div>
 
-    <!-- Comparison Table - Desktop -->
-    <div class="hidden md:block">
-      <table class="w-full border-collapse">
-        <thead>
-          <tr class="border-b border-[var(--color-border)]">
-            <th class="text-left py-4 px-6 text-[var(--color-text-secondary)] font-medium">Question</th>
-            <th class="text-center py-4 px-6">
-              <span class="inline-flex items-center gap-2">
-                <div class="w-2 h-2 rounded-full bg-[var(--color-primary)]"></div>
-                <span class="text-[var(--color-primary)] font-medium">Graph</span>
-              </span>
-            </th>
-            <th class="text-center py-4 px-6">
-              <span class="inline-flex items-center gap-2">
-                <div class="w-2 h-2 rounded-full bg-[var(--color-secondary)]"></div>
-                <span class="text-[var(--color-secondary)] font-medium">LSP</span>
-              </span>
-            </th>
-          </tr>
-        </thead>
-        <tbody class="divide-y divide-[var(--color-border)]">
-          <tr class="hover:bg-[var(--color-bg-subtle)] transition-colors">
-            <td class="py-4 px-6 text-[var(--color-text-secondary)]">"What does this function call?"</td>
-            <td class="py-4 px-6 text-center">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-              </span>
-            </td>
-            <td class="py-4 px-6 text-center text-[var(--color-text-muted)]">-</td>
-          </tr>
-          <tr class="hover:bg-[var(--color-bg-subtle)] transition-colors">
-            <td class="py-4 px-6 text-[var(--color-text-secondary)]">
-              "Who calls this function?"
-              <span class="ml-2 px-2 py-0.5 text-xs text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded border border-[var(--color-primary)]/20">MCP Standalone</span>
-            </td>
-            <td class="py-4 px-6 text-center">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-              </span>
-            </td>
-            <td class="py-4 px-6 text-center">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-secondary)]/10 text-[var(--color-secondary)]">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-              </span>
-            </td>
-          </tr>
-          <tr class="hover:bg-[var(--color-bg-subtle)] transition-colors">
-            <td class="py-4 px-6 text-[var(--color-text-secondary)]">"What breaks if I change this?"</td>
-            <td class="py-4 px-6 text-center">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-              </span>
-            </td>
-            <td class="py-4 px-6 text-center text-[var(--color-text-muted)]">-</td>
-          </tr>
-          <tr class="hover:bg-[var(--color-bg-subtle)] transition-colors">
-            <td class="py-4 px-6 text-[var(--color-text-secondary)]">
-              "Find interface implementations"
-              <span class="ml-2 px-2 py-0.5 text-xs text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded border border-[var(--color-primary)]/20">MCP Standalone</span>
-            </td>
-            <td class="py-4 px-6 text-center">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-              </span>
-            </td>
-            <td class="py-4 px-6 text-center">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-secondary)]/10 text-[var(--color-secondary)]">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-              </span>
-            </td>
-          </tr>
-          <tr class="hover:bg-[var(--color-bg-subtle)] transition-colors">
-            <td class="py-4 px-6 text-[var(--color-text-secondary)]">"Find class dependencies"</td>
-            <td class="py-4 px-6 text-center">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-              </span>
-            </td>
-            <td class="py-4 px-6 text-center text-[var(--color-text-muted)]">-</td>
-          </tr>
-          <tr class="hover:bg-[var(--color-bg-subtle)] transition-colors">
-            <td class="py-4 px-6 text-[var(--color-text-secondary)]">"Path between two nodes"</td>
-            <td class="py-4 px-6 text-center">
-              <span class="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-              </span>
-            </td>
-            <td class="py-4 px-6 text-center text-[var(--color-text-muted)]">-</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Comparison Cards - Mobile -->
-    <div class="md:hidden space-y-3">
-      <!-- Header row with Graph/LSP labels -->
-      <div class="flex items-center justify-between px-4 pb-2 border-b border-[var(--color-border)]">
-        <span class="text-[var(--color-text-secondary)] font-medium text-sm">Question</span>
-        <div class="flex gap-4">
-          <span class="inline-flex items-center gap-1.5">
-            <div class="w-2 h-2 rounded-full bg-[var(--color-primary)]"></div>
-            <span class="text-[var(--color-primary)] font-medium text-xs">Graph</span>
-          </span>
-          <span class="inline-flex items-center gap-1.5">
-            <div class="w-2 h-2 rounded-full bg-[var(--color-secondary)]"></div>
-            <span class="text-[var(--color-secondary)] font-medium text-xs">LSP</span>
-          </span>
+    <!-- Benefits -->
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
         </div>
+        <h3 class="text-lg font-semibold text-[var(--color-text-primary)] mb-2">Pre-indexed</h3>
+        <p class="text-[var(--color-text-secondary)] text-sm">Instant queries - no file scanning needed</p>
       </div>
 
-      <!-- Row 1 -->
-      <div class="flex items-center justify-between p-4 rounded-md bg-[var(--color-bg)]">
-        <p class="text-[var(--color-text-secondary)] text-sm flex-1 pr-4">"What does this function call?"</p>
-        <div class="flex gap-4 flex-shrink-0">
-          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-            </svg>
-          </span>
-          <span class="text-[var(--color-text-muted)] w-7 text-center">-</span>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+          </svg>
         </div>
+        <h3 class="text-lg font-semibold text-[var(--color-text-primary)] mb-2">Graph Traversal</h3>
+        <p class="text-[var(--color-text-secondary)] text-sm">Navigate complex relationships efficiently</p>
       </div>
 
-      <!-- Row 2 -->
-      <div class="p-4 rounded-md bg-[var(--color-bg)]">
-        <div class="flex items-center justify-between">
-          <p class="text-[var(--color-text-secondary)] text-sm flex-1 pr-4">"Who calls this function?"</p>
-          <div class="flex gap-4 flex-shrink-0">
-            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-              </svg>
-            </span>
-            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-secondary)]/10 text-[var(--color-secondary)]">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-              </svg>
-            </span>
-          </div>
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center mx-auto mb-4">
+          <svg class="w-6 h-6 text-[var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
         </div>
-        <span class="mt-2 inline-block px-2 py-0.5 text-xs text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded border border-[var(--color-primary)]/20">MCP Standalone</span>
+        <h3 class="text-lg font-semibold text-[var(--color-text-primary)] mb-2">Impact Analysis</h3>
+        <p class="text-[var(--color-text-secondary)] text-sm">Understand change propagation</p>
       </div>
-
-      <!-- Row 3 -->
-      <div class="flex items-center justify-between p-4 rounded-md bg-[var(--color-bg)]">
-        <p class="text-[var(--color-text-secondary)] text-sm flex-1 pr-4">"What breaks if I change this?"</p>
-        <div class="flex gap-4 flex-shrink-0">
-          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-            </svg>
-          </span>
-          <span class="text-[var(--color-text-muted)] w-7 text-center">-</span>
-        </div>
-      </div>
-
-      <!-- Row 4 -->
-      <div class="p-4 rounded-md bg-[var(--color-bg)]">
-        <div class="flex items-center justify-between">
-          <p class="text-[var(--color-text-secondary)] text-sm flex-1 pr-4">"Find interface implementations"</p>
-          <div class="flex gap-4 flex-shrink-0">
-            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-              </svg>
-            </span>
-            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-secondary)]/10 text-[var(--color-secondary)]">
-              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-              </svg>
-            </span>
-          </div>
-        </div>
-        <span class="mt-2 inline-block px-2 py-0.5 text-xs text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded border border-[var(--color-primary)]/20">MCP Standalone</span>
-      </div>
-
-      <!-- Row 5 -->
-      <div class="flex items-center justify-between p-4 rounded-md bg-[var(--color-bg)]">
-        <p class="text-[var(--color-text-secondary)] text-sm flex-1 pr-4">"Find class dependencies"</p>
-        <div class="flex gap-4 flex-shrink-0">
-          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-            </svg>
-          </span>
-          <span class="text-[var(--color-text-muted)] w-7 text-center">-</span>
-        </div>
-      </div>
-
-      <!-- Row 6 -->
-      <div class="flex items-center justify-between p-4 rounded-md bg-[var(--color-bg)]">
-        <p class="text-[var(--color-text-secondary)] text-sm flex-1 pr-4">"Path between two nodes"</p>
-        <div class="flex gap-4 flex-shrink-0">
-          <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)]">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-            </svg>
-          </span>
-          <span class="text-[var(--color-text-muted)] w-7 text-center">-</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Note about MCP Standalone -->
-    <div class="mt-4 p-4 rounded-md bg-[var(--color-primary)]/5 border border-[var(--color-primary)]/20">
-      <p class="text-sm text-[var(--color-text-secondary)]">
-        <span class="inline-flex items-center gap-1.5">
-          <span class="px-2 py-0.5 text-xs text-[var(--color-primary)] bg-[var(--color-primary)]/10 rounded border border-[var(--color-primary)]/20">MCP Standalone</span>
-        </span>
-        <span class="ml-2">These Graph features (<code class="text-[var(--color-primary)]">get_callers</code>, <code class="text-[var(--color-primary)]">get_implementations</code>) are available when using the standalone MCP server. The Claude Code Plugin uses LSP for these queries instead.</span>
-      </p>
     </div>
 
     <!-- Bottom Summary -->
     <div class="mt-12 text-center">
       <p class="text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-        Together, these two engines give Claude a complete picture:
-        <span class="text-[var(--color-primary)]">fast graph traversal</span> for exploring outward dependencies and
-        <span class="text-[var(--color-secondary)]">semantic precision</span> for tracing inward call hierarchies.
+        All tools work through the <span class="text-[var(--color-primary)]">Neo4j knowledge graph</span> -
+        giving Claude instant access to your codebase structure without reading files.
       </p>
     </div>
   </div>

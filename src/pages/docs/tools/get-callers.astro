@@ -8,15 +8,10 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
 <DocsLayout title="get_callers">
   <h1 class="text-4xl font-bold text-text-primary mb-4">
     get_callers
-    <span class="ml-3 text-sm font-normal bg-primary/20 text-primary px-3 py-1 rounded-full align-middle">MCP Standalone Only</span>
   </h1>
   <p class="text-xl text-text-secondary mb-8">
     Find all functions that call the specified function, with configurable trace depth.
   </p>
-
-  <Callout type="info" title="Plugin Mode Alternative">
-    In Claude Plugin mode, use the LSP tool <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">incomingCalls</code> instead for more accurate results based on semantic analysis.
-  </Callout>
 
   <section class="mb-12">
     <h2 class="text-2xl font-semibold text-text-primary mb-4">Description</h2>
