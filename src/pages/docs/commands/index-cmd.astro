@@ -106,7 +106,7 @@ import { url } from '../../../utils/paths';
     CodeGraph currently supports indexing for the following languages:
   </p>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
     <div class="glass-card p-4">
       <div class="flex items-center gap-3 mb-2">
         <div class="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
@@ -131,10 +131,22 @@ import { url } from '../../../utils/paths';
       </div>
       <p class="text-text-secondary text-sm">Classes, interfaces, methods, fields, annotations</p>
     </div>
+    <div class="glass-card p-4">
+      <div class="flex items-center gap-3 mb-2">
+        <div class="w-10 h-10 bg-secondary rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-sm">TS</span>
+        </div>
+        <div>
+          <h3 class="text-text-primary font-semibold">TypeScript</h3>
+          <p class="text-text-secondary text-sm">Full support</p>
+        </div>
+      </div>
+      <p class="text-text-secondary text-sm">Classes, interfaces, functions, types, modules, decorators</p>
+    </div>
   </div>
 
   <Callout type="info" title="More Languages Coming">
-    Support for TypeScript, Python, and Go is planned for future releases.
+    Support for Python and Go is planned for future releases.
   </Callout>
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Re-indexing Behavior</h2>

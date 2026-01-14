@@ -71,7 +71,7 @@ The site includes comprehensive documentation covering:
 - **Installation** - Claude Plugin and MCP Standalone setup
 - **Commands** - `/codegraph:setup`, `/codegraph:index`, `/codegraph:status`
 - **Tools** - 8 graph analysis tools (`search_nodes`, `get_callers`, `get_callees`, `get_neighbors`, etc.)
-- **Languages** - Kotlin and Java support (TypeScript coming soon)
+- **Languages** - Kotlin, Java, and TypeScript support
 - **Benchmark** - Performance metrics
 
 ## License
