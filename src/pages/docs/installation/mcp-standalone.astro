@@ -83,11 +83,16 @@ cd codeGraph`}
 
     <CodeBlock
       code={`cd mcp-server
-npm install
+npm install --legacy-peer-deps
 npm run build`}
       lang="bash"
       title="Terminal"
     />
+
+    <Callout type="tip" title="Why --legacy-peer-deps?">
+      The tree-sitter grammars declare conflicting peer versions of <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">tree-sitter</code>,
+      so a plain <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">npm install</code> aborts on <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">ERESOLVE</code>.
+    </Callout>
 
     <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 3: Index Your Project</h3>
 
