@@ -1,5 +1,5 @@
 ---
-// Tools.astro - Section showing all 8 graph analysis tools
+// Tools.astro - Section showing all 10 graph analysis tools
 ---
 
 <section id="tools" class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
@@ -8,7 +8,7 @@
     <!-- Section Header -->
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold mb-4 text-[var(--color-text-primary)]">
-        8 Powerful <span class="text-[var(--color-primary)]">Graph Tools</span>
+        10 Powerful <span class="text-[var(--color-primary)]">Graph Tools</span>
       </h2>
       <p class="text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto">
         Pre-indexed queries for instant code understanding. No file scanning, no grep - just answers.
@@ -20,7 +20,7 @@
       <div class="flex items-center gap-4 px-6 py-3 rounded-md border border-[var(--color-border)] bg-[var(--color-bg)]">
         <div class="flex items-center gap-2">
           <div class="w-3 h-3 rounded-full bg-[var(--color-primary)]"></div>
-          <span class="text-sm text-[var(--color-text-secondary)]">Neo4j Graph</span>
+          <span class="text-sm text-[var(--color-text-secondary)]">Embedded Graph</span>
         </div>
         <div class="flex gap-1">
           <div class="w-2 h-0.5 bg-[var(--color-border)]"></div>
@@ -95,6 +95,18 @@
         <p class="text-[var(--color-text-secondary)] text-sm mt-2">"List symbols in a file"</p>
       </div>
 
+      <!-- Tool 9: get_god_nodes -->
+      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-5 hover:border-[var(--color-primary)]/50 transition-colors">
+        <code class="text-[var(--color-primary)] font-mono text-sm font-semibold">get_god_nodes</code>
+        <p class="text-[var(--color-text-secondary)] text-sm mt-2">"Find system hotspots"</p>
+      </div>
+
+      <!-- Tool 10: get_module_overview -->
+      <div class="bg-[var(--color-bg)] border border-[var(--color-border)] rounded-lg p-5 hover:border-[var(--color-primary)]/50 transition-colors">
+        <code class="text-[var(--color-primary)] font-mono text-sm font-semibold">get_module_overview</code>
+        <p class="text-[var(--color-text-secondary)] text-sm mt-2">"Map domains &amp; cross-domain deps"</p>
+      </div>
+
     </div>
 
     <!-- Benefits -->
@@ -133,8 +145,8 @@
     <!-- Bottom Summary -->
     <div class="mt-12 text-center">
       <p class="text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-        All tools work through the <span class="text-[var(--color-primary)]">Neo4j knowledge graph</span> -
-        giving Claude instant access to your codebase structure without reading files.
+        All tools work through the <span class="text-[var(--color-primary)]">embedded knowledge graph</span> -
+        a single on-disk file, giving Claude instant access to your codebase structure without reading files.
       </p>
     </div>
   </div>

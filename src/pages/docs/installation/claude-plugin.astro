@@ -16,9 +16,9 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
     <Callout type="tip" title="Recommended for Claude Code users">
       This installation method provides:
       <ul class="mt-2 space-y-1">
-        <li>Automatic Neo4j management</li>
-        <li>Simple slash commands (<code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:setup</code>, <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:index</code>)</li>
-        <li>8 powerful graph analysis tools</li>
+        <li>One embedded graph file - no server or Docker to run</li>
+        <li>Simple slash commands (<code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:init</code>, <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:index</code>)</li>
+        <li>10 powerful graph analysis tools</li>
       </ul>
     </Callout>
 
@@ -43,26 +43,18 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
       <div class="flex items-start gap-4 glass-card p-4">
         <div class="flex-shrink-0 w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
           <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
           </svg>
         </div>
         <div>
-          <h3 class="text-text-primary font-semibold">Docker</h3>
+          <h3 class="text-text-primary font-semibold">A Kotlin, Java, or TypeScript/JavaScript project</h3>
           <p class="text-text-secondary text-sm mt-1">
-            Required for running the Neo4j database. Ensure Docker is installed and running.
-            <a href="https://docs.docker.com/get-docker/" class="text-primary hover:text-secondary">Install Docker</a>
+            Any project in a supported language. The graph is stored in a single embedded file -
+            no server, no Docker, nothing else to install.
           </p>
         </div>
       </div>
     </div>
-
-    <Callout type="warning" title="Docker Required">
-      Before proceeding, verify Docker is running:
-      <div class="mt-2">
-        <code class="bg-bg-subtle px-2 py-1 rounded text-primary text-sm">docker info</code>
-      </div>
-      <p class="mt-2">If you see an error, start Docker Desktop first.</p>
-    </Callout>
 
     <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Installation</h2>
 
@@ -127,23 +119,31 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
 
     <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Initialize CodeGraph</h2>
 
-    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 3: Run Setup</h3>
+    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 3: Install the Native Dependencies</h3>
 
     <p class="text-text-secondary mb-4">
-      Start Neo4j and prepare the database:
+      Install the LadybugDB engine and the tree-sitter grammars (native modules) into the plugin's
+      data directory. Run this once after installing the plugin, and again after an update that
+      changes dependencies:
     </p>
 
     <CodeBlock
-      code="/codegraph:setup"
+      code="/codegraph:init"
       lang="bash"
       title="Claude Code"
     />
 
+    <Callout type="warning" title="Reconnect required after init">
+      The MCP server reads its dependencies when its process starts, and Claude Code does not reconnect
+      a stdio server on its own. After <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:init</code>,
+      reconnect <strong>codegraph</strong> from the <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/mcp</code>
+      panel (restarting Claude Code works too, but is not required).
+    </Callout>
 
     <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 4: Index Your Project</h3>
 
     <p class="text-text-secondary mb-4">
-      Navigate to your Kotlin, Java, or TypeScript project and run:
+      Navigate to your Kotlin, Java, or TypeScript/JavaScript project and run:
     </p>
 
     <CodeBlock
@@ -152,20 +152,9 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
       title="Claude Code"
     />
 
-    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 5: Verify Installation</h3>
-
-    <p class="text-text-secondary mb-4">
-      Check that everything is working:
-    </p>
-
-    <CodeBlock
-      code="/codegraph:status"
-      lang="bash"
-      title="Claude Code"
-    />
-
     <p class="text-text-secondary mt-4">
-      You should see Neo4j connection status and graph statistics.
+      Indexing writes the code graph to a single embedded file. Once it completes, CodeGraph's tools are
+      immediately available to Claude - no server to start and no restart needed after re-indexing.
     </p>
 
     <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Available Features</h2>
@@ -182,22 +171,18 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
         </thead>
         <tbody class="text-text-secondary">
           <tr class="border-b border-border">
-            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:setup</code></td>
-            <td class="py-3 px-4">Start Neo4j and prepare the database</td>
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:init</code></td>
+            <td class="py-3 px-4">Install the native dependencies (run once after install or a dependency-changing update)</td>
           </tr>
           <tr class="border-b border-border">
             <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:index</code></td>
-            <td class="py-3 px-4">Index your project into the graph</td>
-          </tr>
-          <tr class="border-b border-border">
-            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:status</code></td>
-            <td class="py-3 px-4">Check Neo4j connection and graph stats</td>
+            <td class="py-3 px-4">Index your project into the embedded graph</td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Graph Tools (8)</h3>
+    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Graph Tools (10)</h3>
 
     <p class="text-text-secondary mb-4">
       Pre-indexed graph queries for instant code analysis:
@@ -212,6 +197,8 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
       <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_impact</code> - Analyze modification impact</li>
       <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">find_path</code> - Find shortest path between nodes</li>
       <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_file_symbols</code> - List all symbols in a file</li>
+      <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_god_nodes</code> - Find the highest-degree nodes (system hotspots)</li>
+      <li><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_module_overview</code> - Project map: domains, cross-domain deps, cycles</li>
     </ul>
 
     <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Supported Languages</h2>
@@ -234,7 +221,7 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
             <td class="py-3 px-4"><span class="text-secondary">Available</span></td>
           </tr>
           <tr class="border-b border-border">
-            <td class="py-3 px-4">TypeScript</td>
+            <td class="py-3 px-4">TypeScript / JavaScript</td>
             <td class="py-3 px-4"><span class="text-secondary">Available</span></td>
           </tr>
         </tbody>
@@ -265,34 +252,36 @@ import PrevNext from '../../../components/docs/PrevNext.astro';
 
       <div class="border border-border rounded-lg overflow-hidden">
         <div class="bg-bg-subtle px-4 py-3 border-b border-border">
-          <h3 class="text-text-primary font-semibold">Docker is not running</h3>
+          <h3 class="text-text-primary font-semibold">Native dependencies not installed</h3>
         </div>
         <div class="p-4">
           <p class="text-text-secondary mb-3">
-            If you see "Cannot connect to Docker daemon", ensure Docker Desktop is running:
+            If a session-start warning says the native dependencies are missing, or the codegraph MCP
+            server fails to start, install them and reconnect:
           </p>
           <CodeBlock
-            code="docker info"
+            code="/codegraph:init"
             lang="bash"
-            title="Terminal"
+            title="Claude Code"
           />
+          <p class="text-text-secondary mt-3">
+            Then reconnect <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">codegraph</code> from the
+            <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/mcp</code> panel. If npm fails, the cause is
+            almost always a missing build toolchain for the native modules - report the npm output.
+          </p>
         </div>
       </div>
 
       <div class="border border-border rounded-lg overflow-hidden">
         <div class="bg-bg-subtle px-4 py-3 border-b border-border">
-          <h3 class="text-text-primary font-semibold">Neo4j port conflict</h3>
+          <h3 class="text-text-primary font-semibold">Tools return no results</h3>
         </div>
         <div class="p-4">
           <p class="text-text-secondary mb-3">
-            If port 7687 is already in use, stop existing Neo4j instances:
+            If the graph tools return nothing, make sure the project has been indexed first with
+            <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:index</code>. Re-run it after
+            significant code changes so the embedded graph reflects your latest code.
           </p>
-          <CodeBlock
-            code={`docker ps | grep neo4j
-docker stop <container_id>`}
-            lang="bash"
-            title="Terminal"
-          />
         </div>
       </div>
     </div>

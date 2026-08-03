@@ -7,11 +7,11 @@ interface FAQItem {
 const faqs: FAQItem[] = [
   {
     question: "Does it work offline?",
-    answer: "Yes, everything runs locally. Neo4j runs in Docker on your machine, and all indexing happens locally. No data is sent to external servers."
+    answer: "Yes, everything runs locally. The graph is an embedded, on-disk file (LadybugDB) that lives right next to your code - no server, no Docker, no network hop. All indexing and querying happens on your machine, so it works fully offline."
   },
   {
     question: "What about private codebases?",
-    answer: "Completely private. CodeGraph runs 100% locally - your code never leaves your machine. The Neo4j graph is stored in a local Docker volume."
+    answer: "Completely private. CodeGraph runs 100% locally - your code never leaves your machine. The entire graph is a single local file you own and control; nothing is ever uploaded or sent to external servers."
   },
   {
     question: "How long does indexing take?",
@@ -23,7 +23,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: "Is it free?",
-    answer: "Yes, CodeGraph is free and open source (MIT License). Neo4j Community Edition is also free."
+    answer: "Yes, CodeGraph is free and open source (MIT License). The embedded graph database is bundled in - there is no separate server, license, or subscription to pay for."
   },
   {
     question: "Which IDE/editors are supported?",

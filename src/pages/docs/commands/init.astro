@@ -1,0 +1,82 @@
+---
+import DocsLayout from '../../../layouts/Docs.astro';
+import CodeBlock from '../../../components/docs/CodeBlock.astro';
+import Callout from '../../../components/docs/Callout.astro';
+import PrevNext from '../../../components/docs/PrevNext.astro';
+import { url } from '../../../utils/paths';
+---
+
+<DocsLayout title="/codegraph:init">
+  <h1 class="text-4xl font-bold text-text-primary mb-4">/codegraph:init</h1>
+  <p class="text-xl text-text-secondary mb-8">
+    Installs the plugin's native dependencies. Run this once before indexing.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Overview</h2>
+  <p class="text-text-secondary mb-4">
+    The <code class="bg-bg-subtle px-2 py-1 rounded text-primary">/codegraph:init</code> command installs
+    the LadybugDB graph engine and the tree-sitter grammars into the plugin's data directory. These are
+    native modules that cannot be bundled, so they are installed on your machine the first time you set up
+    the plugin. The MCP server and the indexer both load them from that directory.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">What it does</h2>
+  <ul class="list-disc list-inside text-text-secondary space-y-2 mb-6">
+    <li>Installs the embedded graph engine (<code class="text-primary">@ladybugdb/core</code>) and the tree-sitter parsers</li>
+    <li>Places them in the plugin's persistent data directory, kept across plugin updates</li>
+    <li>Downloads a prebuilt binary for your platform when one exists, and compiles from source otherwise</li>
+  </ul>
+
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Usage</h2>
+  <p class="text-text-secondary mb-4">
+    Run it once, right after installing the plugin:
+  </p>
+
+  <CodeBlock
+    code="/codegraph:init"
+    lang="bash"
+    title="Claude Code"
+  />
+
+  <Callout type="warning" title="Reconnect required after init">
+    The MCP server reads its dependencies when its process starts, and Claude Code does not reconnect a
+    stdio server on its own. After <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:init</code>,
+    reconnect <strong>codegraph</strong> from the <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/mcp</code>
+    panel (restarting Claude Code works too, but is not required).
+  </Callout>
+
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">When to run it</h2>
+  <ul class="list-disc list-inside text-text-secondary space-y-2 mb-6">
+    <li>Once, after installing the plugin</li>
+    <li>Again after a plugin update that changes dependencies</li>
+  </ul>
+  <p class="text-text-secondary mb-4">
+    Re-running it when nothing changed is harmless: npm reports everything up to date and leaves the
+    installation alone.
+  </p>
+
+  <Callout type="tip" title="Starting over">
+    Wiping the plugin's data directory resets the installation. Run <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:init</code>
+    again afterwards, and <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:index</code> too if you removed the graph file.
+  </Callout>
+
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Troubleshooting</h2>
+  <p class="text-text-secondary mb-4">
+    If <code class="bg-bg-subtle px-2 py-1 rounded text-primary">npm</code> fails during init, the cause is
+    almost always a missing build toolchain for the native modules, not the plugin itself. Report the npm
+    output as-is. A session-start warning that the native dependencies are missing means the same thing:
+    run <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/codegraph:init</code>, then reconnect
+    codegraph from <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/mcp</code>.
+  </p>
+
+  <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Next Steps</h2>
+  <p class="text-text-secondary mb-4">
+    Once the dependencies are installed and codegraph is reconnected, index your project with the
+    <a href={url('/docs/commands/index-cmd')} class="text-primary hover:text-secondary underline">/codegraph:index</a> command.
+  </p>
+
+  <PrevNext
+    prev={{ title: "MCP Standalone", href: "/docs/installation/mcp-standalone" }}
+    next={{ title: "/codegraph:index", href: "/docs/commands/index-cmd" }}
+  />
+</DocsLayout>

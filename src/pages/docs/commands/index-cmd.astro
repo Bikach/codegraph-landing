@@ -9,12 +9,18 @@ import { url } from '../../../utils/paths';
 <DocsLayout title="/codegraph:index">
   <h1 class="text-4xl font-bold text-text-primary mb-4">/codegraph:index</h1>
   <p class="text-xl text-text-secondary mb-8">
-    Indexes your codebase into the Neo4j graph database.
+    Indexes your codebase into the embedded graph.
   </p>
+
+  <Callout type="warning" title="Run /codegraph:init first">
+    Indexing needs the plugin's native dependencies. If you have not installed them yet, run
+    <a href={url('/docs/commands/init')} class="text-primary hover:text-secondary underline">/codegraph:init</a>
+    once and reconnect codegraph from <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">/mcp</code> before indexing.
+  </Callout>
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Overview</h2>
   <p class="text-text-secondary mb-4">
-    The <code class="bg-bg-subtle px-2 py-1 rounded text-primary">/codegraph:index</code> command scans your source files and builds a comprehensive graph representation of your codebase in Neo4j. This enables powerful code analysis, navigation, and impact analysis features.
+    The <code class="bg-bg-subtle px-2 py-1 rounded text-primary">/codegraph:index</code> command scans your source files and builds a comprehensive graph representation of your codebase in an embedded, on-disk graph file. This enables powerful code analysis, navigation, and impact analysis features.
   </p>
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">What it does</h2>
@@ -22,7 +28,7 @@ import { url } from '../../../utils/paths';
     <li>Scans source files in your project directory</li>
     <li>Extracts classes, interfaces, functions, and properties</li>
     <li>Identifies relationships: inheritance, implementation, calls, uses</li>
-    <li>Stores all nodes and relationships in the Neo4j graph database</li>
+    <li>Stores all nodes and relationships in the embedded graph file</li>
     <li>Creates indexes for fast querying</li>
   </ul>
 
@@ -55,10 +61,6 @@ import { url } from '../../../utils/paths';
           <td class="px-4 py-3 font-medium text-text-primary"><code class="text-primary">path</code></td>
           <td class="px-4 py-3">Path to project directory (defaults to current working directory)</td>
         </tr>
-        <tr class="border-b border-border">
-          <td class="px-4 py-3 font-medium text-text-primary"><code class="text-primary">--clear</code></td>
-          <td class="px-4 py-3">Clear the database before indexing. Use for a fresh re-index.</td>
-        </tr>
         <tr>
           <td class="px-4 py-3 font-medium text-text-primary"><code class="text-primary">--exclude-tests</code></td>
           <td class="px-4 py-3">Exclude test files (<code class="text-primary">*Test.kt</code>, <code class="text-primary">*Spec.kt</code>, <code class="text-primary">/test/</code>, <code class="text-primary">/tests/</code>)</td>
@@ -72,7 +74,6 @@ import { url } from '../../../utils/paths';
   <CodeBlock
     code={`/codegraph:index                      # Index current project
 /codegraph:index /path/to/project     # Index specific project
-/codegraph:index --clear              # Clear database before indexing
 /codegraph:index --exclude-tests      # Exclude test files`}
     lang="bash"
     title="Claude Code"
@@ -80,9 +81,9 @@ import { url } from '../../../utils/paths';
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Example Output</h2>
   <CodeBlock
-    code={`> /codegraph:index --clear .
+    code={`> /codegraph:index .
 
-⏺ Bash(bash ".../codegraph/scripts/index-project.sh" --clear /path/to/my-backend)
+⏺ Bash(bash ".../codegraph/scripts/index-project.sh" /path/to/my-backend)
   ⎿  {
        "success": true,
        "projectPath": "/path/to/my-backend",
@@ -137,7 +138,7 @@ import { url } from '../../../utils/paths';
           <span class="text-white font-bold text-sm">TS</span>
         </div>
         <div>
-          <h3 class="text-text-primary font-semibold">TypeScript</h3>
+          <h3 class="text-text-primary font-semibold">TypeScript / JavaScript</h3>
           <p class="text-text-secondary text-sm">Full support</p>
         </div>
       </div>
@@ -146,7 +147,7 @@ import { url } from '../../../utils/paths';
   </div>
 
   <Callout type="info" title="More Languages Coming">
-    Support for Python and Go is planned for future releases.
+    Additional languages are planned for future releases.
   </Callout>
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Re-indexing Behavior</h2>
@@ -239,8 +240,8 @@ import { url } from '../../../utils/paths';
           <td class="px-4 py-3">Type dependencies and references</td>
         </tr>
         <tr>
-          <td class="px-4 py-3 font-medium text-primary">CONTAINS</td>
-          <td class="px-4 py-3">Parent-child containment (class contains methods)</td>
+          <td class="px-4 py-3 font-medium text-primary">DECLARES</td>
+          <td class="px-4 py-3">A type declares its members (class/interface declares methods)</td>
         </tr>
       </tbody>
     </table>
@@ -248,11 +249,11 @@ import { url } from '../../../utils/paths';
 
   <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Next Steps</h2>
   <p class="text-text-secondary mb-4">
-    After indexing, verify the graph status with <a href={url('/docs/commands/status')} class="text-primary hover:text-secondary underline">/codegraph:status</a> and start exploring your code using the <a href={url('/docs/tools/search-nodes')} class="text-primary hover:text-secondary underline">query tools</a>.
+    After indexing, start exploring your code using the <a href={url('/docs/tools/search-nodes')} class="text-primary hover:text-secondary underline">query tools</a>.
   </p>
 
   <PrevNext
-    prev={{ title: "/codegraph:setup", href: "/docs/commands/setup" }}
-    next={{ title: "/codegraph:status", href: "/docs/commands/status" }}
+    prev={{ title: "/codegraph:init", href: "/docs/commands/init" }}
+    next={{ title: "search_nodes", href: "/docs/tools/search-nodes" }}
   />
 </DocsLayout>

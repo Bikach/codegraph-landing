@@ -4,7 +4,7 @@ Landing page and documentation site for **CodeGraph** - an MCP server that gives
 
 ## About CodeGraph
 
-CodeGraph enhances Claude and other AI assistants with a knowledge graph of your codebase using Neo4j, enabling:
+CodeGraph enhances Claude and other AI assistants with a knowledge graph of your codebase, stored in an embedded, on-disk graph database (a single local `.lbug` file, no server), enabling:
 
 - Intelligent code navigation with fewer LLM calls
 - Impact analysis on code changes
@@ -69,9 +69,9 @@ The site includes comprehensive documentation covering:
 
 - **Getting Started** - Overview and prerequisites
 - **Installation** - Claude Plugin and MCP Standalone setup
-- **Commands** - `/codegraph:setup`, `/codegraph:index`, `/codegraph:status`
-- **Tools** - 8 graph analysis tools (`search_nodes`, `get_callers`, `get_callees`, `get_neighbors`, etc.)
-- **Languages** - Kotlin, Java, and TypeScript support
+- **Commands** - `/codegraph:index`
+- **Tools** - 10 graph analysis tools (`search_nodes`, `get_callers`, `get_callees`, `get_neighbors`, `get_god_nodes`, `get_module_overview`, etc.)
+- **Languages** - Kotlin, Java, and TypeScript/JavaScript support
 - **Benchmark** - Performance metrics
 
 ## License

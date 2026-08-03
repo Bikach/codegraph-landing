@@ -61,14 +61,14 @@ import { url } from '../../utils/paths';
           <div class="code-content bg-[var(--color-bg-subtle)] rounded-b-lg p-4 overflow-x-auto border-x border-b border-[var(--color-border)]">
             <pre class="text-sm leading-relaxed"><code><span class="step-line"><span class="step-number">1</span><span class="step-command">/plugin marketplace add Bikach/claude-plugins</span></span>
 <span class="step-line"><span class="step-number">2</span><span class="step-command">/plugin install codegraph@Bikach</span></span>
-<span class="step-line"><span class="step-number">3</span><span class="step-command">/codegraph:setup</span></span>
+<span class="step-line"><span class="step-number">3</span><span class="step-command">/codegraph:init</span></span>
 <span class="step-line"><span class="step-number">4</span><span class="step-command">/codegraph:index</span></span></code></pre>
           </div>
         </div>
 
         <!-- Footer note -->
         <p class="mt-4 text-sm text-[var(--color-text-muted)]">
-          Automatic Neo4j setup, no configuration needed
+          One embedded graph file, no server or Docker to run
         </p>
       </div>
 
@@ -98,15 +98,15 @@ import { url } from '../../utils/paths';
             <span class="text-xs text-[var(--color-text-muted)] font-mono">bash</span>
           </div>
           <div class="code-content bg-[var(--color-bg-subtle)] rounded-b-lg p-4 overflow-x-auto border-x border-b border-[var(--color-border)]">
-            <pre class="text-sm leading-relaxed"><code><span class="step-line"><span class="step-number">1</span><span class="step-command">docker-compose up -d</span></span>
-<span class="step-line"><span class="step-number">2</span><span class="step-command">cd mcp-server && npm install && npm run build</span></span>
+            <pre class="text-sm leading-relaxed"><code><span class="step-line"><span class="step-number">1</span><span class="step-command">cd mcp-server && npm install && npm run build</span></span>
+<span class="step-line"><span class="step-number">2</span><span class="step-command">EMBEDDED_DB_PATH=./graph.lbug npx tsx src/scripts/index-project.ts /path/to/project</span></span>
 <span class="step-line"><span class="step-number">3</span><span class="step-comment"># Configure in .mcp.json</span></span></code></pre>
           </div>
         </div>
 
         <!-- Footer note -->
         <p class="mt-4 text-sm text-[var(--color-text-muted)]">
-          Full control over Neo4j and MCP server configuration
+          Full control over indexing and MCP server configuration
         </p>
       </div>
     </div>

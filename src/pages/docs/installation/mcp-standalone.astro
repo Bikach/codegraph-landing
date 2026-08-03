@@ -10,9 +10,7 @@ const mcpConfig = `{
       "command": "node",
       "args": ["/absolute/path/to/codegraph/mcp-server/dist/index.js"],
       "env": {
-        "NEO4J_URI": "bolt://localhost:7687",
-        "NEO4J_USER": "neo4j",
-        "NEO4J_PASSWORD": ""
+        "EMBEDDED_DB_PATH": "/path/to/graph.lbug"
       }
     }
   }
@@ -31,8 +29,8 @@ const mcpConfig = `{
       Choose this option if you:
       <ul class="mt-2 space-y-1">
         <li>Want to use CodeGraph with Claude Desktop or other MCP clients</li>
-        <li>Need access to all 8 MCP tools (including get_callers and get_implementations)</li>
-        <li>Prefer manual control over Neo4j and indexing</li>
+        <li>Need access to all 10 MCP tools (including get_god_nodes and get_module_overview)</li>
+        <li>Prefer manual control over indexing and configuration</li>
       </ul>
     </Callout>
 
@@ -57,28 +55,14 @@ const mcpConfig = `{
       <div class="flex items-start gap-4 glass-card p-4">
         <div class="flex-shrink-0 w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
           <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
-          </svg>
-        </div>
-        <div>
-          <h3 class="text-text-primary font-semibold">Docker</h3>
-          <p class="text-text-secondary text-sm mt-1">
-            Required for running the Neo4j database.
-            <a href="https://docs.docker.com/get-docker/" class="text-primary hover:text-secondary">Install Docker</a>
-          </p>
-        </div>
-      </div>
-
-      <div class="flex items-start gap-4 glass-card p-4">
-        <div class="flex-shrink-0 w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center">
-          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
           </svg>
         </div>
         <div>
-          <h3 class="text-text-primary font-semibold">Neo4j 5 (via Docker)</h3>
+          <h3 class="text-text-primary font-semibold">Embedded graph (bundled)</h3>
           <p class="text-text-secondary text-sm mt-1">
-            Graph database for storing code relationships. Included in docker-compose.yml.
+            The graph is an embedded, in-process database (LadybugDB) - a single on-disk file.
+            No server, no Docker, nothing to install separately.
           </p>
         </div>
       </div>
@@ -95,23 +79,7 @@ cd codeGraph`}
       title="Terminal"
     />
 
-    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 2: Start Neo4j</h3>
-
-    <p class="text-text-secondary mb-4">
-      Start the Neo4j database using Docker Compose:
-    </p>
-
-    <CodeBlock
-      code="docker-compose up -d"
-      lang="bash"
-      title="Terminal"
-    />
-
-    <p class="text-text-muted mt-4 text-sm">
-      Neo4j Browser will be available at <a href="http://localhost:7474" class="text-primary hover:text-secondary">http://localhost:7474</a> (Bolt: <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">bolt://localhost:7687</code>)
-    </p>
-
-    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 3: Build the MCP Server</h3>
+    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 2: Build the MCP Server</h3>
 
     <CodeBlock
       code={`cd mcp-server
@@ -121,19 +89,20 @@ npm run build`}
       title="Terminal"
     />
 
-    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 4: Index Your Project</h3>
+    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 3: Index Your Project</h3>
 
     <p class="text-text-secondary mb-4">
-      Run the indexing script to analyze your codebase:
+      Run the indexing script to analyze your codebase. Point <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">EMBEDDED_DB_PATH</code> at
+      the graph file to create (or update):
     </p>
 
     <CodeBlock
-      code="npx tsx src/scripts/index-project.ts /path/to/your/project"
+      code="EMBEDDED_DB_PATH=/path/to/graph.lbug npx tsx src/scripts/index-project.ts /path/to/project"
       lang="bash"
       title="Terminal"
     />
 
-    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 5: Configure Your MCP Client</h3>
+    <h3 class="text-xl font-semibold text-text-primary mt-8 mb-3">Step 4: Configure Your MCP Client</h3>
 
     <p class="text-text-secondary mb-4">
       Add CodeGraph to your MCP client configuration. For Claude Desktop, edit <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">claude_desktop_config.json</code>.
@@ -146,8 +115,9 @@ npm run build`}
       title=".mcp.json"
     />
 
-    <Callout type="tip" title="Password Configuration">
-      Leave <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">NEO4J_PASSWORD</code> empty if using the default Docker setup (<code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">NEO4J_AUTH=none</code>).
+    <Callout type="tip" title="One shared file">
+      Point <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">EMBEDDED_DB_PATH</code> at the same file used during indexing.
+      The indexer and the MCP server share one on-disk graph file; the server reads it on each query, so re-indexing does not require a restart.
     </Callout>
 
     <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Indexing Options</h2>
@@ -166,16 +136,12 @@ npm run build`}
         </thead>
         <tbody class="text-text-secondary">
           <tr class="border-b border-border">
-            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">--clear</code></td>
-            <td class="py-3 px-4">Clear the database before indexing. Use for fresh re-index.</td>
-          </tr>
-          <tr class="border-b border-border">
             <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">--exclude-tests</code></td>
             <td class="py-3 px-4">Exclude test files (<code>*Test.kt</code>, <code>*Spec.kt</code>, <code>/test/</code>, <code>/tests/</code>).</td>
           </tr>
           <tr class="border-b border-border">
             <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">--dry-run</code></td>
-            <td class="py-3 px-4">Parse and resolve only, skip Neo4j write. Useful for validation.</td>
+            <td class="py-3 px-4">Parse and resolve only, skip the graph write. Useful for validation.</td>
           </tr>
         </tbody>
       </table>
@@ -184,14 +150,14 @@ npm run build`}
     <p class="text-text-secondary mb-4">Examples:</p>
 
     <CodeBlock
-      code={`# Index with fresh database
-npx tsx src/scripts/index-project.ts --clear /path/to/project
+      code={`# Index a project into the graph file (re-indexing replaces this project's data, idempotently)
+EMBEDDED_DB_PATH=/path/to/graph.lbug npx tsx src/scripts/index-project.ts /path/to/project
 
 # Index excluding test files
-npx tsx src/scripts/index-project.ts --exclude-tests /path/to/project
+EMBEDDED_DB_PATH=/path/to/graph.lbug npx tsx src/scripts/index-project.ts --exclude-tests /path/to/project
 
-# Validate parsing without database write
-npx tsx src/scripts/index-project.ts --dry-run /path/to/project`}
+# Validate parsing without writing to the graph
+EMBEDDED_DB_PATH=/path/to/graph.lbug npx tsx src/scripts/index-project.ts --dry-run /path/to/project`}
       lang="bash"
       title="Terminal"
     />
@@ -199,7 +165,7 @@ npx tsx src/scripts/index-project.ts --dry-run /path/to/project`}
     <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Available Tools</h2>
 
     <p class="text-text-secondary mb-4">
-      In MCP Standalone mode, you have access to all <strong class="text-text-primary">8 MCP tools</strong>:
+      In MCP Standalone mode, you have access to all <strong class="text-text-primary">10 MCP tools</strong>:
     </p>
 
     <div class="overflow-x-auto mb-6">
@@ -243,40 +209,26 @@ npx tsx src/scripts/index-project.ts --dry-run /path/to/project`}
             <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_file_symbols</code></td>
             <td class="py-3 px-4">List all symbols defined in a file</td>
           </tr>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_god_nodes</code></td>
+            <td class="py-3 px-4">Find the highest-degree nodes (system hotspots)</td>
+          </tr>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4"><code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">get_module_overview</code></td>
+            <td class="py-3 px-4">Project map: domains, cross-domain dependencies, cycles</td>
+          </tr>
         </tbody>
       </table>
     </div>
 
-    <h2 class="text-2xl font-semibold text-text-primary mt-10 mb-4">Docker Commands</h2>
-
-    <p class="text-text-secondary mb-4">
-      Useful commands for managing Neo4j:
-    </p>
-
-    <CodeBlock
-      code={`# Start Neo4j
-docker-compose up -d
-
-# Stop Neo4j
-docker-compose down
-
-# Stop and remove data (fresh start)
-docker-compose down -v
-
-# Check logs
-docker-compose logs -f neo4j`}
-      lang="bash"
-      title="Terminal"
-    />
-
-    <Callout type="warning" title="Data Persistence">
-      Using <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">docker-compose down -v</code> removes all data.
-      You will need to re-index your projects after this command.
+    <Callout type="tip" title="Portable graph file">
+      The entire graph lives in the single file at <code class="bg-bg-subtle px-2 py-0.5 rounded text-primary">EMBEDDED_DB_PATH</code>.
+      Delete it to start fresh, back it up, or move it between machines - there is no server or volume to manage.
     </Callout>
   </article>
 
   <PrevNext
     prev={{ title: "Claude Plugin", href: "/docs/installation/claude-plugin" }}
-    next={{ title: "/codegraph:setup", href: "/docs/commands/setup" }}
+    next={{ title: "/codegraph:init", href: "/docs/commands/init" }}
   />
 </DocsLayout>

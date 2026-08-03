@@ -1,0 +1,164 @@
+---
+import DocsLayout from '../../../layouts/Docs.astro';
+import CodeBlock from '../../../components/docs/CodeBlock.astro';
+import Callout from '../../../components/docs/Callout.astro';
+import PrevNext from '../../../components/docs/PrevNext.astro';
+---
+
+<DocsLayout title="get_module_overview">
+  <h1 class="text-4xl font-bold text-text-primary mb-4">get_module_overview</h1>
+  <p class="text-xl text-text-secondary mb-8">
+    A high-level map of a project: modules, cross-domain dependencies, cycles, and hotspots.
+  </p>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Description</h2>
+    <p class="text-text-secondary mb-4">
+      The <code class="text-primary bg-bg-subtle px-2 py-1 rounded">get_module_overview</code> tool answers macro questions like "how is this project organized?" or "where does X live?". It reports the project's named modules and domains (inferred from packages or, for TypeScript/JavaScript, from module paths), the weighted dependencies between them, mutual-coupling cycles, and the most depended-upon nodes.
+    </p>
+    <p class="text-text-secondary mb-4">
+      Lead with the <code class="text-primary bg-bg-subtle px-2 py-1 rounded">MODULES</code> section - on a well-structured codebase the packages already are the right grouping. Domains are computed at indexing time.
+    </p>
+    <p class="text-text-secondary">
+      Results are returned as compact sections:
+    </p>
+    <ul class="list-disc list-inside text-text-secondary space-y-2 mt-3">
+      <li><code class="text-primary bg-bg-subtle px-2 py-1 rounded">MODULES</code> - <code class="text-primary">name | N files | packages</code></li>
+      <li><code class="text-primary bg-bg-subtle px-2 py-1 rounded">CYCLES</code> - mutual-coupling pairs <code class="text-primary">A &lt;-&gt; B | wAB/wBA</code> (a DDD smell)</li>
+      <li><code class="text-primary bg-bg-subtle px-2 py-1 rounded">DOMAIN_DEPS</code> - <code class="text-primary">from -&gt; to | weight</code></li>
+      <li><code class="text-primary bg-bg-subtle px-2 py-1 rounded">HOTSPOTS</code> - <code class="text-primary">degree | in/out | role | type | Name | path:line</code></li>
+      <li><code class="text-primary bg-bg-subtle px-2 py-1 rounded">COMMUNITIES</code> - topological clusters (only when <code class="text-primary">communities</code> is true)</li>
+    </ul>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Parameters</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm text-left text-text-secondary">
+        <thead class="text-xs uppercase bg-bg-subtle text-text-muted">
+          <tr>
+            <th class="py-3 px-4 rounded-tl-lg">Parameter</th>
+            <th class="py-3 px-4">Type</th>
+            <th class="py-3 px-4">Required</th>
+            <th class="py-3 px-4 rounded-tr-lg">Description</th>
+          </tr>
+        </thead>
+        <tbody class="bg-bg-subtle">
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">top_n</code></td>
+            <td class="py-3 px-4">integer</td>
+            <td class="py-3 px-4"><span class="text-text-muted">No</span></td>
+            <td class="py-3 px-4">Number of hotspots to include: 1-50 (default: 10)</td>
+          </tr>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">scope</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-text-muted">No</span></td>
+            <td class="py-3 px-4"><code class="text-xs bg-bg-subtle px-1 rounded text-primary">main</code> (prod only, excludes test files, default) or <code class="text-xs bg-bg-subtle px-1 rounded text-primary">all</code></td>
+          </tr>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">communities</code></td>
+            <td class="py-3 px-4">boolean</td>
+            <td class="py-3 px-4"><span class="text-text-muted">No</span></td>
+            <td class="py-3 px-4">Also compute topological communities (seeded Louvain) - emergent modules grouped by coupling. Turn on when packaging is flat or messy (default: false)</td>
+          </tr>
+          <tr class="border-b border-border">
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">exclude_accessors</code></td>
+            <td class="py-3 px-4">boolean</td>
+            <td class="py-3 px-4"><span class="text-text-muted">No</span></td>
+            <td class="py-3 px-4">De-noise HOTSPOTS by dropping trivial accessors (getName/setX/isY backed by a real property). Useful on getter-heavy models (default: false)</td>
+          </tr>
+          <tr>
+            <td class="py-3 px-4 font-medium text-text-primary"><code class="text-primary">project_path</code></td>
+            <td class="py-3 px-4">string</td>
+            <td class="py-3 px-4"><span class="text-text-muted">No</span></td>
+            <td class="py-3 px-4">Filter by project path. If not provided, covers all indexed projects</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Example</h2>
+    <p class="text-text-secondary mb-4">
+      Ask Claude for a map of the project. The output groups the codebase into modules, flags mutual-coupling cycles, weights the dependencies between domains, and lists the biggest hotspots.
+    </p>
+    <CodeBlock
+      code={`⏺ codegraph:get_module_overview (MCP)(top_n: 3)
+
+  ⎿  MODULES (4):
+     domain       | 22 files | model, port
+     application  | 14 files | usecase, service
+     infrastructure | 18 files | persistence, config
+     api          | 9 files  | controller, dto
+
+     CYCLES (1):
+     application <-> infrastructure | 6/4
+
+     DOMAIN_DEPS (3):
+     api -> application | 21
+     application -> domain | 34
+     infrastructure -> domain | 12
+
+     HOTSPOTS (3):
+     42 | 40/2 | ripple | Interface | UserRepository | .../domain/port/UserRepository.kt:7
+     31 | 28/3 | ripple | Class     | User           | .../domain/model/User.kt:7
+     24 | 12/12 | hub   | Class     | UserService    | .../application/UserService.kt:15`}
+      lang="bash"
+      title="Claude Code"
+      copyable={false}
+    />
+  </section>
+
+  <section class="mb-12">
+    <h2 class="text-2xl font-semibold text-text-primary mb-4">Use Cases</h2>
+    <ul class="space-y-3 text-text-secondary">
+      <li class="flex items-start gap-3">
+        <span class="text-secondary mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong class="text-text-primary">Orientation:</strong> Get the lay of the land on an unfamiliar codebase before diving into files</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-secondary mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong class="text-text-primary">Architecture review:</strong> Spot cross-domain cycles and unexpected dependencies that violate your intended layering</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-secondary mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong class="text-text-primary">Modularization:</strong> Use communities to reveal the real structure hiding inside a flat or messy package layout</span>
+      </li>
+      <li class="flex items-start gap-3">
+        <span class="text-secondary mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        </span>
+        <span><strong class="text-text-primary">Planning:</strong> Understand which domains a feature will touch before estimating the work</span>
+      </li>
+    </ul>
+  </section>
+
+  <Callout type="tip" title="When to enable communities">
+    Leave <code class="text-primary">communities</code> off on well-organized projects - the package-based MODULES are already correct and communities mostly add noise. Turn it on when packaging is flat or messy and hides the real structure.
+  </Callout>
+
+  <Callout type="info" title="Cycles are a smell">
+    Entries in the CYCLES section mean two modules depend on each other. In a layered or DDD architecture this usually signals a boundary that has leaked - a good place to introduce an interface or move a type.
+  </Callout>
+
+  <PrevNext
+    prev={{ title: "get_god_nodes", href: "/docs/tools/get-god-nodes" }}
+    next={{ title: "Benchmark", href: "/docs/benchmark" }}
+  />
+</DocsLayout>
