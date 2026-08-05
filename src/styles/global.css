@@ -4,20 +4,32 @@
    Tailwind v4 Theme Configuration
    ======================================== */
 @theme {
-  /* GitHub Light theme - clean and professional */
-  --color-primary: #0969da;
-  --color-secondary: #1f883d;
-  --color-danger: #cf222e;
+  /* Craft Software Consulting - Modernist palette (navy accent, warm neutrals) */
+  --color-primary: #14233b;      /* navy accent */
+  --color-secondary: #3f5578;    /* lighter navy - hovers, secondary accents */
+  --color-danger: #c0392b;
   --color-attention: #9a6700;
-  --color-bg: #ffffff;
-  --color-bg-subtle: #f6f8fa;
-  --color-surface: #ffffff;
-  --color-surface-hover: #f6f8fa;
-  --color-border: #d0d7de;
-  --color-border-muted: #d8dee4;
-  --color-text-primary: #1f2328;
-  --color-text-secondary: #656d76;
-  --color-text-muted: #8c959f;
+  --color-bg: #f3f2f2;           /* warm off-white */
+  --color-bg-subtle: #eae9e9;    /* subtle surface */
+  --color-surface: #f8f4f4;      /* cards */
+  --color-surface-hover: #eae7e7;
+  --color-border: color-mix(in srgb, #201e1d 16%, transparent);
+  --color-border-muted: color-mix(in srgb, #201e1d 28%, transparent);
+  --color-text-primary: #201e1d; /* near-black */
+  --color-text-secondary: #605d5d;
+  --color-text-muted: #7d7979;
+
+  /* Type - Archivo (Modernist) */
+  --font-sans: "Archivo", system-ui, -apple-system, sans-serif;
+
+  /* Modernist: square corners */
+  --radius-xs: 0px;
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
 }
 
 /* ========================================
@@ -32,14 +44,15 @@
     @apply overflow-x-hidden antialiased;
     background-color: var(--color-bg);
     color: var(--color-text-primary);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
+    font-family: var(--font-sans);
+    line-height: 1.55;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    font-family: var(--font-sans);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
   }
 
   a {
@@ -106,14 +119,14 @@
 
   /* Primary button - GitHub green style */
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-3 font-medium rounded-md cursor-pointer border-none transition-all duration-150;
-    background: var(--color-secondary);
+    @apply inline-flex items-center justify-center px-6 py-3 font-semibold rounded-md cursor-pointer border-none transition-all duration-150;
+    background: var(--color-primary);
     color: #ffffff;
   }
 
   .btn-primary:hover {
     @apply text-white;
-    background: #1a7f37;
+    background: #101f36;
   }
 
   /* Secondary button - GitHub outline style */
